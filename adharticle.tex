@@ -1,0 +1,54 @@
+% File name: /home/adh/Projects/LaTeXClasses/adharticle_test.tex
+% Document to test functionality of adharticle class.
+% Author: adh
+% Date: Wed 24 Dec 2014 17:23
+
+\documentclass{adharticle}  % Standard document class
+
+% Define title here:
+\title{A customised \LaTeX{} article class}
+\author{Andy Holt}
+\date{\today}
+
+\begin{document}
+
+% generate title
+\maketitle
+
+\noindent
+The aim of the \texttt{adharticle} \LaTeX{} class is to provide a
+simple and clean way to set up the document as I like it. This could easily be
+achieved through the \LaTeX{} document header, but giving by combining these
+settings into a class:
+\begin{enumerate}
+\item The need to duplicate options and settings in each document is avoided,
+\item If the settings are changed, they need only be modified in one location
+  and all documents using this class may be recompiled without modification.
+\end{enumerate}
+
+This class will be used primarily for longform writing, producing A4 documents
+with a layout aimed at reading longer text. It will give a good typesetting for
+reading and will include all necessary packages for typesetting maths, tables,
+Greek/Hebrew text and source code.
+
+\section{Class Options}
+
+The following options are available to the \texttt{adharticle} document class:
+\begin{description}
+\item[fullpage] If \textt{fullpage} option is present, use the fullpage
+  package. This reduces the margin sizes on all sizes to $1\,\mathrm{in}$.
+\item[Item 2] If \texttt{paper} is set, the document is intended for printing on
+  paper. If \texttt{electronic} is set, the document is intended for viewing
+  electronically (probably PDF). The default settings reflect the medium of
+  intended use. A script should be written to produce both if necessary to
+  avoide 2 versions of the files floating around. Default to electronic behaviour.
+\end{description}
+
+% [todo] - write a script to produce both paper and electronic copies if necessary
+
+\section{Included Packages and Settings}
+
+This section details the packages used in the \texttt{adharticle} class and
+their settings.
+
+\end{document}
