@@ -35,8 +35,9 @@ Greek/Hebrew text and source code.
 
 The following options are available to the \texttt{adharticle} document class:
 \begin{description}
+% [todo] - make footnote link a url once hyperref package implemented.
 \item[fullpage] If \texttt{fullpage} option is present, use the fullpage
-  package. This reduces the margin sizes on all sizes to $1\,\mathrm{in}$.
+  package\footnote{http://www.ctan.org/pkg/fullpage}. This reduces the margin sizes on all sizes to $1\,\mathrm{in}$.
 \item[paper/electronic] If \texttt{paper} is set, the document is intended for
   printing on paper. If \texttt{electronic} is set, the document is intended for
   viewing electronically (probably PDF). The default settings reflect the medium
@@ -51,5 +52,26 @@ The following options are available to the \texttt{adharticle} document class:
 
 This section details the packages used in the \texttt{adharticle} class and
 their settings.
+
+\subsection{inputenc}
+
+The \texttt{inputenc} package\footnote{http://ctan.org/pkg/inputenc} allows use
+of different file encodings for the LaTeX file. This is set by:
+% [todo] - add input encoding setting line from .cls file once minted implemented
+Using the \texttt{utf8} encoding allows unicode characters to be easily
+inputted, especially useful for including Greek text or other non-western
+characters.
+
+\subsection{babel}
+
+The \texttt{babel} package\footnote{http://ctan.org/pkg/babel} provides support
+for language specific hyphenation patterns and also culturally and
+linguistically determined typographical rules. Babel is configured by:
+% [todo] - add babel setting line from .cls file once minted implemented
+Babel is configured to provide support for Greek and for English, with English
+as the default. Use:
+% [todo] - add ``\selectlanguage{Greek}'' once minted implemented
+to change to Greek (or other  languages as appropriate), and similarly back to
+English.
 
 \end{document}
