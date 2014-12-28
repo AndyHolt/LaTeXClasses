@@ -62,9 +62,21 @@
 \RequirePackage{graphicx}
 \RequirePackage{placeins}
 
-% [todo] - add support for amsmath package
-%   improved maths and formula typesetting
-% [todo] - add ctable support
+% packages to include extra symbols
+\RequirePackage{amssymb,amsmath}
+
+% packages for tables
+\RequirePackage{ctable}
+\setupctable{
+  bgopacity=1,
+  botcap,
+  center,
+  footerwidth,
+  mincapwidth=0.3\textwidth,
+  nonotespar,
+  table
+ }
+
 % [todo] - add support for `minted' package
 %   package for syntax highlighting source code. Uses pygments (python package)
 %   for syntax highlighting (http://pygments.org/).
