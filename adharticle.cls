@@ -52,14 +52,16 @@
 }
 
 % allow unicode symbols to be used
-\usepackage[utf8]{inputenc}
+\RequirePackage[utf8]{inputenc}
 
 % Babel package provides correct hyphenation etc
-\usepackage[greek,english]{babel}
+\RequirePackage[greek,english]{babel}
 
-% [todo] - add support for graphicx package
-% [todo] - add support for placeins
-%   Allows use of \FloatBarrier command
+% packages for handling graphics
+\RequirePackage{color}
+\RequirePackage{graphicx}
+\RequirePackage{placeins}
+
 % [todo] - add support for amsmath package
 %   improved maths and formula typesetting
 % [todo] - add ctable support
@@ -74,6 +76,7 @@
 %   For much better typography using microtypographical extensions.
 % [todo] - add support for hyperref package
 %   Probably only to be used for electronic documents (not paper).
+% [todo] - add support for tikz/pgf for drawings etc
 
 % [todo] - make adhsymbols package which defines some custom commands
 %   \providecommand{\e}[1]{\ensuremath{\times10^{#1}}}
