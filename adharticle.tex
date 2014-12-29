@@ -1,14 +1,11 @@
-% File name: /home/adh/Projects/LaTeXClasses/adharticle_test.tex
-% Document to test functionality of adharticle class.
-% Author: adh
-% Date: Wed 24 Dec 2014 17:23
+% File name: /home/adh/Projects/LaTeXClasses/adharticle_test.tex Document to
+% test functionality of adharticle class.  Author: adh Date: Wed 24 Dec 2014
+% 17:23
 
-\documentclass{adharticle}  % Standard document class
+\documentclass{adharticle} % Standard document class
 
 % Define title here:
-\title{A customised \LaTeX{} article class}
-\author{Andy Holt}
-\date{\today}
+\title{A customised \LaTeX{} article class} \author{Andy Holt} \date{\today}
 
 \begin{document}
 
@@ -16,10 +13,10 @@
 \maketitle
 
 \noindent
-The aim of the \texttt{adharticle} \LaTeX{} class is to provide a
-simple and clean way to set up the document as I like it. This could easily be
-achieved through the \LaTeX{} document header, but giving by combining these
-settings into a class:
+The aim of the \texttt{adharticle} \LaTeX{} class is to provide a simple and
+clean way to set up the document as I like it. This could easily be achieved
+through the \LaTeX{} document header, but giving by combining these settings
+into a class:
 \begin{enumerate}
 \item The need to duplicate options and settings in each document is avoided,
 \item If the settings are changed, they need only be modified in one location
@@ -31,13 +28,21 @@ with a layout aimed at reading longer text. It will give a good typesetting for
 reading and will include all necessary packages for typesetting maths, tables,
 Greek/Hebrew text and source code.
 
+\section{Compilation}
+
+The \texttt{adharticle} class is designed for use with \LaTeX{} and \XeLaTeX{},
+usually producing PDF files. The option \texttt{--shell-escape} must be provided
+to the compiler as the \texttt{minted} package calls external commands.
+
+
 \section{Class Options}
 
 The following options are available to the \texttt{adharticle} document class:
 \begin{description}
-% [todo] - make footnote link a url once hyperref package implemented.
+  % [todo] - make footnote link a url once hyperref package implemented.
 \item[fullpage] If \texttt{fullpage} option is present, use the fullpage
-  package\footnote{http://www.ctan.org/pkg/fullpage}. This reduces the margin sizes on all sizes to $1\,\mathrm{in}$.
+  package\footnote{http://www.ctan.org/pkg/fullpage}. This reduces the margin
+  sizes on all sizes to $1\,\mathrm{in}$.
 \item[paper/electronic] If \texttt{paper} is set, the document is intended for
   printing on paper. If \texttt{electronic} is set, the document is intended for
   viewing electronically (probably PDF). The default settings reflect the medium
@@ -46,9 +51,12 @@ The following options are available to the \texttt{adharticle} document class:
   behaviour.
 \end{description}
 
-% [todo] - write a script to produce both paper and electronic copies if necessary
+% [todo] - write a script to produce both paper and electronic copies if
+% necessary
 
 \section{Included Packages and Settings}
+
+% [todo] - add subsection on dtklogos
 
 This section details the packages used in the \texttt{adharticle} class and
 their settings.
@@ -57,7 +65,8 @@ their settings.
 
 The \texttt{inputenc} package\footnote{http://ctan.org/pkg/inputenc} allows use
 of different file encodings for the LaTeX file. This is set by:
-% [todo] - add input encoding setting line from .cls file once minted implemented
+
+\latex|\RequirePackage[utf8]{inputenc}|
 Using the \texttt{utf8} encoding allows unicode characters to be easily
 inputted, especially useful for including Greek text or other non-western
 characters.
@@ -67,36 +76,39 @@ characters.
 The \texttt{babel} package\footnote{http://ctan.org/pkg/babel} provides support
 for language specific hyphenation patterns and also culturally and
 linguistically determined typographical rules. Babel is configured by:
-% [todo] - add babel setting line from .cls file once minted implemented
+
+\latex|\RequirePackage[greek,english]{babel}|
 Babel is configured to provide support for Greek and for English, with English
 as the default. Use:
-% [todo] - add ``\selectlanguage{Greek}'' once minted implemented
-to change to Greek (or other  languages as appropriate), and similarly back to
+
+\latex|\selectlanguage{Greek}|
+to change to Greek (or other languages as appropriate), and similarly back to
 English.
 
 \subsection{color}
 
 The \texttt{color} package\footnote{http://ctan.org/pkg/color} provides colour
 management. Standard colour set is provided, new colours may be defined using:
-% [todo] - include code to define a colour.
+
+\latex|\definecolor{name}{model (e.g. rgb)}{colour specification}|
 Colours may then be applied to text or other elements. Especially useful when
 drawing pictures with Tikz/pgf.
 
 \subsection{graphicx}
 
-The \textt{graphicx} package\footnote{http://ctan.org/pkg/graphicx} allows
+The \texttt{graphicx} package\footnote{http://ctan.org/pkg/graphicx} allows
 inclusion of graphics in the document. A graphic may be included by giving the
 command:
 
 \subsection{placeins}
 
-The \texttt{placeins} package defines the command \texttt{\textbackslash
-  FloatBarrier} which stops floats from moving past.
+The \texttt{placeins} package defines the command
+\texttt{\textbackslash{}FloatBarrier} which stops floats from moving past.
 
 \subsection{amssymb, amsmath}
 
-The packages \texttt{amssymb} and \texttt{amsmath} provide support for additional
-symbols and mathematical notation.
+The packages \texttt{amssymb} and \texttt{amsmath} provide support for
+additional symbols and mathematical notation.
 
 
 \subsection{ctable}
@@ -106,3 +118,8 @@ a nice looking table and also provides footnotes for the table. Default values
 for options of \texttt{ctable} are set in the class file.
 
 \end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

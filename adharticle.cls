@@ -1,6 +1,12 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{adharticle}[2014/12/24 Custom LaTeX article class]
 
+% [todo] - ensure compatibility with different compilers
+%   Check with:
+%     - latex
+%     - pdflatex
+%     - xelatex
+
 %% Preliminary Declarations - set up packages needed for class file
 \RequirePackage{etoolbox}
 
@@ -58,12 +64,15 @@
 \RequirePackage[greek,english]{babel}
 
 % packages for handling graphics
+% [review] - use xcolor instead of color package?
 \RequirePackage{color}
 \RequirePackage{graphicx}
 \RequirePackage{placeins}
 
 % packages to include extra symbols
 \RequirePackage{amssymb,amsmath}
+% provides various extra TeX related logos, such as \XeLaTeX
+\RequirePackage{dtklogos}
 
 % packages for tables
 \RequirePackage{ctable}
@@ -77,10 +86,31 @@
   table
  }
 
-% [todo] - add support for `minted' package
-%   package for syntax highlighting source code. Uses pygments (python package)
-%   for syntax highlighting (http://pygments.org/).
-% [todo] - add solarized themes for minted?
+% packages for source code formatting
+\usepackage{minted}
+\usemintedstyle{solarizedlight}
+\definecolor{solarizedlightbg}{rgb}{0.933,0.910, 0.835}
+% [review] - use inconsolata/monaco font in minted? (can this be done?)
+% [todo] - format minted line numbers to match solarized theme
+\newminted{latex}{
+  bgcolor=solarizedlightbg,
+  gobble=2,
+  linenos=true,
+  numberblanklines=true,
+  obeytabs=false,
+  showspaces=false,
+  stepnumber=1,
+  tabsize=4
+}
+\newmint{latex}{
+  bgcolor=solarizedlightbg,
+  gobble=0,
+  linenos=false,
+  obeytabs=false,
+  showspaces=false,
+  tabsize=4
+}
+
 % [todo] - add support for fancyvrb package
 %   More powerful verbatim.
 % [todo] - add support for subfig or subcaption package
