@@ -23,7 +23,7 @@ into a class:
   and all documents using this class may be recompiled without modification.
 \end{enumerate}
 
-This class will be used primarily for longform writing, producing A4 documents
+This class will be used primarily for long form writing, producing A4 documents
 with a layout aimed at reading longer text. It will give a good typesetting for
 reading and will include all necessary packages for typesetting maths, tables,
 Greek/Hebrew text and source code.
@@ -47,7 +47,7 @@ The following options are available to the \texttt{adharticle} document class:
   printing on paper. If \texttt{electronic} is set, the document is intended for
   viewing electronically (probably PDF). The default settings reflect the medium
   of intended use. A script should be written to produce both if necessary to
-  avoide 2 versions of the files floating around. Default to electronic
+  avoid 2 versions of the files floating around. Default to electronic
   behaviour.
 \end{description}
 
@@ -67,7 +67,7 @@ The \texttt{inputenc} package\footnote{http://ctan.org/pkg/inputenc} allows use
 of different file encodings for the LaTeX file. This is set by:
 
 \latex|\RequirePackage[utf8]{inputenc}|
-Using the \texttt{utf8} encoding allows unicode characters to be easily
+Using the \texttt{utf8} encoding allows Unicode characters to be easily
 inputted, especially useful for including Greek text or other non-western
 characters.
 
@@ -116,6 +116,22 @@ additional symbols and mathematical notation.
 \texttt{ctable} is a powerful table package which uses \texttt{booktabs} to make
 a nice looking table and also provides footnotes for the table. Default values
 for options of \texttt{ctable} are set in the class file.
+
+\subsection{minted}
+
+The \texttt{minted} package provides syntax highlighting for source code
+included in the document, along with a number of other useful features for
+including code.
+
+\subsection{fancyvrb}
+
+The \texttt{fancyvrb} package provides a more powerful version of the
+\texttt{verbatim} environment.
+
+\subsection{microtype}
+
+The \texttt{microtype} package provides access to micro-typographical extensions
+to improve document layout.
 
 \end{document}
 

@@ -87,7 +87,7 @@
  }
 
 % packages for source code formatting
-\usepackage{minted}
+\RequirePackage{minted}
 \usemintedstyle{solarizedlight}
 \definecolor{solarizedlightbg}{rgb}{0.933,0.910, 0.835}
 % [review] - use inconsolata/monaco font in minted? (can this be done?)
@@ -111,8 +111,19 @@
   tabsize=4
 }
 
-% [todo] - add support for fancyvrb package
-%   More powerful verbatim.
+% fancyvrb - more powerful verbatim environments
+% [todo] - setup default settings etc
+\RequirePackage{fancyvrb}
+
+% micro-typography
+\RequirePackage[
+protrusion=true,
+expansion=true,
+tracking=true
+spacing=true,
+babel=true
+]{microtype}
+
 % [todo] - add support for subfig or subcaption package
 % [todo] - add support and config for microtype package
 %   For much better typography using microtypographical extensions.
