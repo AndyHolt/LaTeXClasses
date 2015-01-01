@@ -112,7 +112,7 @@
 }
 
 % fancyvrb - more powerful verbatim environments
-% [todo] - setup default settings etc
+% [todo] - setup default fancyvrb settings
 \RequirePackage{fancyvrb}
 
 % micro-typography
@@ -125,12 +125,25 @@ babel=true
 ]{microtype}
 
 % [todo] - add support for subfig or subcaption package
-% [todo] - add support and config for microtype package
-%   For much better typography using microtypographical extensions.
-% [todo] - add support for hyperref package
-%   Probably only to be used for electronic documents (not paper).
+
 % [todo] - add support for tikz/pgf for drawings etc
 
 % [todo] - make adhsymbols package which defines some custom commands
 %   \providecommand{\e}[1]{\ensuremath{\times10^{#1}}}
 %   \providecommand{\degrees}{\ensuremath{^{\circ}}}
+
+% Hyperref package
+%   should only be loaded if document type is electronic
+%   must come last in class file as it redefines commands which may be changed
+%   by other packages
+\iftoggle{forpaperoption}{
+  \typeout{Not using hyperref - paper option set}
+}{
+  \typeout{enabling hyperref - electronic document}
+  \RequirePackage{hyperref}
+  \hypersetup{
+    colorlinks=true,
+    urlcolor=blue
+  }
+  \RequirePackage{footnotebackref}
+}

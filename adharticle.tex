@@ -2,7 +2,7 @@
 % test functionality of adharticle class.  Author: adh Date: Wed 24 Dec 2014
 % 17:23
 
-\documentclass{adharticle} % Standard document class
+\documentclass[electronic]{adharticle} % Standard document class
 
 % Define title here:
 \title{A customised \LaTeX{} article class} \author{Andy Holt} \date{\today}
@@ -29,6 +29,7 @@ reading and will include all necessary packages for typesetting maths, tables,
 Greek/Hebrew text and source code.
 
 \section{Compilation}
+\label{sec:compilation}
 
 The \texttt{adharticle} class is designed for use with \LaTeX{} and \XeLaTeX{},
 usually producing PDF files. The option \texttt{--shell-escape} must be provided
@@ -132,6 +133,13 @@ The \texttt{fancyvrb} package provides a more powerful version of the
 
 The \texttt{microtype} package provides access to micro-typographical extensions
 to improve document layout.
+
+\subsection{hyperref}
+
+Makes references in the document into clickable hyperlinks for easy
+navigation. Only used for documents intended for electronic files (not for paper
+documents). For example, a reference to Section~\ref{sec:compilation}. Internet
+links can also be used: \href{http://www.google.co.uk}{google}.
 
 \end{document}
 
