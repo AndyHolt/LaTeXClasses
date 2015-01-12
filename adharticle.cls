@@ -7,6 +7,14 @@
 %     - pdflatex
 %     - xelatex
 
+% [todo] - read up on common mistakes
+%   http://mirror.ox.ac.uk/sites/ctan.org/info/l2tabu/english/l2tabuen.pdf
+
+% [todo] - investigate for margin size changes
+% ``These classes have been made with a European point of view on typography in
+%   mind. You can also use typearea.sty which is part of KOMA -Script with any
+%   other document class.''
+
 %% Preliminary Declarations - set up packages needed for class file
 \RequirePackage{etoolbox}
 
@@ -124,9 +132,14 @@ spacing=true,
 babel=true
 ]{microtype}
 
-% [todo] - add support for subfig or subcaption package
+% subcaption package
+% [todo] - add  subcaption to documentation file
+\RequirePackage{subcaption}
 
-% [todo] - add support for tikz/pgf for drawings etc
+
+% tikz package for drawing figures/diagrams
+% [todo] - add tikz to documentation file.
+\RequirePackage{tikz}
 
 % [todo] - make adhsymbols package which defines some custom commands
 %   \providecommand{\e}[1]{\ensuremath{\times10^{#1}}}
