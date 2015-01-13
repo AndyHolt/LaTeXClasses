@@ -105,11 +105,14 @@
 }{}
 \iftoggle{timesfont}{
   \typeout{Times font used}
+  % [review] - use mathptmx instead of times?
   \RequirePackage{times}
   \renewcommand{\titlefamily}{\sffamily}
 }{}
 \iftoggle{palatinofont}{
   \typeout{Palatino font used}
+  % [review] - apprarently palatino depricated - use mathpazo instead
+  %   may also want to use either sc or osf options with mathpazo
   \RequirePackage{palatino}
   \renewcommand{\baselinestretch}{1.1}
   \renewcommand{\titlefamily}{\sffamily}
