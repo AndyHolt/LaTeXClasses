@@ -41,6 +41,35 @@
   \togglefalse{forpaperoption}
 }
 
+% font setting options
+% toggles for different font sets
+\providetoggle{cmfont}
+\providetoggle{timesfont}
+\providetoggle{palatinofont}
+\providetoggle{timesoptfont}
+
+% default to computer modern
+\toggletrue{cmfont}
+\togglefalse{timesfont}
+\togglefalse{palatinofont}
+\togglefalse{timesoptfont}
+
+\DeclareOption{cm}{
+  \toggletrue{cmfont}
+}
+\DeclareOption{times}{
+  \togglefalse{cmfont}
+  \toggletrue{timesfont}
+}
+\DeclareOption{palatino}{
+  \togglefalse{cmfont}
+  \toggletrue{palatinofont}
+  }
+\DeclareOption{timesopt}{
+  \togglefalse{cmfont}
+  \toggletrue{timesoptfont}
+}
+
 % pass other options to article class (e.g. font sizes)
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
@@ -63,6 +92,90 @@
   \typeout{Paper option set}
 }{
   \typeout{Electronic (not paper) option set}
+}
+
+% font set up
+% [todo] - configure fonts (espeically sans-serif and monospace fonts)
+% All of this font configuration borrows very heavily from
+% Dr Drang (https://github.com/drdrang/drangreport)
+\newcommand{\titlefamily}{}
+
+\iftoggle{cmfont}{
+  \typeout{Computer Modern font used}
+}{}
+\iftoggle{timesfont}{
+  \typeout{Times font used}
+  \RequirePackage{times}
+  \renewcommand{\titlefamily}{\sffamily}
+}{}
+\iftoggle{palatinofont}{
+  \typeout{Palatino font used}
+  \RequirePackage{palatino}
+  \renewcommand{\baselinestretch}{1.1}
+  \renewcommand{\titlefamily}{\sffamily}
+}{}
+\iftoggle{timesoptfont}{
+  \typeout{Times and Optima fonts used}
+  \RequirePackage{times}
+  \renewcommand{\titlefamily}{\sffamily}
+}{}
+
+% change (sub)section and (sub)paragraph fonts to sans serif
+\renewcommand{\section}{\@startsection{section}{1}
+  {0pt}                         % indent
+  {-3.75ex plus .2ex}           % preskip, next par not indented
+  {2.0ex plus .2ex}             % post-skip
+  {\normalfont\titlefamily\bfseries\Large}
+}
+\renewcommand{\subsection}{\@startsection{subsection}{2}
+  {0pt}                         % indent
+  {-2.5ex plus -1ex minus -.2ex} % preskip, next par not indented
+  {1.25ex plus .2ex}             % post-skip
+  {\normalfont\titlefamily\bfseries\large}
+}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}
+  {0pt}                         % indent
+  {-1.25ex plus -1ex minus .2ex} % preskip, next par not indented
+  {.5ex plus .2ex}               % post-skip
+  {\normalfont\titlefamily\bfseries\normalsize}
+}
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}
+  {0pt}                       % indent
+  {-1.25ex plus -1ex minus -.2ex} % pre-skip, next par not indented
+  {-1em}                          % post-skip, run in with 1 em space
+  {\normalfont\titlefamily\bfseries\normalsize}
+}
+\renewcommand{\subparagraph}{\@startsection{subparagraph}{5}
+  {0pt}                       % indent
+  {1.25ex plus 1ex minus .2ex} % pre-skip, next par not indented
+  {-1em}                          % post-skip, run in with 1 em space
+  {\normalfont\titlefamily\itshape\normalsize}
+}
+
+% redefine title to use \titlefamily font
+% [todo] - make robust to having a title page
+%   See drang report
+\renewcommand{\maketitle}{
+  \renewcommand{\and}
+    {\end{tabular} \begin{tabular}[t]{c}\vspace{.5ex}\\}
+  \begin{center}
+    \begin{tabular}[t]{c}
+      \parbox[c][.5in][c]{5in}
+        {\centering\normalfont\titlefamily\bfseries\LARGE\@title}\\
+      \begin{minipage}{5in}
+        \begin{center}
+          \normalfont\normalsize
+          \begin{tabular}[t]{c}
+            \vspace{.5ex}\\
+            \@author
+          \end{tabular}
+        \end{center}
+      \end{minipage}
+      \vspace{.25in}\\
+      \@date
+      \vspace{.25in}\\
+    \end{tabular}
+  \end{center}
 }
 
 % allow unicode symbols to be used
@@ -135,7 +248,6 @@ babel=true
 % subcaption package
 % [todo] - add  subcaption to documentation file
 \RequirePackage{subcaption}
-
 
 % tikz package for drawing figures/diagrams
 % [todo] - add tikz to documentation file.
