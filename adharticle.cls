@@ -108,7 +108,6 @@
 }
 
 % font set up
-% [todo] - configure fonts (espeically sans-serif and monospace fonts)
 % All of this font configuration borrows very heavily from
 % Dr Drang (https://github.com/drdrang/drangreport)
 \newcommand{\titlefamily}{}
@@ -126,8 +125,6 @@
   }{}
 \iftoggle{palatinofont}{
   \typeout{Palatino font used}
-  % [review] - apprarently palatino depricated - use mathpazo instead
-  %   may also want to use either sc or osf options with mathpazo
   \RequirePackage[sc,osf]{mathpazo}
   \RequirePackage{classico}
   \renewcommand{\baselinestretch}{1.1}
@@ -267,6 +264,8 @@ babel=true
 % [todo] - make adhsymbols package which defines some custom commands
 %   \providecommand{\e}[1]{\ensuremath{\times10^{#1}}}
 %   \providecommand{\degrees}{\ensuremath{^{\circ}}}
+
+% [todo] - Implement fancyhdr set up
 
 % Hyperref package
 %   should only be loaded if document type is electronic
