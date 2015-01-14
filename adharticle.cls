@@ -79,6 +79,17 @@
 
 \LoadClass[a4paper]{article}
 
+% allow unicode symbols to be used
+\RequirePackage[utf8]{inputenc}
+
+% Babel package provides correct hyphenation etc
+\RequirePackage[greek,english]{babel}
+
+% packages to include extra symbols
+\RequirePackage{amssymb,amsmath}
+% provides various extra TeX related logos, such as \XeLaTeX
+\RequirePackage{dtklogos}
+
 % require fullpage package if option is set
 \iftoggle{usefullpageoption}{
   \typeout{Fullpage option set}
@@ -181,22 +192,11 @@
   \end{center}
 }
 
-% allow unicode symbols to be used
-\RequirePackage[utf8]{inputenc}
-
-% Babel package provides correct hyphenation etc
-\RequirePackage[greek,english]{babel}
-
 % packages for handling graphics
 % [review] - use xcolor instead of color package?
 \RequirePackage{color}
 \RequirePackage{graphicx}
 \RequirePackage{placeins}
-
-% packages to include extra symbols
-\RequirePackage{amssymb,amsmath}
-% provides various extra TeX related logos, such as \XeLaTeX
-\RequirePackage{dtklogos}
 
 % packages for tables
 \RequirePackage{ctable}
