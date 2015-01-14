@@ -128,7 +128,7 @@
   \typeout{Palatino font used}
   % [review] - apprarently palatino depricated - use mathpazo instead
   %   may also want to use either sc or osf options with mathpazo
-  \RequirePackage[osf]{mathpazo}
+  \RequirePackage[sc,osf]{mathpazo}
   \RequirePackage{classico}
   \renewcommand{\baselinestretch}{1.1}
   \renewcommand{\titlefamily}{\sffamily}
