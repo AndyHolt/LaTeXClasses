@@ -2,7 +2,7 @@
 % test functionality of adharticle class.  Author: adh Date: Wed 24 Dec 2014
 % 17:23
 
-\documentclass[electronic,times]{adharticle} % Standard document class
+\documentclass[electronic,timesopt]{adharticle} % Standard document class
 
 % Define title here:
 \title{A customised \LaTeX{} article class} \author{Andy Holt} \date{\today}
@@ -83,6 +83,22 @@ Again, just testing what it looks like.
 \subparagraph{A sub-paragraph}
 
 Testing what this looks like too.
+
+This is some text in the normal typeface.
+
+\textbf{This is some text in the bold typeface.}
+
+\textsf{This is some sans-serif type.}
+
+\texttt{This is some monospaced type.}
+
+\textsc{Some text with Small Caps.}
+
+\selectlanguage{greek}
+
+ὁ θεος λεγει τον δουλον.
+
+\selectlanguage{english}
 
 \subsection{babel}
 

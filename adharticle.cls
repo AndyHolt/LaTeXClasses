@@ -17,6 +17,8 @@
 
 %% Preliminary Declarations - set up packages needed for class file
 \RequirePackage{etoolbox}
+% allows a workaround for amsmath and txfonts both defining `\iint' etc
+\RequirePackage{savesym}
 
 %% Options - handle options to adharticle class
 
@@ -117,20 +119,26 @@
 \iftoggle{timesfont}{
   \typeout{Times font used}
   % [review] - use mathptmx instead of times?
-  \RequirePackage{times}
+  \savesymbol{iint}
+  \RequirePackage{txfonts}
+  \restoresymbol{TXF}{iint}
   \renewcommand{\titlefamily}{\sffamily}
-}{}
+  }{}
 \iftoggle{palatinofont}{
   \typeout{Palatino font used}
   % [review] - apprarently palatino depricated - use mathpazo instead
   %   may also want to use either sc or osf options with mathpazo
-  \RequirePackage{palatino}
+  \RequirePackage[osf]{mathpazo}
+  \RequirePackage{classico}
   \renewcommand{\baselinestretch}{1.1}
   \renewcommand{\titlefamily}{\sffamily}
 }{}
 \iftoggle{timesoptfont}{
   \typeout{Times and Optima fonts used}
-  \RequirePackage{times}
+  \savesymbol{iint}
+  \RequirePackage{txfonts}
+  \restoresymbol{TXF}{iint}
+  \RequirePackage{classico}
   \renewcommand{\titlefamily}{\sffamily}
 }{}
 
