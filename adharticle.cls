@@ -72,6 +72,13 @@
   \toggletrue{timesoptfont}
 }
 
+% option to include page headers
+\providetoggle{useheaders}
+\togglefalse{useheaders}
+\DeclareOption{headers}{
+  \toggletrue{useheaders}
+}
+
 % pass other options to article class (e.g. font sizes)
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
@@ -117,7 +124,6 @@
 }{}
 \iftoggle{timesfont}{
   \typeout{Times font used}
-  % [review] - use mathptmx instead of times?
   \savesymbol{iint}
   \RequirePackage{txfonts}
   \restoresymbol{TXF}{iint}
@@ -139,37 +145,14 @@
   \renewcommand{\titlefamily}{\sffamily}
 }{}
 
-% change (sub)section and (sub)paragraph fonts to sans serif
-\renewcommand{\section}{\@startsection{section}{1}
-  {0pt}                         % indent
-  {-3.75ex plus .2ex}           % preskip, next par not indented
-  {2.0ex plus .2ex}             % post-skip
-  {\normalfont\titlefamily\bfseries\Large}
-}
-\renewcommand{\subsection}{\@startsection{subsection}{2}
-  {0pt}                         % indent
-  {-2.5ex plus -1ex minus -.2ex} % preskip, next par not indented
-  {1.25ex plus .2ex}             % post-skip
-  {\normalfont\titlefamily\bfseries\large}
-}
-\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}
-  {0pt}                         % indent
-  {-1.25ex plus -1ex minus .2ex} % preskip, next par not indented
-  {.5ex plus .2ex}               % post-skip
-  {\normalfont\titlefamily\bfseries\normalsize}
-}
-\renewcommand{\paragraph}{\@startsection{paragraph}{4}
-  {0pt}                       % indent
-  {-1.25ex plus -1ex minus -.2ex} % pre-skip, next par not indented
-  {-1em}                          % post-skip, run in with 1 em space
-  {\normalfont\titlefamily\bfseries\normalsize}
-}
-\renewcommand{\subparagraph}{\@startsection{subparagraph}{5}
-  {0pt}                       % indent
-  {1.25ex plus 1ex minus .2ex} % pre-skip, next par not indented
-  {-1em}                          % post-skip, run in with 1 em space
-  {\normalfont\titlefamily\itshape\normalsize}
-}
+% % change (sub)section and (sub)paragraph fonts to sans serif
+\RequirePackage{titlesec}
+
+\titleformat*{\section}{\normalfont\titlefamily\bfseries\Large}
+\titleformat*{\subsection}{\normalfont\titlefamily\bfseries\large}
+\titleformat*{\subsubsection}{\normalfont\titlefamily\bfseries\normalsize}
+\titleformat*{\paragraph}{\normalfont\titlefamily\bfseries\normalsize}
+\titleformat*{\subparagraph}{\normalfont\titlefamily\itshape\normalsize}
 
 % redefine title to use \titlefamily font
 % [todo] - make robust to having a title page
@@ -185,13 +168,13 @@
         \begin{center}
           \normalfont\normalsize
           \begin{tabular}[t]{c}
-            \vspace{.5ex}\\
-            \@author
+            \vspace{.25in}\\
+            {\centering\normalfont\titlefamily\bfseries\@author}
           \end{tabular}
         \end{center}
       \end{minipage}
       \vspace{.25in}\\
-      \@date
+      {\centering\normalfont\titlefamily\bfseries\@date}
       \vspace{.25in}\\
     \end{tabular}
   \end{center}
@@ -262,10 +245,20 @@ babel=true
 \RequirePackage{tikz}
 
 % [todo] - make adhsymbols package which defines some custom commands
-%   \providecommand{\e}[1]{\ensuremath{\times10^{#1}}}
-%   \providecommand{\degrees}{\ensuremath{^{\circ}}}
 
-% [todo] - Implement fancyhdr set up
+%   [todo] - Implement fancyhdr set up
+\iftoggle{useheaders}{
+  \typeout{Using page headers.}
+  \RequirePackage{fancyhdr}
+  \pagestyle{fancy}
+  \renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+  \fancyhead{}
+  \fancyhead[R]{\rightmark}
+  \fancyfoot{}
+  \fancyfoot[C]{\thepage}
+}{
+  \typeout{Not using page headers.}
+}
 
 % Hyperref package
 %   should only be loaded if document type is electronic

@@ -2,7 +2,7 @@
 % test functionality of adharticle class.  Author: adh Date: Wed 24 Dec 2014
 % 17:23
 
-\documentclass[electronic,timesopt]{adharticle} % Standard document class
+\documentclass[electronic,timesopt,headers]{adharticle} % Standard document class
 
 % Define title here:
 \title{A customised \LaTeX{} article class} \author{Andy Holt} \date{\today}
@@ -10,6 +10,7 @@
 \begin{document}
 
 % generate title
+\thispagestyle{plain}
 \maketitle
 
 \noindent
