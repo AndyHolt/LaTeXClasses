@@ -25,6 +25,7 @@
 % set default font to sans serif
 \RequirePackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
+\newcommand{\titlefamily}{\sffamily}
 
 % [review] - use different indents on consecutive lines? Might make it easier to
 % track where I am in a sentence.
@@ -36,6 +37,27 @@
 % one-and-a-half line spacing
 \RequirePackage{setspace}
 \onehalfspacing
+
+% set up sermon title
+\renewcommand{\maketitle}{
+  \begin{center}
+    \begin{tabular}[t]{c}
+      \parbox[c][.5in][c]{5in}
+      {\centering\normalfont\titlefamily\bfseries\LARGE\@title}\\
+      % {\centering\normalfont\titlefamily\bfseries\@passage}\\
+      \begin{minipage}{5in}
+        \begin{center}
+          \normalfont\normalsize
+          \begin{tabular}[t]{c}
+            % \vspace{.25in}\\
+            {\centering\normalfont\titlefamily\bfseries\@author}
+          \end{tabular}
+        \end{center}
+      \end{minipage}\\
+      {\centering\normalfont\titlefamily\bfseries\@date}\\
+    \end{tabular}
+  \end{center}
+}
 
 % micro-typography
 \RequirePackage[
