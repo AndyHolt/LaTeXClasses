@@ -21,9 +21,21 @@
 \RequirePackage{pgfpages}
 \pgfpagesuselayout{2 on 1}[a4paper, landscape]
 
-% [todo] - set up font selection - probably use sanserif throughout (Helvetica?)
+% [review] - font selection - is it readable enough?
+% set default font to sans serif
+\RequirePackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 
-% [todo] - set paragraph spacing to format for easy reading at a glance
+% [review] - use different indents on consecutive lines? Might make it easier to
+% track where I am in a sentence.
+% left justify text
+% \raggedright
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+\setlength{\hangindent}{0.7mm}
+% one-and-a-half line spacing
+\RequirePackage{setspace}
+\onehalfspacing
 
 % micro-typography
 \RequirePackage[
