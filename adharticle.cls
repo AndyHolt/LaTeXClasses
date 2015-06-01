@@ -15,6 +15,8 @@
 %   mind. You can also use typearea.sty which is part of KOMA -Script with any
 %   other document class.''
 
+% [todo] - add series editor field to BibLaTeX
+
 %% Preliminary Declarations - set up packages needed for class file
 \RequirePackage{etoolbox}
 % allows a workaround for amsmath and txfonts both defining `\iint' etc
@@ -92,7 +94,7 @@
 \RequirePackage[utf8]{inputenc}
 
 % Babel package provides correct hyphenation etc
-\RequirePackage[greek,english]{babel}
+\RequirePackage[greek,british]{babel}
 
 % packages to include extra symbols
 \RequirePackage{amssymb,amsmath}
@@ -260,6 +262,11 @@ babel=true
   \typeout{Not using page headers.}
 }
 
+% bible referencing
+\RequirePackage{bibleref-parse}
+\newcommand{\bv}[1]{(\pbibleverse{#1})}
+\newcommand{\bvnc}[1]{\pbibleverse{#1}}
+
 % Hyperref package
 %   should only be loaded if document type is electronic
 %   must come last in class file as it redefines commands which may be changed
@@ -271,7 +278,9 @@ babel=true
   \RequirePackage{hyperref}
   \hypersetup{
     colorlinks=true,
-    urlcolor=blue
+    linkcolor=red,
+    urlcolor=blue,
+    citecolor=blue
   }
   \RequirePackage{footnotebackref}
 }
