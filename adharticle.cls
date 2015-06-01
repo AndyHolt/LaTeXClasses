@@ -247,8 +247,6 @@ babel=true
 % [todo] - add tikz to documentation file.
 \RequirePackage{tikz}
 
-% [todo] - make adhsymbols package which defines some custom commands
-
 %   [todo] - Implement fancyhdr set up
 \iftoggle{useheaders}{
   \typeout{Using page headers.}
@@ -264,6 +262,7 @@ babel=true
 }
 
 % bible referencing
+% [todo] - separate package for bible refs                     
 \RequirePackage{bibleref-parse}
 \newcommand{\bv}[1]{(\pbibleverse{#1})}
 \newcommand{\bvnc}[1]{\pbibleverse{#1}}
