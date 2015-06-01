@@ -98,6 +98,7 @@
 
 % packages to include extra symbols
 \RequirePackage{amssymb,amsmath}
+\RequirePackage{adhsymbols}
 % provides various extra TeX related logos, such as \XeLaTeX
 \RequirePackage{dtklogos}
 
