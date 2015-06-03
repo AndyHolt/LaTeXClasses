@@ -42,14 +42,14 @@
 \renewcommand{\maketitle}{
   \begin{center}
     \begin{tabular}[t]{c}
-      \parbox[c][.5in][c]{5in}
-      {\centering\normalfont\titlefamily\bfseries\LARGE\@title}\\
-      % {\centering\normalfont\titlefamily\bfseries\@passage}\\
-      \begin{minipage}{5in}
+      \parbox[c][.25in][c]{2.5in}
+      {\centering\normalfont\titlefamily\bfseries\LARGE\@title}
+      \vspace{.1in}\\
+      {\centering\normalfont\titlefamily\bfseries\passage}\\
+      \begin{minipage}{2.5in}
         \begin{center}
           \normalfont\normalsize
           \begin{tabular}[t]{c}
-            % \vspace{.25in}\\
             {\centering\normalfont\titlefamily\bfseries\@author}
           \end{tabular}
         \end{center}
