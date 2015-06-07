@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{adharticle}[2014/06/04 Layout parallel translations]
+\ProvidesClass{polyglot}[2014/06/04 Layout parallel translations]
 
 % define any options here
 
