@@ -17,6 +17,9 @@
 % babel package for correct hyphenation etc
 \RequirePackage[greek,british]{babel}
 
+% use adhsymbols definitions
+\RequirePackage{adhsymbols}
+
 % fonts - use times and helvetica
 \RequirePackage{txfonts}
 \RequirePackage{helvet}
@@ -36,7 +39,7 @@
 % redefine title to use much less space
 \renewcommand{\maketitle}{
   \begin{center}
-    {\centering\normalfont\bfseries\LARGE\@title}
+    {\centering\normalfont\bfseries\@title}
   \end{center}
 }
 
@@ -44,7 +47,7 @@
 \RequirePackage[
   protrusion=true,
   expansion=true,
-  tracking=true,
+  % tracking=true,              
   spacing=true,
   babel=true
 ]{microtype}
