@@ -27,10 +27,16 @@
 \renewcommand{\familydefault}{\sfdefault}
 \newcommand{\titlefamily}{\sffamily}
 
+% reduce spacing around headings!
+\RequirePackage{titlesec}
+\titlespacing*{\section}{0pt}{1ex plus 1ex}{0pt}
+\titlespacing*{\subsection}{0pt}{1ex plus 1ex}{0pt}
+\titlespacing*{\subsubsection}{0pt}{1ex plus 1ex}{0pt}
+
 % [review] - use different indents on consecutive lines? Might make it easier to
 % track where I am in a sentence.
 % left justify text
-% \raggedright
+\raggedright
 \setlength{\parskip}{\baselineskip}
 \setlength{\parindent}{0pt}
 \setlength{\hangindent}{0.7mm}
@@ -72,3 +78,4 @@
 % [todo] - separate package for bible refs
 \RequirePackage{bibleref-parse}
 
+\RequirePackage{adhsymbols}
