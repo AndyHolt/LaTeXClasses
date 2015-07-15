@@ -28,6 +28,12 @@
 \setlength{\parskip}{\baselineskip}
 \setlength{\parindent}{0pt}
 
+% reduce spacing around headings!
+\RequirePackage{titlesec}
+\titlespacing*{\section}{0pt}{1ex plus 1ex}{0pt}
+\titlespacing*{\subsection}{0pt}{1ex plus 1ex}{0pt}
+\titlespacing*{\subsubsection}{0pt}{1ex plus 1ex}{0pt}
+
 % set up title to include passage
 \renewcommand{\maketitle}{
   \begin{center}
@@ -62,3 +68,5 @@
 % [todo] - separate package for bible refs
 \RequirePackage{bibleref-parse}
 
+% useful symbols, abbrevs etc
+\RequirePackage{adhsymbols}
