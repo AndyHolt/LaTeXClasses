@@ -1,0 +1,18 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{paratext}[2015/07/16 v0.1 adh]
+
+\RequirePackage{color}
+\RequirePackage{lettrine}
+
+\definecolor{lightgrey}{gray}{0.66}
+
+% command to typeset verse numbers
+% attempt to make verse numbers usable for reference, but keep out of the way
+% for reading too!
+\providecommand{\vn}[1]{\textcolor{lightgrey}{\textsuperscript{\textsf{\textbf{#1}}}}}
+
+% command to typeset chapter numbers
+% [todo] - can these be put in margin instead?
+\providecommand{\cn}[1]{\lettrine[lines=2,nindent=0pt]{
+    \textcolor{lightgrey}{\textsf{\textbf{#1}}}}{
+  }}

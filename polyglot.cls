@@ -43,6 +43,9 @@
   \end{center}
 }
 
+% package for typesetting paratext, such as chapter and verse numbers
+\RequirePackage{paratext}
+
 % micro-typography (especially useful due to narrow columns)
 \RequirePackage[
   protrusion=true,
