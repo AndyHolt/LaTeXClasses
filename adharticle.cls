@@ -234,7 +234,7 @@
 \RequirePackage[
 protrusion=true,
 expansion=true,
-tracking=true
+% tracking=true
 spacing=true,
 babel=true
 ]{microtype}
@@ -266,6 +266,12 @@ babel=true
 \RequirePackage{bibleref-parse}
 \newcommand{\bv}[1]{(\pbibleverse{#1})}
 \newcommand{\bvnc}[1]{\pbibleverse{#1}}
+
+% drop cap support
+\RequirePackage{lettrine}
+\newcommand{\dropcap}[2]{
+  \lettrine[lines=3]{#1}{#2}
+}
 
 % Hyperref package
 %   should only be loaded if document type is electronic
