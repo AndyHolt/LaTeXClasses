@@ -1,6 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{polyglot}[2014/06/04 Layout parallel translations]
 
+\RequirePackage{xpatch}
+
 % define any options here
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
@@ -13,6 +15,8 @@
 
 % allow unicode symbols to be used
 \RequirePackage[utf8]{inputenc}
+% set unicode nonbreaking space to LaTeX nonbreaking space
+\DeclareUnicodeCharacter{00A0}{~}
 
 % babel package for correct hyphenation etc
 \RequirePackage[greek,british]{babel}
@@ -45,6 +49,9 @@
 
 % package for typesetting paratext, such as chapter and verse numbers
 \RequirePackage{paratext}
+
+% don't leave a gap when starting a verse environment
+\xpatchcmd{\verse}{\itemsep}{\advance\topsep-\parskip\itemsep}{}{}
 
 % micro-typography (especially useful due to narrow columns)
 \RequirePackage[
