@@ -1,6 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-% [todo] - make sure this is a package, not class!
-\ProvidesClass{paratext}[2015/07/16 v0.1 adh]
+\ProvidesPackage{paratext}[2015/12/28 v0.2 adh]
 
 \RequirePackage{color}
 \RequirePackage{lettrine}
@@ -16,6 +15,8 @@
 
 % command to typeset chapter numbers
 % [todo] - can these be put in margin instead?
-\providecommand{\cn}[1]{\lettrine[lines=2,nindent=0pt]{
-    \textcolor{lightgrey}{\textsf{\textbf{#1}}}}{
-  }}
+% \providecommand{\cn}[1]{\lettrine[lines=2,nindent=0pt]{
+%     \textcolor{lightgrey}{\textsf{\textbf{#1}}}}{
+%   }}
+% \providecommand{\cn}[1]{\marginpar{\textcolor{lightgrey}{\textsf{\textbf{#1}}}}}
+\providecommand{\cn}[1]{}
