@@ -48,7 +48,7 @@
 \renewcommand{\maketitle}{
   \begin{center}
     \begin{tabular}[t]{c}
-      \parbox[c][.25in][c]{2.5in}
+      \parbox[c]{\textwidth}
       {\centering\normalfont\titlefamily\bfseries\LARGE\@title}
       \vspace{.1in}\\
       {\centering\normalfont\titlefamily\bfseries\passage}\\
