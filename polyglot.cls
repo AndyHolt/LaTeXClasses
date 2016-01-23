@@ -9,9 +9,9 @@
 
 \ProcessOptions\relax
 
-\LoadClass[a3paper,12pt]{article}
+\LoadClass[a4paper]{article}
 
-\RequirePackage[a3paper,landscape]{geometry}
+\RequirePackage[a4paper,landscape]{geometry}
 
 % allow unicode symbols to be used
 \RequirePackage[utf8]{inputenc}
