@@ -78,7 +78,9 @@
 
 %% Class definitions and set up
 
-\LoadClass{article}
+% [todo] - add a4/a5 as option, not set default
+\LoadClass[a5paper]{article}
+\RequirePackage[pass]{geometry}
 
 % allow unicode symbols
 \RequirePackage[utf8]{inputenc}
@@ -90,7 +92,7 @@
 \RequirePackage{adhsymbols}
 
 % use fullpage package to reduce margin sizes
-\RequirePackage{fullpage}
+\RequirePackage[cm]{fullpage}
 
 % specific settings for paper or electronic documents
 \iftoggle{forpaperoption}{
@@ -140,11 +142,32 @@
 % % change (sub)section and (sub)paragraph fonts to sans serif
 \RequirePackage{titlesec}
 
-\titleformat*{\section}{\normalfont\titlefamily\bfseries\Large}
-\titleformat*{\subsection}{\normalfont\titlefamily\bfseries\large}
-\titleformat*{\subsubsection}{\normalfont\titlefamily\bfseries\normalsize}
+% [todo] - clean up section formatting, make work for numebred sections
+
+% \titleformat*{\section}{\normalfont\titlefamily\bfseries\Large}
+\titleformat{\section}[hang]
+{\normalfont\titlefamily\bfseries\large}{\thesection}{\quad}{\colorblacksection}
+
+% \titleformat*{\subsection}{\normalfont\titlefamily\bfseries\large}
+\titleformat{\subsection}[hang]
+{\normalfont\titlefamily\bfseries\normalsize}{\thesection}{\quad}{\colorgreysection}
+
+% \titleformat*{\subsubsection}{\normalfont\titlefamily\bfseries\normalsize}
+\titleformat{\subsubsection}[hang]
+{\normalfont\titlefamily\normalsize}{\thesection}{\quad}{\boxsection}
+
 \titleformat*{\paragraph}{\normalfont\titlefamily\bfseries\normalsize}
+
 \titleformat*{\subparagraph}{\normalfont\titlefamily\itshape\normalsize}
+
+\newcommand{\colorblacksection}[1]{%
+  \colorbox{black}{\color{white}\parbox{\textwidth}{#1}}}
+
+\newcommand{\colorgreysection}[1]{%
+  \colorbox{gray}{\color{white}\parbox{\textwidth}{#1}}}
+
+\newcommand{\boxsection}[1]{%
+  \framebox{\parbox{\textwidth}{#1}}}
 
 % redefine title for handouts
 \renewcommand{\maketitle}{
@@ -153,7 +176,8 @@
       \color{white}
       \begin{tabular}{lr}
         \multicolumn{2}{l}{
-          \begin{minipage}{\textwidth}
+          % [todo] - space this properly (this is a bodge!)
+          \begin{minipage}{0.95\textwidth}
             {\normalfont\titlefamily\bfseries\Huge\@title}
           \end{minipage}
         }
@@ -164,6 +188,12 @@
     }
   }
 }
+
+% paragraph spacing
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+\newcommand{\@minipagerestore}{\setlength{\parskip}{\baselineskip}}
 
 \RequirePackage[
   protrusion=true,
