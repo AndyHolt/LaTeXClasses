@@ -209,6 +209,13 @@
 \newcommand{\bv}[1]{(pbibleverse{#1})}
 \newcommand{\bvnc}[1]{pbibleverse{#1}}
 
+% table packages
+\RequirePackage{longtable}
+\RequirePackage{booktabs}
+
+% image pacakges
+\RequirePackage{graphicx}
+
 % Hyperref package
 % only load if document is electronic
 % must come last in class file as it redefines commands which may be changed by
