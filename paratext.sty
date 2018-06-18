@@ -96,8 +96,8 @@
 }{}
 \iftoggle{chapnumdrop}{
   \providecommand{\cn}[1]{\lettrine[lines=2,nindent=0pt]{
-      \textcolor{lightgrey}{\textbf{#1}}}}
+      \textcolor{lightgrey}{\textsf{\textbf{#1}}}}}
 }{}
 \iftoggle{chapnummarg}{
-  \providecommand{\cn}[1]{\marginpar{\Large{\textbf{#1}}}}
+   \providecommand{\cn}[1]{\marginpar[\Large{\textbf{#1}}]{\Large{\textbf{#1}}}}
 }{}
