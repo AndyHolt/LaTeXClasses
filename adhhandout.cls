@@ -72,7 +72,7 @@
 }
 
 % pass other options to article class
-\DeclareOption*{\PassOptionToClass{\CurrentOption}{article}}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
 \ProcessOptions\relax
 
@@ -147,14 +147,17 @@
 % \titleformat*{\section}{\normalfont\titlefamily\bfseries\Large}
 \titleformat{\section}[hang]
 {\normalfont\titlefamily\bfseries\large}{\thesection}{\quad}{\colorblacksection}
+\titlespacing*{\section}{0pt}{0.2ex plus 0.0ex minus .0ex}{0.1ex plus .1ex}
 
 % \titleformat*{\subsection}{\normalfont\titlefamily\bfseries\large}
 \titleformat{\subsection}[hang]
 {\normalfont\titlefamily\bfseries\normalsize}{\thesection}{\quad}{\colorgreysection}
+\titlespacing*{\subsection}{0pt}{0.5ex plus 0.5ex minus .2ex}{0.2ex plus .2ex}
 
 % \titleformat*{\subsubsection}{\normalfont\titlefamily\bfseries\normalsize}
 \titleformat{\subsubsection}[hang]
 {\normalfont\titlefamily\normalsize}{\thesection}{\quad}{\boxsection}
+\titlespacing*{\subsubsection}{0pt}{0.5ex plus 0.5ex minus .2ex}{0.2ex plus .2ex}
 
 \titleformat*{\paragraph}{\normalfont\titlefamily\bfseries\normalsize}
 
@@ -171,14 +174,14 @@
 
 % redefine title for handouts
 \renewcommand{\maketitle}{
-  {\centering
+  %{\centering
     \colorbox{black}{
       \color{white}
       \begin{tabular}{lr}
         \multicolumn{2}{l}{
           % [todo] - space this properly (this is a bodge!)
           \begin{minipage}{0.95\textwidth}
-            {\normalfont\titlefamily\bfseries\Huge\@title}
+            {\normalfont\titlefamily\bfseries\huge\@title}
           \end{minipage}
         }
         \vspace{0.1in}\\
@@ -186,7 +189,7 @@
         {\normalfont\titlefamily\bfseries\Large\@date}\\
       \end{tabular}
     }
-  }
+  %}
 }
 
 % paragraph spacing
@@ -194,6 +197,10 @@
 \setlength{\parindent}{0pt}
 
 \newcommand{\@minipagerestore}{\setlength{\parskip}{\baselineskip}}
+
+% remove spacing around lists
+\RequirePackage{enumitem}
+\setlist[itemize]{topsep=0pt}
 
 \RequirePackage[
   protrusion=true,
@@ -208,6 +215,9 @@
 \RequirePackage{bibleref-parse}
 \newcommand{\bv}[1]{(pbibleverse{#1})}
 \newcommand{\bvnc}[1]{pbibleverse{#1}}
+
+% didakto package specifies handout gap/boxes etc
+% \RequirePackage{didasko}
 
 % table packages
 \RequirePackage{longtable}
