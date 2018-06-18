@@ -24,7 +24,6 @@ todo
 *.pdf
 Gemfile.lock
 
-
 [github_api]
 andyholt
 
