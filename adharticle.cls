@@ -165,9 +165,9 @@
     {\end{tabular} \begin{tabular}[t]{c}\vspace{.5ex}\\}
   \begin{center}
     \begin{tabular}[t]{c}
-      \parbox[c][.5in][c]{5in}
+      \parbox[c][.5in][c]{0.8\textwidth}
         {\centering\normalfont\titlefamily\bfseries\LARGE\@title}\\
-      \begin{minipage}{5in}
+      \begin{minipage}{0.3\textwidth}
         \begin{center}
           \normalfont\normalsize
           \begin{tabular}[t]{c}
@@ -189,7 +189,13 @@
 \RequirePackage{graphicx}
 \RequirePackage{placeins}
 
+% tikz package for drawing figures/diagrams
+% [todo] - add tikz to documentation file.
+\RequirePackage{tikz}
+
 % packages for tables
+\RequirePackage{longtable}
+\RequirePackage{booktabs}
 \RequirePackage{ctable}
 \setupctable{
   bgopacity=1,
@@ -242,10 +248,6 @@ babel=true
 % subcaption package
 % [todo] - add  subcaption to documentation file
 \RequirePackage{subcaption}
-
-% tikz package for drawing figures/diagrams
-% [todo] - add tikz to documentation file.
-\RequirePackage{tikz}
 
 %   [todo] - Implement fancyhdr set up
 \iftoggle{useheaders}{
