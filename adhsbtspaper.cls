@@ -8,15 +8,12 @@
 
 \LoadClass[12pt]{article}
 
-% allow unicode symbols
-\RequirePackage[utf8]{inputenc}
+% fontspec package, sets up use of OpenType fonts
+\RequirePackage{fontspec}
 
 % setup standard page
 \RequirePackage[letterpaper, portrait, left=1.0in, right=1.0in, top=1.0in,
 bottom=1.0in]{geometry}
-
-% bibliography setup
-\RequirePackage[backend = biber]{biblatex}
 
 % hypersetup for metadata
 \RequirePackage{hyperref}
@@ -33,3 +30,18 @@ bottom=1.0in]{geometry}
 \setotherlanguage[variant=ancient]{greek}
 \newfontfamily\hebrewfont{SBL BibLit}
 \newfontfamily\greekfont{SBL BibLit}
+
+% leading
+\RequirePackage{leading}
+\leading{24pt}
+
+% extra config of footnotes
+\RequirePackage[multiple]{footmisc}
+\setlength{\footnotesep}{\baselineskip}
+\renewcommand{\footnotelayout}{\leading{10pt}\setlength{\parskip}{10pt}}
+
+% use csquotes package, keeps biblatex happy
+\RequirePackage{csquotes}
+
+% bibliography setup
+\RequirePackage[backend = biber]{biblatex}
