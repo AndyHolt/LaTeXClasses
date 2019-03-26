@@ -1,0 +1,86 @@
+#!/bin/zsh
+#
+# File: updateinstall
+# Description: Install (or update if installed) classes and packages for latex.
+# Author: Andy Holt
+# Date: Wed 12 Aug 2015 18:14
+
+# latex classes directory
+clsd=$HOME/Projects/LaTeXClasses
+
+# create TEXMFHOME tree
+tree=`kpsewhich -var-value TEXMFHOME`
+latexd=$tree/tex/latex
+if [[ ! -d $tree ]]; then
+    mkdir -p $latexd
+fi
+
+# install or update article class
+if [[ ! -d $latexd/adharticle ]]; then
+    mkdir $latexd/adharticle
+fi
+cp $clsd/adharticle.cls $latexd/adharticle/adharticle.cls
+
+# install or update outline class
+if [[ ! -d $latexd/adhoutline ]]; then
+    mkdir $latexd/adhoutline
+fi
+cp $clsd/adhoutline.cls $latexd/adhoutline/adhoutline.cls
+
+# install or update sernotes class
+if [[ ! -d $latexd/adhsernotes ]]; then
+    mkdir $latexd/adhsernotes
+fi
+cp $clsd/adhsernotes.cls $latexd/adhsernotes/adhsernotes.cls
+
+# install or update polyglot class
+if [[ ! -d $latexd/polyglot ]]; then
+    mkdir $latexd/polyglot
+fi
+cp $clsd/polyglot.cls $latexd/polyglot/polyglot.cls
+
+# install or update symbols package
+if [[ ! -d $latexd/adhsymbols ]]; then
+    mkdir $latexd/adhsymbols
+fi
+cp $clsd/adhsymbols.sty $latexd/adhsymbols/adhsymbols.sty
+
+# install or update paratext package
+if [[ ! -d $latexd/paratext ]]; then
+    mkdir $latexd/paratext
+fi
+cp $clsd/paratext.sty $latexd/paratext/paratext.sty
+
+# install or update handout class
+if [[ ! -d $latexd/adhhandout ]]; then
+    mkdir $latexd/adhhandout
+fi
+cp $clsd/adhhandout.cls $latexd/adhhandout/adhhandout.cls
+
+# install or update generic doc class
+if [[ ! -d $latexd/adhdoc ]]; then
+    mkdir $latexd/adhdoc
+fi
+cp $clsd/adhdoc.cls $latexd/adhdoc/adhdoc.cls
+
+# install or update didasko package
+if [[ ! -d $latexd/didasko ]]; then
+    mkdir $latexd/didasko
+fi
+cp $clsd/didasko.sty $latexd/didasko/didasko.sty
+
+# install or update lecture notes class
+if [[ ! -d $latexd/adhlecnotes ]]; then
+    mkdir $latexd/adhlecnotes
+fi
+cp $clsd/adhlecnotes.cls $latexd/adhlecnotes/adhlecnotes.cls
+
+# install or update sbts paper class
+if [[ ! -d $latexd/adhsbtspaper ]]; then
+    mkdir $latexd/adhsbtspaper
+fi
+cp $clsd/adhsbtspaper.cls $latexd/adhsbtspaper/adhsbtspaper.cls
+
+mktexlsr $tree
+
+echo "Updated latex classes and packages."
