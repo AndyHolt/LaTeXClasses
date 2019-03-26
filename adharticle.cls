@@ -100,7 +100,7 @@
 \RequirePackage{amssymb,amsmath}
 \RequirePackage{adhsymbols}
 % provides various extra TeX related logos, such as \XeLaTeX
-\RequirePackage{dtklogos}
+\RequirePackage{dtk-logos}
 
 % require fullpage package if option is set
 \iftoggle{usefullpageoption}{
