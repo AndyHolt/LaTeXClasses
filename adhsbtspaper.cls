@@ -15,9 +15,6 @@
 \RequirePackage[letterpaper, portrait, left=1.0in, right=1.0in, top=1.0in,
 bottom=1.0in]{geometry}
 
-% hypersetup for metadata
-\RequirePackage{hyperref}
-
 % Set font
 \RequirePackage{fontspec}
 \setmainfont{Times New Roman}
@@ -45,3 +42,8 @@ bottom=1.0in]{geometry}
 
 % bibliography setup
 \RequirePackage[backend = biber]{biblatex}
+
+% hyperref package. Defines meetadata, as well as hyperlinks for references.
+% Make sure this comes last in config!
+\RequirePackage[hidelinks=true]{hyperref}
+
