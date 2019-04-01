@@ -61,3 +61,9 @@ bottom=1.0in]{geometry}
 % Make sure this comes last in config!
 \RequirePackage[hidelinks=true]{hyperref}
 
+% ******************************************************************
+% ****************************** TODO ******************************
+% ******************************************************************
+% - Get footnote indent to 0.7in
+% - Set up cover page
+% - Setup top margin of first main page to use a 2 inch margin
