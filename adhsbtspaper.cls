@@ -39,12 +39,11 @@ bottom=1.0in]{geometry}
 \leading{24pt}
 
 % extra config of footnotes
-\RequirePackage[multiple]{footmisc}
 \setlength{\footnotesep}{\baselineskip}
-\renewcommand{\footnotelayout}{\leading{10pt}\setlength{\parskip}{10pt}}
 
-% use csquotes package, keeps biblatex happy
-\RequirePackage{csquotes}
+\usepackage{scrextend}
+\deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark}\leading{10pt}\setlength{\parskip}{10pt}}
+\setkomafont{footnote}{\leading{10pt}}
 
 % bibliography setup
 \RequirePackage[backend = biber]{biblatex}
