@@ -19,6 +19,12 @@ bottom=1.0in]{geometry}
 \RequirePackage{fontspec}
 \setmainfont{Times New Roman}
 
+% setup for left justification, no justification at right margin
+\RequirePackage{ragged2e}
+\setlength{\RaggedRightParindent}{0.7in}
+\setlength{\parindent}{0.7in}
+\RaggedRight
+
 % fonts for greek and hebrew
 \usepackage{polyglossia}
 
