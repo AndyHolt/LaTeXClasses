@@ -45,6 +45,15 @@ bottom=1.0in]{geometry}
 \deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark}\leading{10pt}\setlength{\parskip}{10pt}}
 \setkomafont{footnote}{\leading{10pt}}
 
+% use csquotes package for quotations, inline and block
+% use quoting package for block quotes, which allows formatting of the block
+% style
+\RequirePackage[indentfirst=false, leftmargin=0.35in, rightmargin=0in]{quoting}
+\RequirePackage[autopunct=true, threshold=5, thresholdtype=lines,
+  partthreshold=true]{csquotes}
+\SetBlockEnvironment{quoting}
+\renewcommand*{\quotingfont}{\leading{12pt}}
+
 % bibliography setup
 \RequirePackage[backend = biber]{biblatex}
 
