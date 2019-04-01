@@ -64,6 +64,5 @@ bottom=1.0in]{geometry}
 % ******************************************************************
 % ****************************** TODO ******************************
 % ******************************************************************
-% - Get footnote indent to 0.7in
 % - Set up cover page
 % - Setup top margin of first main page to use a 2 inch margin
