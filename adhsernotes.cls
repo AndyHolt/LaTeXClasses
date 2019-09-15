@@ -1,19 +1,46 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{adhsernotes}[2015/06/01 Sermon notes class v0.1]
+\ProvidesClass{adhsernotes}[2019/05/28 Sermon notes class v0.2]
+%% Log: v0.1 was used for several years with slight modifications, set up for
+%%           pdfLaTeX compilation
+%%      v0.2 begun 28/05/2019, primarily because of shift from writing sermon
+%%           notes in markdown to writing in org mode and exporting directly.
+%%           For this, I'm using XeLaTeX instead of pdfLaTeX, so need to change
+%%           some settings, especially how fonts are handled. Set up using
+%%           ifxetex package, which should automatically choose the right
+%%           settings for different compilers.
+
 
 % Define any options here
-
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
 \ProcessOptions\relax
 
+\RequirePackage{ifxetex}
+
 \LoadClass[a5paper, 12pt]{article}
 
-% allow unicode symbols to be used
-\RequirePackage[utf8]{inputenc}
+% allow unicode symbols to be used (only needed for pdfLaTeX)
+\ifxetex
+  \RequirePackage{fontspec}
 
-% Babel package provides correct hyphenation etc
-\RequirePackage[greek,british]{babel}
+  \RequirePackage{polyglossia}
+  \setmainlanguage[variant=british]{english}
+
+  \defaultfontfeatures{Ligatures=TeX}
+  \setmainfont{Helvetica}
+\else
+   \RequirePackage[utf8]{inputenc}   
+
+   % [review] - font selection - is it readable enough?
+   % set default font to sans serif
+   \RequirePackage{helvet}
+   \renewcommand{\familydefault}{\sfdefault}
+   \newcommand{\titlefamily}{\sffamily}
+
+   % Babel package provides correct hyphenation etc
+   \RequirePackage[greek,british]{babel}
+\fi
+
 
 % reduce margin sizes
 \RequirePackage{fullpage}
@@ -21,14 +48,13 @@
 \RequirePackage{pgfpages}
 \pgfpagesuselayout{2 on 1}[a4paper, landscape]
 
-% [review] - font selection - is it readable enough?
-% set default font to sans serif
-\RequirePackage{helvet}
-\renewcommand{\familydefault}{\sfdefault}
-\newcommand{\titlefamily}{\sffamily}
+%% Use biblatex package
+\RequirePackage[style=authortitle, autocite=inline]{biblatex}
+
 
 % reduce spacing around headings!
 \RequirePackage{titlesec}
+%% \usepackage[small,sf,bf]{titlesec}
 \titlespacing*{\section}{0pt}{1ex plus 1ex}{0pt}
 \titlespacing*{\subsection}{0pt}{1ex plus 1ex}{0pt}
 \titlespacing*{\subsubsection}{0pt}{1ex plus 1ex}{0pt}
@@ -66,16 +92,30 @@
 }
 
 % micro-typography
-\RequirePackage[
-  protrusion=true,
-  expansion=true,
-  tracking=true,
-  spacing=true,
-  babel=true
-]{microtype}
+\ifxetex
+  \typeout{No microtypography with xetex.}
+\else
+  \RequirePackage[
+    protrusion=true,
+    expansion=true,
+    tracking=true,
+    spacing=true,
+    babel=true
+  ]{microtype}
+\fi
+
+%% block quotes
+\RequirePackage[indentfirst=false]{quoting}
+\RequirePackage[autopunct=true, threshold=2, thresholdtype=lines,
+  parthreshold=true]{csquotes}
+\SetBlockEnvironment{quoting}
+\SetCiteCommand{\autocite}
+% \renewcommand*{\quotingfont}{\leading{12pt}}
 
 % bible referencing
 % [todo] - separate package for bible refs
 \RequirePackage{bibleref-parse}
 
 \RequirePackage{adhsymbols}
+
+\RequirePackage[hidelinks]{hyperref}

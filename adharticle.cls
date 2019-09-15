@@ -21,6 +21,8 @@
 \RequirePackage{etoolbox}
 % allows a workaround for amsmath and txfonts both defining `\iint' etc
 \RequirePackage{savesym}
+% Allow defining code for XeLaTeX different to if compiling with pdfLaTeX
+\RequirePackage{ifxetex}
 
 %% Options - handle options to adharticle class
 
@@ -90,11 +92,19 @@
 
 \LoadClass[a4paper]{article}
 
-% allow unicode symbols to be used
-\RequirePackage[utf8]{inputenc}
+\ifxetex
+  \RequirePackage{fontspec}
 
-% Babel package provides correct hyphenation etc
-\RequirePackage[greek,british]{babel}
+  \RequirePackage{polyglossia}
+  \setmainlanguage[variant=british]{english}
+  \defaultfontfeatures{Ligatures=TeX}
+\else
+  % allow unicode symbols to be used
+  \RequirePackage[utf8]{inputenc}
+
+  % Babel package provides correct hyphenation etc
+  \RequirePackage[greek,british]{babel}
+\fi
 
 % packages to include extra symbols
 \RequirePackage{amssymb,amsmath}
@@ -127,24 +137,37 @@
 }{}
 \iftoggle{timesfont}{
   \typeout{Times font used}
-  \savesymbol{iint}
-  \RequirePackage{txfonts}
-  \restoresymbol{TXF}{iint}
+  \ifxetex
+    \setmainfont{Times New Roman}
+  \else
+    \savesymbol{iint}
+    \RequirePackage{txfonts}
+    \restoresymbol{TXF}{iint}
+  \fi
   \renewcommand{\titlefamily}{\sffamily}
   }{}
 \iftoggle{palatinofont}{
   \typeout{Palatino font used}
-  \RequirePackage[sc,osf]{mathpazo}
-  \RequirePackage{classico}
+  \ifxetex
+    \setmainfont{Palatino}
+  \else
+    \RequirePackage[sc,osf]{mathpazo}
+    \RequirePackage{classico}
+  \fi
   \renewcommand{\baselinestretch}{1.1}
   \renewcommand{\titlefamily}{\sffamily}
 }{}
 \iftoggle{timesoptfont}{
   \typeout{Times and Optima fonts used}
-  \savesymbol{iint}
-  \RequirePackage{txfonts}
-  \restoresymbol{TXF}{iint}
-  \RequirePackage{classico}
+  \ifxetex
+    \setmainfont{Times New Roman}
+    \setsansfont{Optima}
+  \else
+    \savesymbol{iint}
+    \RequirePackage{txfonts}
+    \restoresymbol{TXF}{iint}
+    \RequirePackage{classico}
+  \fi
   \renewcommand{\titlefamily}{\sffamily}
 }{}
 
@@ -237,13 +260,19 @@
 \RequirePackage{fancyvrb}
 
 % micro-typography
-\RequirePackage[
-protrusion=true,
-expansion=true,
-% tracking=true
-spacing=true,
-babel=true
-]{microtype}
+% not compatible with xetex, so don't load if not xetex
+\ifxetex
+  \typeout{Can't use microtype with xetex}
+\else
+  \typeout{Not using xetex, enable microtype}
+  \RequirePackage[
+    protrusion=true,
+    expansion=true,
+    % tracking=true
+    spacing=true,
+    babel=true
+  ]{microtype}
+\fi
 
 % subcaption package
 % [todo] - add  subcaption to documentation file
@@ -276,13 +305,18 @@ babel=true
 }
 
 % Hyperref package
-%   should only be loaded if document type is electronic
+% Only colourise links if electronic document, not paper
 %   must come last in class file as it redefines commands which may be changed
 %   by other packages
 \iftoggle{forpaperoption}{
-  \typeout{Not using hyperref - paper option set}
+  \typeout{Paper option set - no coloured links}
+  \RequirePackage{hyperref}
+  \hypersetup{
+    colorlinks=false,
+    hidelinks=true
+  }
 }{
-  \typeout{enabling hyperref - electronic document}
+  \typeout{Electronic document - use coloured links}
   \RequirePackage{hyperref}
   \hypersetup{
     colorlinks=true,
