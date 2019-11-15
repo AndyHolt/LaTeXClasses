@@ -81,6 +81,12 @@ if [[ ! -d $latexd/adhsbtspaper ]]; then
 fi
 cp $clsd/adhsbtspaper.cls $latexd/adhsbtspaper/adhsbtspaper.cls
 
+# install or update sbts precis class
+if [[ ! -d $latexd/sbtsprecis ]]; then
+    mkdir $latexd/sbtsprecis
+fi
+cp $clsd/sbtsprecis.cls $latexd/sbtsprecis/sbtsprecis.cls
+
 mktexlsr $tree
 
 echo "Updated latex classes and packages."
