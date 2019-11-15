@@ -127,7 +127,7 @@ bottom=1.0in]{geometry}
 \renewcommand*{\quotingfont}{\leading{12pt}}
 
 % bibliography setup
-\RequirePackage[backend = biber]{biblatex}
+\RequirePackage[backend=biber, style=verbose]{biblatex}
 
 % hyperref package. Defines meetadata, as well as hyperlinks for references.
 % Make sure this comes last in config!
@@ -136,5 +136,3 @@ bottom=1.0in]{geometry}
 % ******************************************************************
 % ****************************** TODO ******************************
 % ******************************************************************
-% - Set up cover page
-% - Setup top margin of first main page to use a 2 inch margin
