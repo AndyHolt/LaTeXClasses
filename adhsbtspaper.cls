@@ -28,10 +28,12 @@ bottom=1.0in]{geometry}
 % fonts for greek and hebrew
 \usepackage{polyglossia}
 
+%% Turn off Hebrew typesetting for now. Seems to cause some issues, can work
+%% them out when I need it!
 \setmainlanguage[variant=british]{english}
-\setotherlanguage{hebrew}
+% \setotherlanguage{hebrew}
 \setotherlanguage[variant=ancient]{greek}
-\newfontfamily\hebrewfont{SBL BibLit}
+% \newfontfamily\hebrewfont{SBL BibLit}
 \newfontfamily\greekfont{SBL BibLit}
 
 % leading
