@@ -180,6 +180,8 @@
       \begin{tabular}{lr}
         \multicolumn{2}{l}{
           % [todo] - space this properly (this is a bodge!)
+          % See changes made to adhdoc title setting, which I think will work
+          % the same here!
           \begin{minipage}{0.95\textwidth}
             {\normalfont\titlefamily\bfseries\huge\@title}
           \end{minipage}
@@ -227,14 +229,17 @@
 \RequirePackage{graphicx}
 
 % Hyperref package
-% only load if document is electronic
+% only use coloured links if electronic option, not if paper.
 % must come last in class file as it redefines commands which may be changed by
 % other packages.
+\RequirePackage{hyperref}
 \iftoggle{forpaperoption}{
-  \typeout{Not using hyperref - paper option set}
+  \typeout{Paper option set: no coloured links}
+  \hypersetup{
+    colorlinks=false
+  }
 }{
-  \typeout{enabling hyperref - electronic document}
-  \RequirePackage{hyperref}
+  \typeout{Electronic options set: colour links}
   \hypersetup{
     colorlinks=true,
     linkcolor=red,
