@@ -87,6 +87,12 @@ if [[ ! -d $latexd/sbtsprecis ]]; then
 fi
 cp $clsd/sbtsprecis.cls $latexd/sbtsprecis/sbtsprecis.cls
 
+# install or update sbts church history reading assignment class
+if [[ ! -d $latexd/sbtshistread ]]; then
+    mkdir $latexd/sbtshistread
+fi
+cp $clsd/sbtshistread.cls $latexd/sbtshistread/sbtshistread.cls
+
 mktexlsr $tree
 
 echo "Updated latex classes and packages."
