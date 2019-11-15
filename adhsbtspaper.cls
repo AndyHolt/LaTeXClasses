@@ -40,6 +40,76 @@ bottom=1.0in]{geometry}
 \RequirePackage{leading}
 \leading{24pt}
 
+%% Make command for adding extra gap at top of first page of main content and
+%% first page of bibliography
+%% Modified version of command from drdrang's drangreport class:
+%% https://github.com/drdrang/drangreport/blob/master/drangreport.sty
+\newcommand{\pagedrop}{%
+\vspace*{0.7in}%
+}
+
+%% Set up package to position text on title page
+\RequirePackage{textpos}
+
+\newcommand{\fromtop}[1]{%
+  \dimexpr-1in-\topskip-\topmargin-\headheight-\headsep+#1\relax
+}
+\newcommand{\fromleft}[1]{%
+  \dimexpr-1in-\oddsidemargin+#1\relax
+}
+
+%% setup title
+\renewcommand{\maketitle}{
+  \begin{titlepage}
+    \setlength{\parindent}{0pt}
+
+    \begin{textblock*}{5in}(\fromleft{0.5\paperwidth-2.5in},\fromtop{2in})
+      \centering
+      \MakeUppercase{\@title}
+    \end{textblock*}
+
+    \begin{textblock*}{\paperwidth}(\fromleft{0in},\fromtop{3.0in})
+      \centering
+      \leading{24pt}
+      \rule{1.5in}{0.4pt}\\
+      \vspace{0.2in}
+      A \papertype\\
+      Presented to\\
+      \prof\\
+      The Southern Baptist Theological Seminary\\
+      \vspace{0.2in}
+      \rule{1.5in}{0.4pt}\\
+      \vspace{0.2in}
+      In Partial Fulfillment\\
+      of the Requirements for \courseno
+    \end{textblock*}
+
+    \begin{textblock*}{\paperwidth}(\fromleft{0in},\fromtop{7.0in})
+      \centering
+      \leading{24pt}
+      \rule{1.5in}{0.4pt}\\
+      \vspace{0.2in}
+      by\\
+      \@author\\
+      \email\\
+      \@date\\
+      \vspace{0.3in}
+      Word Count: \wordcount
+    \end{textblock*}
+  \end{titlepage}
+
+  \pagedrop
+
+  {\centering
+  \MakeUppercase{\@title}\\[\baselineskip]}
+}
+
+%% Set up section heading formats
+\RequirePackage{titlesec}
+\titleformat{\section}[block]{\normalfont\bfseries\normalsize\center}{\thesection}{1ex}{}
+\titleformat{\subsection}[hang]{\normalfont\bfseries\normalsize\raggedright}{\thesubsection}{1ex}{}
+\titleformat{\subsection}[runin]{\normalfont\bfseries\normalsize\raggedright}{\thesubsubsection}{1ex}{}
+
 % extra config of footnotes
 \setlength{\footnotesep}{\baselineskip}
 
