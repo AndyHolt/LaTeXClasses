@@ -124,7 +124,7 @@ bottom=1.0in]{geometry}
 % use quoting package for block quotes, which allows formatting of the block
 % style
 \RequirePackage[indentfirst=false, leftmargin=0.35in, rightmargin=0in]{quoting}
-\RequirePackage[autopunct=true, threshold=5, thresholdtype=lines,
+\RequirePackage[autopunct=true, threshold=4, thresholdtype=lines,
   parthreshold=true]{csquotes}
 \SetBlockEnvironment{quoting}
 \renewcommand*{\quotingfont}{\leading{12pt}}
