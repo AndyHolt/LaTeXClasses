@@ -117,6 +117,9 @@ bottom=1.0in]{geometry}
 \deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark}\leading{10pt}\setlength{\parskip}{10pt}}
 \setkomafont{footnote}{\leading{10pt}}
 
+% bibliography setup
+\RequirePackage[backend=biber, style=verbose]{biblatex}
+
 % use csquotes package for quotations, inline and block
 % use quoting package for block quotes, which allows formatting of the block
 % style
@@ -125,9 +128,7 @@ bottom=1.0in]{geometry}
   parthreshold=true]{csquotes}
 \SetBlockEnvironment{quoting}
 \renewcommand*{\quotingfont}{\leading{12pt}}
-
-% bibliography setup
-\RequirePackage[backend=biber, style=verbose]{biblatex}
+\SetCiteCommand{\autocite}
 
 % hyperref package. Defines meetadata, as well as hyperlinks for references.
 % Make sure this comes last in config!
