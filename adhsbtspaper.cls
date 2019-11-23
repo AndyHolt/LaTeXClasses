@@ -108,7 +108,7 @@ bottom=1.0in]{geometry}
 \RequirePackage{titlesec}
 \titleformat{\section}[block]{\normalfont\bfseries\normalsize\center}{\thesection}{1ex}{}
 \titleformat{\subsection}[hang]{\normalfont\bfseries\normalsize\raggedright}{\thesubsection}{1ex}{}
-\titleformat{\subsection}[runin]{\normalfont\bfseries\normalsize\raggedright}{\thesubsubsection}{1ex}{}
+\titleformat{\subsubsection}[runin]{\normalfont\bfseries\normalsize\raggedright}{\thesubsubsection}{1ex}{}
 
 % extra config of footnotes
 \setlength{\footnotesep}{\baselineskip}
