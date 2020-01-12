@@ -1,0 +1,202 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{adhbibleref}[2020/01/12 v0.1 format bible references]
+
+% preliminary declarations
+
+\RequirePackage{bibleref}
+\RequirePackage{bibleref-parse}
+
+% option declarations
+
+\ProcessOptions\relax
+
+% main code
+
+% Set Psalm and Psalms to two separate books
+% This is a bit of a fudge which will cause issues if trying to generate index.
+% But it's much easier than trying to edit packages to respond differently to
+% single or multiple Psalms...
+\addbiblebook{Psalm}{Psalm}
+%\brpUndefBookPrefix{Ps}{Ps}
+\brpUndefBookPrefix{Ps}
+\brpDefineBook{Ps}{Psalm}
+\brpDefineBook{Psalm}{Psalm}
+\brpDefineBook{Pss}{Psalms}
+\brpDefineBook{Psalms}{Psalms}
+
+%% Long style for references using SBL formatting
+\newbiblerefstyle{sbl-long}{%
+  \renewcommand{\BRvrsep}{–}%
+  \renewcommand{\BRvsep}{, }%
+  \renewcommand{\BRchsep}{; }%
+  \renewcommand{\BRchvsep}{:}%
+  \renewcommand{\BRperiod}{}%
+  \setbooktitle{Genesis}{Genesis}%
+  \setbooktitle{Exodus}{Exodus}%
+  \setbooktitle{Leviticus}{Leviticus}%
+  \setbooktitle{Numbers}{Numbers}%
+  \setbooktitle{Deuteronomy}{Deuteronomy}%
+  \setbooktitle{Joshua}{Joshua}%
+  \setbooktitle{Judges}{Judges}%
+  \setbooktitle{Ruth}{Ruth}%
+  \setbooktitle{ISamuel}{1 Samuel}%
+  \setbooktitle{IISamuel}{2 Samuel}%
+  \setbooktitle{IKings}{1 Kings}%
+  \setbooktitle{IIKings}{2 Kings}%
+  %\setbooktitle{1 Kingdoms}{1 Kingdoms}%
+  %\setbooktitle{2 Kingdoms}{2 Kingdoms}%
+  %\setbooktitle{3 Kingdoms}{3 Kingdoms}%
+  %\setbooktitle{4 Kingdoms}{4 Kingdoms}%
+  \setbooktitle{IChronicles}{1 Chronicles}%
+  \setbooktitle{IIChronicles}{2 Chronicles}%
+  \setbooktitle{Ezra}{Ezra}%
+  \setbooktitle{Nehemiah}{Nehemiah}%
+  \setbooktitle{Esther}{Esther}%
+  \setbooktitle{Job}{Job}%
+  \setbooktitle{Psalms}{Psalms}%
+  \setbooktitle{Psalm}{Psalm}%
+  \setbooktitle{Proverbs}{Proverbs}%
+  \setbooktitle{Ecclesiastes}{Ecclesiastes}%
+  \setbooktitle{SongofSongs}{Song of Songs}%
+  \setbooktitle{Isaiah}{Isaiah}%
+  \setbooktitle{Jeremiah}{Jeremiah}%
+  \setbooktitle{Lamentations}{Lamentations}%
+  \setbooktitle{Ezekiel}{Ezekiel}%
+  \setbooktitle{Daniel}{Daniel}%
+  \setbooktitle{Hosea}{Hosea}%
+  \setbooktitle{Joel}{Joel}%
+  \setbooktitle{Amos}{Amos}%
+  \setbooktitle{Obadiah}{Obadiah}%
+  \setbooktitle{Jonah}{Jonah}%
+  \setbooktitle{Micah}{Micah}%
+  \setbooktitle{Nahum}{Nahum}%
+  \setbooktitle{Habakkuk}{Habakkuk}%
+  \setbooktitle{Zephaniah}{Zephaniah}%
+  \setbooktitle{Haggai}{Haggai}%
+  \setbooktitle{Zechariah}{Zechariah}%
+  \setbooktitle{Malachi}{Malachi}%
+  \setbooktitle{Matthew}{Matthew}%
+  \setbooktitle{Mark}{Mark}%
+  \setbooktitle{Luke}{Luke}%
+  \setbooktitle{John}{John}%
+  \setbooktitle{Acts}{Acts}%
+  \setbooktitle{Romans}{Romans}%
+  \setbooktitle{ICorinthians}{1 Corinthians}%
+  \setbooktitle{IICorinthians}{2 Corinthians}%
+  \setbooktitle{Galatians}{Galatians}%
+  \setbooktitle{Ephesians}{Ephesians}%
+  \setbooktitle{Philippians}{Philippians}%
+  \setbooktitle{Colossians}{Colossians}%
+  \setbooktitle{IThessalonians}{1 Thessalonians}%
+  \setbooktitle{IIThessalonians}{2 Thessalonians}%
+  \setbooktitle{ITimothy}{1 Timothy}%
+  \setbooktitle{IITimothy}{2 Timothy}%
+  \setbooktitle{Titus}{Titus}%
+  \setbooktitle{Philemon}{Philemon}%
+  \setbooktitle{Hebrews}{Hebrews}%
+  \setbooktitle{James}{James}%
+  \setbooktitle{IPeter}{1 Peter}%
+  \setbooktitle{IIPeter}{2 Peter}%
+  \setbooktitle{IJohn}{1 John}%
+  \setbooktitle{IIJohn}{2 John}%
+  \setbooktitle{IIIJohn}{3 John}%
+  \setbooktitle{Jude}{Jude}%
+  \setbooktitle{Revelation}{Revelation}%  
+}
+
+\newbiblerefstyle{sbl-short}{%
+  \renewcommand{\BRvrsep}{–}%
+  \renewcommand{\BRvsep}{, }%
+  \renewcommand{\BRchsep}{; }%
+  \renewcommand{\BRchvsep}{:}%
+  \renewcommand{\BRperiod}{}%
+  \setbooktitle{Genesis}{Gen}%
+  \setbooktitle{Exodus}{Exod}%
+  \setbooktitle{Leviticus}{Lev}%
+  \setbooktitle{Numbers}{Num}%
+  \setbooktitle{Deuteronomy}{Deut}%
+  \setbooktitle{Joshua}{Josh}%
+  \setbooktitle{Judges}{Judg}%
+  \setbooktitle{Ruth}{Ruth}%
+  \setbooktitle{ISamuel}{1 Sam}%
+  \setbooktitle{IISamuel}{2 Sam}%
+  \setbooktitle{IKings}{1 Kgs}%
+  \setbooktitle{IIKings}{2 Kgs}%
+  %\setbooktitle{1 Kingdoms}{1 Kgdms}%
+  %\setbooktitle{2 Kingdoms}{2 Kgdms}%
+  %\setbooktitle{3 Kingdoms}{3 Kgdms}%
+  %\setbooktitle{4 Kingdoms}{4 Kgdms}%
+  \setbooktitle{IChronicles}{1 Chr}%
+  \setbooktitle{IIChronicles}{2 Chr}%
+  \setbooktitle{Ezra}{Ezra}%
+  \setbooktitle{Nehemiah}{Neh}%
+  \setbooktitle{Esther}{Esth}%
+  \setbooktitle{Job}{Job}%
+  \setbooktitle{Psalms}{Pss}%
+  \setbooktitle{Psalm}{Ps}%
+  \setbooktitle{Proverbs}{Prov}%
+  \setbooktitle{Ecclesiastes}{Eccl}%
+  \setbooktitle{SongofSongs}{Song}%
+  \setbooktitle{Isaiah}{Isa}%
+  \setbooktitle{Jeremiah}{Jer}%
+  \setbooktitle{Lamentations}{Lam}%
+  \setbooktitle{Ezekiel}{Ezek}%
+  \setbooktitle{Daniel}{Dan}%
+  \setbooktitle{Hosea}{Hos}%
+  \setbooktitle{Joel}{Joel}%
+  \setbooktitle{Amos}{Amos}%
+  \setbooktitle{Obadiah}{Obad}%
+  \setbooktitle{Jonah}{Jonah}%
+  \setbooktitle{Micah}{Mic}%
+  \setbooktitle{Nahum}{Nah}%
+  \setbooktitle{Habakkuk}{Hab}%
+  \setbooktitle{Zephaniah}{Zeph}%
+  \setbooktitle{Haggai}{Hag}%
+  \setbooktitle{Zechariah}{Zech}%
+  \setbooktitle{Malachi}{Mal}%
+  \setbooktitle{Matthew}{Matt}%
+  \setbooktitle{Mark}{Mark}%
+  \setbooktitle{Luke}{Luke}%
+  \setbooktitle{John}{John}%
+  \setbooktitle{Acts}{Acts}%
+  \setbooktitle{Romans}{Rom}%
+  \setbooktitle{ICorinthians}{1 Cor}%
+  \setbooktitle{IICorinthians}{2 Cor}%
+  \setbooktitle{Galatians}{Gal}%
+  \setbooktitle{Ephesians}{Eph}%
+  \setbooktitle{Philippians}{Phil}%
+  \setbooktitle{Colossians}{Col}%
+  \setbooktitle{IThessalonians}{1 Thess}%
+  \setbooktitle{IIThessalonians}{2 Thess}%
+  \setbooktitle{ITimothy}{1 Tim}%
+  \setbooktitle{IITimothy}{2 Tim}%
+  \setbooktitle{Titus}{Titus}%
+  \setbooktitle{Philemon}{ Phlm}%
+  \setbooktitle{Hebrews}{Heb}%
+  \setbooktitle{James}{Jas}%
+  \setbooktitle{IPeter}{1 Pet}%
+  \setbooktitle{IIPeter}{2 Pet}%
+  \setbooktitle{IJohn}{1 John}%
+  \setbooktitle{IIJohn}{2 John}%
+  \setbooktitle{IIIJohn}{3 John}%
+  \setbooktitle{Jude}{Jude}%
+  \setbooktitle{Revelation}{Rev}%
+ }
+
+\newcommand{\br}[1]{%
+  \biblerefstyle{sbl-short}%
+  \pbibleverse{#1}%
+}
+
+\newcommand{\brt}[1]{%
+  \biblerefstyle{sbl-long}
+  \pbibleverse{#1}%
+}
+
+\newcommand{\brb}[1]{%
+  \biblerefstyle{sbl-short}%
+  (\pbibleverse{#1})%
+}
+
+%% set default to short
+\biblerefstyle{sbl-short}
