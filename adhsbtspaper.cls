@@ -112,6 +112,16 @@ bottom=1.0in]{geometry}
 \titleformat{\subsection}[hang]{\normalfont\bfseries\normalsize\raggedright}{\thesubsection}{1ex}{}
 \titleformat{\subsubsection}[runin]{\normalfont\bfseries\normalsize\raggedright}{\thesubsubsection}{1ex}{}
 
+% bibliography setup
+%\RequirePackage[backend=biber, style=verbose]{biblatex}
+\RequirePackage[ibidtracker=false]{biblatex-chicago}
+\DefineBibliographyStrings{english}{%
+  bibliography = {BIBLIOGRAPHY},
+  references   = {BIBLIOGRAPHY}
+}
+\defbibheading{bibliography}[BIBLIOGRAPHY]{\newpage\pagedrop\centering{#1}}
+%\newcommand{\sbts-printbibliography}{\newpage\pagedrop\printbibliography}
+
 % extra config of footnotes
 \setlength{\footnotesep}{\baselineskip}
 
@@ -119,8 +129,6 @@ bottom=1.0in]{geometry}
 \deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark}\leading{10pt}\setlength{\parskip}{10pt}}
 \setkomafont{footnote}{\leading{10pt}}
 
-% bibliography setup
-\RequirePackage[backend=biber, style=verbose]{biblatex}
 
 % use csquotes package for quotations, inline and block
 % use quoting package for block quotes, which allows formatting of the block
