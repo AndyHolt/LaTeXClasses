@@ -94,7 +94,9 @@ bottom=1.0in]{geometry}
       \email\\
       \@date\\
       \vspace{0.3in}
-      Word Count: \wordcount
+      Word Count: \wordcount\\
+      \vspace{0.2in}
+      I affirm the honour code.
     \end{textblock*}
   \end{titlepage}
 
