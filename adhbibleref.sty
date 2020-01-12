@@ -5,6 +5,7 @@
 
 \RequirePackage{bibleref}
 \RequirePackage{bibleref-parse}
+\RequirePackage{ifthen}
 
 % option declarations
 
@@ -183,19 +184,28 @@
   \setbooktitle{Revelation}{Rev}%
  }
 
-\newcommand{\br}[1]{%
+\newcommand{\br}[2][]{%
   \biblerefstyle{sbl-short}%
-  \pbibleverse{#1}%
+  \pbibleverse{#2}%
+  \ifthenelse{ \equal{#1}{} }%
+             {}%
+             { (#1)}%
 }
 
-\newcommand{\brt}[1]{%
-  \biblerefstyle{sbl-long}
-  \pbibleverse{#1}%
+\newcommand{\brt}[2][]{%
+  \biblerefstyle{sbl-long}%
+  \pbibleverse{#2}%
+  \ifthenelse{ \equal{#1}{} }%
+             {}%
+             { (#1)}%
 }
 
-\newcommand{\brb}[1]{%
+\newcommand{\brb}[2][]{%
   \biblerefstyle{sbl-short}%
-  (\pbibleverse{#1})%
+  (\pbibleverse{#2}%
+  \ifthenelse{ \equal{#1}{} }%
+             {)}%
+             { #1)}%
 }
 
 %% set default to short
