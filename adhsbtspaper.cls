@@ -126,7 +126,7 @@ bottom=1.0in]{geometry}
 \setlength{\footnotesep}{\baselineskip}
 
 \usepackage{scrextend}
-\deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark}\leading{10pt}\setlength{\parskip}{10pt}}
+\deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark\hspace{1ex}}\leading{10pt}\setlength{\parskip}{10pt}}
 \setkomafont{footnote}{\leading{10pt}}
 
 
