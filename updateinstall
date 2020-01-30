@@ -99,6 +99,11 @@ if [[ ! -d $latexd/adhbibleref ]]; then
 fi
 cp $clsd/adhbibleref.sty $latexd/adhbibleref/adhbibleref.sty
 
+# install or update GNT manuscript package
+if [[ ! -d $latexd/gntm ]]; then
+    mkdir $latexd/gntm
+fi
+cp $clsd/gntm.cls $latexd/gntm/gntm.cls
 
 mktexlsr $tree
 
