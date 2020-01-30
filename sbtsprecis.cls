@@ -81,7 +81,7 @@ bottom=1.0in]{geometry}
       \rule{1.5in}{0.4pt}\\
       \vspace{0.2in}
       In Partial Fulfillment\\
-      of the Requirements for 27060B
+      of the Requirements for 27070
     \end{textblock*}
 
     \begin{textblock*}{\paperwidth}(\fromleft{0in},\fromtop{7.0in})
