@@ -181,7 +181,3 @@ bottom=1.0in]{geometry}
 % hyperref package. Defines meetadata, as well as hyperlinks for references.
 % Make sure this comes last in config!
 \RequirePackage[hidelinks=true]{hyperref}
-
-% ******************************************************************
-% ****************************** TODO ******************************
-% ******************************************************************
