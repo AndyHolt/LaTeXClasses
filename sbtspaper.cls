@@ -150,14 +150,20 @@ bottom=1.0in]{geometry}
 \deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark\hspace{1ex}}\leading{10pt}\setlength{\parskip}{10pt}}
 \setkomafont{footnote}{\leading{10pt}}
 
-
 % use csquotes package for quotations, inline and block
 % use quoting package for block quotes, which allows formatting of the block
 % style
-\RequirePackage[indentfirst=false, leftmargin=0.35in, rightmargin=0in]{quoting}
+\newenvironment{myquoting}
+    {\begin{quoting}
+    }
+    {\end{quoting}
+      \vspace{-12pt}
+    }
+\RequirePackage[indentfirst=false, leftmargin=0.35in, rightmargin=0in,
+                vskip=12pt]{quoting}
 \RequirePackage[autopunct=true, threshold=4, thresholdtype=lines,
   parthreshold=true]{csquotes}
-\SetBlockEnvironment{quoting}
+\SetBlockEnvironment{myquoting}
 \renewcommand*{\quotingfont}{\leading{12pt}}
 \SetCiteCommand{\autocite}
 
