@@ -168,6 +168,16 @@ bottom=1.0in]{geometry}
 \renewcommand*{\quotingfont}{\leading{12pt}}
 \SetCiteCommand{\autocite}
 
+%% set list formatting
+\usepackage{enumitem}
+\setlist[enumerate]{
+  before={\leading{12pt}},
+  topsep=12pt,
+  itemsep=12pt,
+  leftmargin=0.35in,
+  align=left,
+  after={\vspace{-12pt}}}
+
 % hyperref package. Defines meetadata, as well as hyperlinks for references.
 % Make sure this comes last in config!
 \RequirePackage[hidelinks=true]{hyperref}
