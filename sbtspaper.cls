@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{sbtspaper}[2019/03/19 SBTS paper class]
+\ProvidesClass{sbtspaper}[2020/02/09 SBTS paper class v2.0]
 
 % Pass options to article class
 \DeclareOption*{\PassOptionToClass{\CurrentOption}{article}}
