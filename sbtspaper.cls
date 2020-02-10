@@ -181,6 +181,11 @@ bottom=1.0in]{geometry}
 %% use bible reference formatting package
 \RequirePackage{adhbibleref}
 
+%% Set larger spaces between ellipses dots
+\RequirePackage{ellipsis}
+\renewcommand{\ellipsisgap}{\fontdimen2\font}
+
+
 % hyperref package. Defines meetadata, as well as hyperlinks for references.
 % Make sure this comes last in config!
 \RequirePackage[hidelinks=true]{hyperref}
