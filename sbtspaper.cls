@@ -140,8 +140,9 @@ bottom=1.0in]{geometry}
   bibliography = {BIBLIOGRAPHY},
   references   = {BIBLIOGRAPHY}
 }
-\defbibheading{bibliography}[BIBLIOGRAPHY]{\newpage\pagedrop\centering{#1}}
+\defbibheading{bibliography}[BIBLIOGRAPHY]{\newpage\pagedrop\centering{#1}\vspace{12pt}}
 %\newcommand{\sbts-printbibliography}{\newpage\pagedrop\printbibliography}
+\renewcommand{\bibsetup}{\leading{12pt}}
 
 % extra config of footnotes
 \setlength{\footnotesep}{\baselineskip}
