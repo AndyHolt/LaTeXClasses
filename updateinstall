@@ -76,10 +76,10 @@ fi
 cp $clsd/adhlecnotes.cls $latexd/adhlecnotes/adhlecnotes.cls
 
 # install or update sbts paper class
-if [[ ! -d $latexd/adhsbtspaper ]]; then
-    mkdir $latexd/adhsbtspaper
+if [[ ! -d $latexd/sbtspaper ]]; then
+    mkdir $latexd/sbtspaper
 fi
-cp $clsd/adhsbtspaper.cls $latexd/adhsbtspaper/adhsbtspaper.cls
+cp $clsd/sbtspaper.cls $latexd/sbtspaper/sbtspaper.cls
 
 # install or update sbts precis class
 if [[ ! -d $latexd/sbtsprecis ]]; then
