@@ -178,6 +178,9 @@ bottom=1.0in]{geometry}
   align=left,
   after={\vspace{-12pt}}}
 
+%% use bible reference formatting package
+\RequirePackage{adhbibleref}
+
 % hyperref package. Defines meetadata, as well as hyperlinks for references.
 % Make sure this comes last in config!
 \RequirePackage[hidelinks=true]{hyperref}
