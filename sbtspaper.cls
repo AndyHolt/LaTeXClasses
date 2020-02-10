@@ -108,9 +108,30 @@ bottom=1.0in]{geometry}
 
 %% Set up section heading formats
 \RequirePackage{titlesec}
-\titleformat{\section}[block]{\normalfont\bfseries\normalsize\center}{\thesection}{1ex}{}
-\titleformat{\subsection}[hang]{\normalfont\bfseries\normalsize\raggedright}{\thesubsection}{1ex}{}
-\titleformat{\subsubsection}[runin]{\normalfont\bfseries\normalsize\raggedright}{\thesubsubsection}{1ex}{}
+
+\titleformat{\section}[block]
+            {\normalfont\bfseries\normalsize\filcenter}
+            {\thesection}
+            {1em}
+            {\leading{12pt}}
+            [\leading{24pt}]
+\titlespacing{\section}{1.25in}{24pt}{0pt}[1.25in]
+
+\titleformat{\subsection}[block]
+            {\normalfont\bfseries\normalsize\filright}
+            {\thesubsection}
+            {1ex}
+            {\leading{12pt}}
+            [\leading{24pt}]
+\titlespacing{\subsection}{0pt}{24pt}{0pt}[3.5in]
+
+\titleformat{\subsubsection}[runin]
+            {\normalfont\bfseries\normalsize\filright}
+            {\thesubsubsection}
+            {1ex}
+            {\hspace{0.7in}}
+            []
+\titlespacing{\subsubsection}{0in}{12pt}{\wordsep}[0in]
 
 % bibliography setup
 %\RequirePackage[backend=biber, style=verbose]{biblatex}
