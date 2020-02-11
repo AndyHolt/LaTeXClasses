@@ -8,9 +8,6 @@
 
 \LoadClass[12pt]{article}
 
-% fontspec package, sets up use of OpenType fonts
-\RequirePackage{fontspec}
-
 % setup standard page
 \RequirePackage[letterpaper, portrait, left=1.0in, right=1.0in, top=1.0in,
 bottom=1.0in]{geometry}
