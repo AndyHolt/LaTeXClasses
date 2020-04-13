@@ -1,7 +1,16 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{sbtspaper}[2020/02/09 SBTS paper class v2.0]
 
-% Pass options to article class
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%        OPTION HANDLING       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Option for handling use of hyphenation or not
+% Default: Use hyphenation
+\newif\if@usehyphenation\@usehyphenationtrue
+\DeclareOption{nohyphen}{\@usehyphenationfalse}
+
+% Pass all other options to article class
 \DeclareOption*{\PassOptionToClass{\CurrentOption}{article}}
 
 \ProcessOptions\relax
@@ -17,10 +26,21 @@ bottom=1.0in]{geometry}
 \setmainfont{Times New Roman}
 
 % setup for left justification, no justification at right margin
-\RequirePackage{ragged2e}
-\setlength{\RaggedRightParindent}{0.7in}
-\setlength{\parindent}{0.7in}
-\RaggedRight
+% If NOHYPHEN option is used, then use \raggedright with no hyphenation of words
+% over linebreaks (more ragged right margin). If the NOHYPHEN option is NOT set,
+% then use \RaggedRight from ragged2e package, which uses hyphenation and offers
+% a less ragged right margin
+% TODO: See if microtype will work with non-justified text to improve line
+% splitting and inter-word spacing.
+\if@usehyphenation
+  \RequirePackage{ragged2e}
+  \setlength{\RaggedRightParindent}{0.7in}
+  \setlength{\parindent}{0.7in}
+  \RaggedRight
+\else
+  \raggedright
+  \setlength{\parindent}{0.7in}
+\fi
 
 % fonts for greek and hebrew
 \usepackage{polyglossia}
