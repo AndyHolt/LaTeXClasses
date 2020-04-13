@@ -7,7 +7,7 @@
 
 \LoadClass[10pt]{article}
 
-\RequirePackage[letterpaper,landscape,
+\RequirePackage[a4paper,landscape,
   left=1.5in,
   right=5.5in,
   top=1.0in,
