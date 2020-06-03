@@ -27,7 +27,10 @@
   \setmainlanguage[variant=british]{english}
 
   \defaultfontfeatures{Ligatures=TeX}
-  \setmainfont{Helvetica}
+  \setmainfont{Iowan Old Style}
+  \setsansfont{Avenir}
+  %\renewcommand{\familydefault}{\sfdefault}
+  \newcommand{\titlefamily}{\sffamily}
 \else
    \RequirePackage[utf8]{inputenc}   
 
@@ -53,7 +56,7 @@
 
 
 % reduce spacing around headings!
-\RequirePackage{titlesec}
+\RequirePackage[sf,bf]{titlesec}
 %% \usepackage[small,sf,bf]{titlesec}
 \titlespacing*{\section}{0pt}{1ex plus 1ex}{0pt}
 \titlespacing*{\subsection}{0pt}{1ex plus 1ex}{0pt}
@@ -75,18 +78,18 @@
   \begin{center}
     \begin{tabular}[t]{c}
       \parbox[c]{\textwidth}
-      {\centering\normalfont\titlefamily\bfseries\LARGE\@title}
+      {\centering\normalfont\titlefamily\LARGE\@title}
       \vspace{.1in}\\
-      {\centering\normalfont\titlefamily\bfseries\passage}\\
+      {\centering\normalfont\titlefamily\passage}\\
       \begin{minipage}{2.5in}
         \begin{center}
           \normalfont\normalsize
           \begin{tabular}[t]{c}
-            {\centering\normalfont\titlefamily\bfseries\@author}
+            {\centering\normalfont\titlefamily\@author}
           \end{tabular}
         \end{center}
       \end{minipage}\\
-      {\centering\normalfont\titlefamily\bfseries\@date}\\
+      {\centering\normalfont\titlefamily\@date}\\
     \end{tabular}
   \end{center}
 }
