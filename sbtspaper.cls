@@ -10,6 +10,12 @@
 \newif\if@usehyphenation\@usehyphenationtrue
 \DeclareOption{nohyphen}{\@usehyphenationfalse}
 
+% Option for not adding title on first main page after the title page
+% with \maketitle command
+% This allows adding extra elements between, such as an abstract page
+\newif\if@extratitle\@extratitletrue
+\DeclareOption{noextratitle}{\@extratitlefalse}
+
 % Pass all other options to article class
 \DeclareOption*{\PassOptionToClass{\CurrentOption}{article}}
 
@@ -65,6 +71,18 @@ bottom=1.0in]{geometry}
 \vspace*{0.7in}%
 }
 
+% Commands for putting correctly formatted titles on pages
+\newcommand{\onpagetitle}[1]{%
+  \pagedrop
+
+  {\centering
+    \MakeUppercase{#1}\\[\baselineskip]}
+}
+
+\newcommand{\onpagemaintitle}{%
+  \onpagetitle{\@title}
+}
+
 %% Set up package to position text on title page
 \RequirePackage{textpos}
 
@@ -80,7 +98,7 @@ bottom=1.0in]{geometry}
   \begin{titlepage}
     \setlength{\parindent}{0pt}
 
-    \begin{textblock*}{5in}(\fromleft{0.5\paperwidth-2.5in},\fromtop{2in})
+    \begin{textblock*}{5in}[0,1](\fromleft{0.5\paperwidth-2.5in},\fromtop{2in})
       \centering
       \MakeUppercase{\@title}
     \end{textblock*}
@@ -89,14 +107,14 @@ bottom=1.0in]{geometry}
       \centering
       \leading{24pt}
       \rule{1.5in}{0.4pt}\\
-      \vspace{0.2in}
+      \vspace{0.3in}
       A \papertype\\
       Presented to\\
       \prof\\
       The Southern Baptist Theological Seminary\\
-      \vspace{0.2in}
+      \vspace{0.3in}
       \rule{1.5in}{0.4pt}\\
-      \vspace{0.2in}
+      \vspace{0.3in}
       In Partial Fulfillment\\
       of the Requirements for \courseno
     \end{textblock*}
@@ -117,10 +135,9 @@ bottom=1.0in]{geometry}
     \end{textblock*}
   \end{titlepage}
 
-  \pagedrop
-
-  {\centering
-  \MakeUppercase{\@title}\\[\baselineskip]}
+  \if@extratitle
+    \onpagemaintitle
+  \fi
 }
 
 %% Set up section heading formats
@@ -140,7 +157,7 @@ bottom=1.0in]{geometry}
             {1ex}
             {\leading{12pt}}
             [\leading{24pt}]
-\titlespacing{\subsection}{0pt}{24pt}{0pt}[3.5in]
+\titlespacing{\subsection}{0pt}{24pt plus 2pt minus 12pt}{0pt}[3.5in]
 
 \titleformat{\subsubsection}[runin]
             {\normalfont\bfseries\normalsize\filright}
