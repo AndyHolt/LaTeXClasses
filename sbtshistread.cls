@@ -120,13 +120,13 @@ bottom=1.0in]{geometry}
 \newcounter{question}[lecture]
 \titleclass{\question}{straight}[\lecture]
 \titleformat{\question}[hang]{\normalfont}{\thequestion.}{1ex}{}
-\titlespacing*{\question}{1.0em}{0ex plus 1ex minus .2ex}{0 ex plus .2ex}
+\titlespacing*{\question}{1.0em}{0ex plus 1ex minus .2ex}{0 ex plus .2ex}[2.5em]
 \renewcommand{\thequestion}{\arabic{question}}
 
 \newcounter{subquestion}[question]
 \titleclass{\subquestion}{straight}[\question]
 \titleformat{\subquestion}[hang]{\normalfont}{\thesubquestion.}{1ex}{}
-\titlespacing*{\subquestion}{2.25em}{0ex plus 1ex minus .2ex}{0 ex plus .2ex}
+\titlespacing*{\subquestion}{2.25em}{0ex plus 1ex minus .2ex}{0 ex plus .2ex}[2.5em]
 \renewcommand{\thesubquestion}{\alph{subquestion}}
 
 % extra config of footnotes
