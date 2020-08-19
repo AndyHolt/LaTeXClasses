@@ -61,7 +61,46 @@ bottom=1.0in]{geometry}
 
 %% setup title
 \renewcommand{\maketitle}{
-  \framebox[\textwidth]{\@title}
+  \begin{titlepage}
+    \setlength{\parindent}{0pt}
+
+    \begin{textblock*}{5in}[0,1](\fromleft{0.5\paperwidth-2.5in},\fromtop{2in})
+      \centering
+      \MakeUppercase{\@title}
+    \end{textblock*}
+
+    \begin{textblock*}{\paperwidth}(\fromleft{0in},\fromtop{3.0in})
+      \centering
+      \leading{24pt}
+      \rule{1.5in}{0.4pt}\\
+      \vspace{0.3in}
+      A \papertype\\
+      Presented to\\
+      \prof\\
+      The Southern Baptist Theological Seminary\\
+      \vspace{0.3in}
+      \rule{1.5in}{0.4pt}\\
+      \vspace{0.3in}
+      In Partial Fulfillment\\
+      of the Requirements for \courseno
+    \end{textblock*}
+
+    \begin{textblock*}{5in}(\fromleft{0.5\paperwidth-2.5in},\fromtop{7.0in})
+      \centering
+      \leading{24pt}
+      \rule{1.5in}{0.4pt}\\
+      \vspace{0.2in}
+      by\\
+      \@author\\
+      \email\\
+      \@date\\
+      \vspace{0.3in}
+      On my honor, I have neither given nor taken improper assistance in
+      completing this assignment.
+    \end{textblock*}
+  \end{titlepage}
+
+  \framebox[\textwidth]{\normalfont\bfseries\@title}
 }
 
 %% set up different sections for this class
