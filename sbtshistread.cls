@@ -41,7 +41,7 @@
 
 %% Turn off Hebrew typesetting for now. Seems to cause some issues, can work
 %% them out when I need it!
-\setmainlanguage[variant=british]{english}
+\setmainlanguage{english}
 % \setotherlanguage{hebrew}
 \setotherlanguage[variant=ancient]{greek}
 % \newfontfamily\hebrewfont{SBL BibLit}
@@ -103,7 +103,7 @@
       by\\
       \@author\\
       \email\\
-      \@date\\
+      \today\\
       \vspace{0.3in}
       On my honor, I have neither given nor taken improper assistance in
       completing this assignment.
