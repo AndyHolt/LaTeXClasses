@@ -12,8 +12,15 @@
 \RequirePackage{fontspec}
 
 % setup standard page
-\RequirePackage[letterpaper, portrait, left=1.0in, right=1.0in, top=1.0in,
-bottom=1.0in]{geometry}
+\RequirePackage[
+  letterpaper,
+  portrait,
+  left=1.0in,
+  right=1.0in,
+  top=1.0in,
+  bottom=1.0in,
+  headheight=14.5pt
+]{geometry}
 
 % Set font
 \RequirePackage{fontspec}
