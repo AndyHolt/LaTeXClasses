@@ -27,11 +27,14 @@
 \setmainfont{Times New Roman}
 
 % setup for left justification, no justification at right margin
-\RequirePackage{ragged2e}
-\setlength{\RaggedRightParindent}{0.0in}
+% \RequirePackage{ragged2e}
+% \setlength{\RaggedRightParindent}{0.0in}
+% \setlength{\parindent}{0.0in}
+% \setlength{\parskip}{\baselineskip}
+% \RaggedRight
+\raggedright
 \setlength{\parindent}{0.0in}
 \setlength{\parskip}{\baselineskip}
-\RaggedRight
 
 % fonts for greek and hebrew
 \usepackage{polyglossia}
