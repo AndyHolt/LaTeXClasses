@@ -34,8 +34,8 @@
   \defaultfontfeatures{Ligatures=TeX}
   \setotherlanguage[variant=ancient]{greek}
 
-  \setmainfont{Times New Roman}
-  \setsansfont{Helvetica}
+  \setmainfont{Iowan Old Style}
+  \setsansfont{Avenir}
   \newfontfamily\greekfont{SBL BibLit}
 \else
   \ifluatex
