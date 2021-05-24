@@ -39,7 +39,7 @@ bottom=1.0in]{geometry}
 
 % leading
 \RequirePackage{leading}
-% \leading{24pt}
+\leading{12pt}
 
 %% Make command for adding extra gap at top of first page of main content and
 %% first page of bibliography
@@ -100,7 +100,7 @@ bottom=1.0in]{geometry}
     \end{textblock*}
   \end{titlepage}
 
-  \framebox[\textwidth]{\normalfont\bfseries\@title}
+  % \framebox[\textwidth]{\normalfont\bfseries\@title}
 }
 
 %% set up different sections for this class
@@ -113,7 +113,7 @@ bottom=1.0in]{geometry}
 % \titleformat{\section}[block]{\normalfont\bfseries}{}{0em}{}
 \newcounter{lecture}[part]
 \titleclass{\lecture}{straight}[\part]
-\titleformat{\lecture}[block]{\normalfont\bfseries}{Lecture \thelecture:}{1ex}{}
+\titleformat{\lecture}[block]{\normalsize\normalfont\bfseries\leading{12pt}}{}{0pt}{\filcenter\framebox[\textwidth]}
 \titlespacing*{\lecture}{0pt}{0ex plus 1ex minus .2ex}{0 ex plus .2ex}
 \renewcommand{\thelecture}{\arabic{lecture}}
 
