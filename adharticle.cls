@@ -49,32 +49,32 @@
 
 % font setting options
 % toggles for different font sets
-\providetoggle{cmfont}
-\providetoggle{timesfont}
-\providetoggle{palatinofont}
-\providetoggle{timesoptfont}
+% \providetoggle{cmfont}
+% \providetoggle{timesfont}
+% \providetoggle{palatinofont}
+% \providetoggle{timesoptfont}
 
 % default to computer modern
-\toggletrue{cmfont}
-\togglefalse{timesfont}
-\togglefalse{palatinofont}
-\togglefalse{timesoptfont}
+% \toggletrue{cmfont}
+% \togglefalse{timesfont}
+% \togglefalse{palatinofont}
+% \togglefalse{timesoptfont}
 
-\DeclareOption{cm}{
-  \toggletrue{cmfont}
-}
-\DeclareOption{times}{
-  \togglefalse{cmfont}
-  \toggletrue{timesfont}
-}
-\DeclareOption{palatino}{
-  \togglefalse{cmfont}
-  \toggletrue{palatinofont}
-  }
-\DeclareOption{timesopt}{
-  \togglefalse{cmfont}
-  \toggletrue{timesoptfont}
-}
+% \DeclareOption{cm}{
+%   \toggletrue{cmfont}
+% }
+% \DeclareOption{times}{
+%   \togglefalse{cmfont}
+%   \toggletrue{timesfont}
+% }
+% \DeclareOption{palatino}{
+%   \togglefalse{cmfont}
+%   \toggletrue{palatinofont}
+%   }
+% \DeclareOption{timesopt}{
+%   \togglefalse{cmfont}
+%   \toggletrue{timesoptfont}
+% }
 
 % option to include page headers
 \providetoggle{useheaders}
@@ -98,6 +98,8 @@
   \RequirePackage{polyglossia}
   \setmainlanguage[variant=british]{english}
   \defaultfontfeatures{Ligatures=TeX}
+  \setmainfont{Iowan Old Style}
+  \setsansfont{Avenir}
 \else
   % allow unicode symbols to be used
   \RequirePackage[utf8]{inputenc}
@@ -110,7 +112,7 @@
 \RequirePackage{amssymb,amsmath}
 \RequirePackage{adhsymbols}
 % provides various extra TeX related logos, such as \XeLaTeX
-\RequirePackage{dtk-logos}
+% \RequirePackage{dtk-logos}
 
 % require fullpage package if option is set
 \iftoggle{usefullpageoption}{
@@ -130,46 +132,46 @@
 % font set up
 % All of this font configuration borrows very heavily from
 % Dr Drang (https://github.com/drdrang/drangreport)
-\newcommand{\titlefamily}{}
+\newcommand{\titlefamily}{\sffamily}
 
-\iftoggle{cmfont}{
-  \typeout{Computer Modern font used}
-}{}
-\iftoggle{timesfont}{
-  \typeout{Times font used}
-  \ifxetex
-    \setmainfont{Times New Roman}
-  \else
-    \savesymbol{iint}
-    \RequirePackage{txfonts}
-    \restoresymbol{TXF}{iint}
-  \fi
-  \renewcommand{\titlefamily}{\sffamily}
-  }{}
-\iftoggle{palatinofont}{
-  \typeout{Palatino font used}
-  \ifxetex
-    \setmainfont{Palatino}
-  \else
-    \RequirePackage[sc,osf]{mathpazo}
-    \RequirePackage{classico}
-  \fi
-  \renewcommand{\baselinestretch}{1.1}
-  \renewcommand{\titlefamily}{\sffamily}
-}{}
-\iftoggle{timesoptfont}{
-  \typeout{Times and Optima fonts used}
-  \ifxetex
-    \setmainfont{Times New Roman}
-    \setsansfont{Optima}
-  \else
-    \savesymbol{iint}
-    \RequirePackage{txfonts}
-    \restoresymbol{TXF}{iint}
-    \RequirePackage{classico}
-  \fi
-  \renewcommand{\titlefamily}{\sffamily}
-}{}
+% \iftoggle{cmfont}{
+%   \typeout{Computer Modern font used}
+% }{}
+% \iftoggle{timesfont}{
+%   \typeout{Times font used}
+%   \ifxetex
+%     \setmainfont{Times New Roman}
+%   \else
+%     \savesymbol{iint}
+%     \RequirePackage{txfonts}
+%     \restoresymbol{TXF}{iint}
+%   \fi
+%   \renewcommand{\titlefamily}{\sffamily}
+%   }{}
+% \iftoggle{palatinofont}{
+%   \typeout{Palatino font used}
+%   \ifxetex
+%     \setmainfont{Palatino}
+%   \else
+%     \RequirePackage[sc,osf]{mathpazo}
+%     \RequirePackage{classico}
+%   \fi
+%   \renewcommand{\baselinestretch}{1.1}
+%   \renewcommand{\titlefamily}{\sffamily}
+% }{}
+% \iftoggle{timesoptfont}{
+%   \typeout{Times and Optima fonts used}
+%   \ifxetex
+%     \setmainfont{Times New Roman}
+%     \setsansfont{Optima}
+%   \else
+%     \savesymbol{iint}
+%     \RequirePackage{txfonts}
+%     \restoresymbol{TXF}{iint}
+%     \RequirePackage{classico}
+%   \fi
+%   \renewcommand{\titlefamily}{\sffamily}
+% }{}
 
 % % change (sub)section and (sub)paragraph fonts to sans serif
 \RequirePackage{titlesec}
@@ -183,28 +185,28 @@
 % redefine title to use \titlefamily font
 % [todo] - make robust to having a title page
 %   See drang report
-\renewcommand{\maketitle}{
-  \renewcommand{\and}
-    {\end{tabular} \begin{tabular}[t]{c}\vspace{.5ex}\\}
-  \begin{center}
-    \begin{tabular}[t]{c}
-      \parbox[c][.5in][c]{0.8\textwidth}
-        {\centering\normalfont\titlefamily\bfseries\LARGE\@title}\\
-      \begin{minipage}{0.3\textwidth}
-        \begin{center}
-          \normalfont\normalsize
-          \begin{tabular}[t]{c}
-            \vspace{.25in}\\
-            {\centering\normalfont\titlefamily\bfseries\@author}
-          \end{tabular}
-        \end{center}
-      \end{minipage}
-      \vspace{.25in}\\
-      {\centering\normalfont\titlefamily\bfseries\@date}
-      \vspace{.25in}\\
-    \end{tabular}
-  \end{center}
-}
+% \renewcommand{\maketitle}{
+%   \renewcommand{\and}
+%     {\end{tabular} \begin{tabular}[t]{c}\vspace{.5ex}\\}
+%   \begin{center}
+%     \begin{tabular}[t]{c}
+%       \parbox[c][.5in][c]{0.8\textwidth}
+%         {\centering\normalfont\titlefamily\bfseries\LARGE\@title}\\
+%       \begin{minipage}{0.3\textwidth}
+%         \begin{center}
+%           \normalfont\normalsize
+%           \begin{tabular}[t]{c}
+%             \vspace{.25in}\\
+%             {\centering\normalfont\titlefamily\bfseries\@author}
+%           \end{tabular}
+%         \end{center}
+%       \end{minipage}
+%       \vspace{.25in}\\
+%       {\centering\normalfont\titlefamily\bfseries\@date}
+%       \vspace{.25in}\\
+%     \end{tabular}
+%   \end{center}
+% }
 
 % packages for handling graphics
 % [review] - use xcolor instead of color package?
@@ -313,7 +315,7 @@
   \RequirePackage{hyperref}
   \hypersetup{
     colorlinks=false,
-    hidelinks=true
+    hidelinks
   }
 }{
   \typeout{Electronic document - use coloured links}
