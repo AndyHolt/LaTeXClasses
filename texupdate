@@ -105,6 +105,12 @@ if [[ ! -d $latexd/gntm ]]; then
 fi
 cp $clsd/gntm.cls $latexd/gntm/gntm.cls
 
+# install or update Hebrew manuscript package
+if [[ ! -d $latexd/hbms ]]; then
+    mkdir $latexd/hbms
+fi
+cp $clsd/hbms.cls $latexd/hbms/hbms.cls
+
 mktexlsr $tree
 
 echo "Updated latex classes and packages."
