@@ -12,11 +12,7 @@
 % load an extra set of marks for chapter and verse references in page header/footers
 \RequirePackage{extramarks}
 
-\definecolor{lightgrey}{gray}{0.66}
-
-% create counters for chapter and verse numbers
-\newcounter{chapnum}
-\newcounter{versenum}[chapnum]
+% \definecolor{lightgrey}{gray}{0.66}
 
 % option declarations
 
@@ -81,29 +77,29 @@
 
 % settings for typesetting of verse numbers
 \iftoggle{vernumnone}{
-  \providecommand{\vn}[1]{\setcounter{versenum}{#1}\markboth{#1}{#1}}
+  \providecommand{\vn}[1]{\markboth{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
 }{}
 \iftoggle{vernumplain}{
-  \providecommand{\vn}[1]{\setcounter{versenum}{#1}#1~\markboth{#1}{#1}}
+  \providecommand{\vn}[1]{#1~\markboth{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
 }{}
 \iftoggle{vernumsuper}{
-  \providecommand{\vn}[1]{\setcounter{versenum}{#1}\textcolor{black}{\textsuperscript{\textsf{\textmd{#1}}}}\markboth{#1}{#1}}
+  \providecommand{\vn}[1]{\textsuperscript{\textsf{\textmd{#1}}}\markboth{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
 }{}
 \iftoggle{vernummarg}{
-  \providecommand{\vn}[1]{\setcounter{versenum}{#1}\marginpar{\footnotesize{\textit{#1}}}\markboth{#1}{#1}}
+  \providecommand{\vn}[1]{\marginpar{\footnotesize{\textit{#1}}}\markboth{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
 }{}
 
 % command to typeset chapter numbers
 \iftoggle{chapnumnone}{
-  \providecommand{\cn}[1]{\setcounter{chapnum}{#1}\extramarks{#1}{#1}}
+  \providecommand{\cn}[1]{\extramarks{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
 }{}
 \iftoggle{chapnumplain}{
-  \providecommand{\cn}[1]{\setcounter{chapnum}{#1}#1~\extramarks{#1}{#1}}
+  \providecommand{\cn}[1]{#1~\extramarks{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
 }{}
 \iftoggle{chapnumdrop}{
-  \providecommand{\cn}[1]{\setcounter{chapnum}{#1}\lettrine[lines=2,nindent=0pt]{
-      \textcolor{lightgrey}{\textsf{\textbf{#1}}}}\extramarks{#1}{#1}}
+  \providecommand{\cn}[1]{\lettrine[lines=2,nindent=0pt]{
+      \textsf{\textbf{#1}}}\extramarks{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
 }{}
 \iftoggle{chapnummarg}{
-   \providecommand{\cn}[1]{\setcounter{chapnum}{#1}\marginpar[\Large{\textbf{#1}}]{\Large{\textbf{#1}}}\extramarks{#1}{#1}}
+   \providecommand{\cn}[1]{\marginpar[\Large{\textbf{#1}}]{\Large{\textbf{#1}}}\extramarks{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
 }{}
