@@ -126,18 +126,21 @@
 \titleformat{\lecture}[block]{\normalsize\normalfont\bfseries\leading{12pt}}{}{0pt}{\filcenter\framebox[\textwidth]}
 \titlespacing*{\lecture}{0pt}{0ex plus 1ex minus .2ex}{0 ex plus .2ex}
 \renewcommand{\thelecture}{\arabic{lecture}}
+\def\toclevel@lecture{0}
 
 \newcounter{question}[lecture]
 \titleclass{\question}{straight}[\lecture]
 \titleformat{\question}[hang]{\normalfont}{\thequestion.}{1ex}{}
 \titlespacing*{\question}{1.0em}{0ex plus 1ex minus .2ex}{0 ex plus .2ex}[2.5em]
 \renewcommand{\thequestion}{\arabic{question}}
+\def\toclevel@question{1}
 
 \newcounter{subquestion}[question]
 \titleclass{\subquestion}{straight}[\question]
 \titleformat{\subquestion}[hang]{\normalfont}{\thesubquestion.}{1ex}{}
 \titlespacing*{\subquestion}{2.25em}{0ex plus 1ex minus .2ex}{0 ex plus .2ex}[2.5em]
 \renewcommand{\thesubquestion}{\alph{subquestion}}
+\def\toclevel@subquestion{2}
 
 % extra config of footnotes
 \setlength{\footnotesep}{\baselineskip}
@@ -163,7 +166,7 @@
 \pagestyle{fancy}
 %\fancyh{}
 \fancyhead[R]{\@author}
-\fancyhead[L]{\shortpapertitle}
+\fancyhead[L]{\rightmark}
 \renewcommand{\headrulewidth}{0pt}
 
 % hyperref package. Defines meetadata, as well as hyperlinks for references.
