@@ -53,7 +53,7 @@ bottom=1.0in]{geometry}
 
 %% Turn off Hebrew typesetting for now. Seems to cause some issues, can work
 %% them out when I need it!
-\setmainlanguage[variant=british]{english}
+\setmainlanguage[variant=american]{english}
 % \setotherlanguage{hebrew}
 \setotherlanguage[variant=ancient]{greek}
 % \newfontfamily\hebrewfont{SBL BibLit}
