@@ -203,7 +203,7 @@ bottom=1.0in]{geometry}
 \SetCiteCommand{\autocite}
 
 %% set list formatting
-\usepackage{enumitem}
+\RequirePackage{enumitem}
 \setlist[enumerate]{
   before={\leading{12pt}},
   topsep=12pt,
