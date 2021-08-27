@@ -50,7 +50,7 @@
 
 \RequirePackage{lettrine}
 
-\RequirePackage[vnsuper,cnplain]{paratext}
+\RequirePackage[vnsuper,cnplain,usebidi]{paratext}
 
 \RequirePackage{polyglossia}
 \setmainlanguage{hebrew}

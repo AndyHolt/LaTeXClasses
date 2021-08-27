@@ -73,33 +73,52 @@
   \toggletrue{chapnummarg}
 }
 
+% bidi text handling of marks, default to off
+\newtoggle{bidiused}
+\togglefalse{bidiused}
+\DeclareOption{usebidi}{
+  \toggletrue{bidiused}
+}
+
 \ProcessOptions\relax
+
+% if usebidi option is passed (or bidiused is set to true by another means), use
+% bidi package commands to ensure mark setting text is LTR for headers.
+% Otherwise, just set marks normally, without calling commands dependant upon
+% the bidi package
+\iftoggle{bidiused}{
+  \newcommand{\versemarks}[1]{\markboth{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
+  \newcommand{\chapmarks}[1]{\extramarks{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
+}{
+  \newcommand{\versemarks}[1]{\markboth{#1}{#1}}
+  \newcommand{\chapmarks}[1]{\extramarks{#1}{#1}}
+}
 
 % settings for typesetting of verse numbers
 \iftoggle{vernumnone}{
-  \providecommand{\vn}[1]{\markboth{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
+  \providecommand{\vn}[1]{\versemarks{#1}}
 }{}
 \iftoggle{vernumplain}{
-  \providecommand{\vn}[1]{#1~\markboth{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
+  \providecommand{\vn}[1]{#1~\versemarks{#1}}
 }{}
 \iftoggle{vernumsuper}{
-  \providecommand{\vn}[1]{\textsuperscript{\textsf{\textmd{#1}}}\markboth{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
+  \providecommand{\vn}[1]{\textsuperscript{\textsf{\textmd{#1}}}\versemarks{#1}~}
 }{}
 \iftoggle{vernummarg}{
-  \providecommand{\vn}[1]{\marginpar{\footnotesize{\textit{#1}}}\markboth{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
+  \providecommand{\vn}[1]{\marginpar{\footnotesize{\textit{#1}}}\versemarks{#1}}
 }{}
 
 % command to typeset chapter numbers
 \iftoggle{chapnumnone}{
-  \providecommand{\cn}[1]{\extramarks{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
+  \providecommand{\cn}[1]{\chapmarks{#1}}
 }{}
 \iftoggle{chapnumplain}{
-  \providecommand{\cn}[1]{#1~\extramarks{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
+  \providecommand{\cn}[1]{#1~\chapmarks{#1}}
 }{}
 \iftoggle{chapnumdrop}{
   \providecommand{\cn}[1]{\lettrine[lines=2,nindent=0pt]{
-      \textsf{\textbf{#1}}}\extramarks{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
+      \textsf{\textbf{#1}}}\chapmarks{#1}}
 }{}
 \iftoggle{chapnummarg}{
-   \providecommand{\cn}[1]{\marginpar[\Large{\textbf{#1}}]{\Large{\textbf{#1}}}\extramarks{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
+   \providecommand{\cn}[1]{\marginpar[\Large{\textbf{#1}}]{\Large{\textbf{#1}}}\chapmarks{#1}}
 }{}
