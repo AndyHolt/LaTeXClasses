@@ -87,7 +87,7 @@
 }
 
 % package for typesetting paratext, such as chapter and verse numbers
-\RequirePackage[vnsuper,cndrop]{paratext}
+\RequirePackage[vnsuper,cnplain]{paratext}
 
 % don't leave a gap when starting a verse environment
 \xpatchcmd{\verse}{\itemsep}{\advance\topsep-\parskip\itemsep}{}{}
