@@ -179,7 +179,11 @@ bottom=1.0in]{geometry}
 \renewcommand{\bibsetup}{\leading{12pt}}
 
 % extra config of footnotes
-\setlength{\footnotesep}{\baselineskip}
+% previously was set to \baselineskip
+% probably *should* be 20pt, to give a full 10pt gap between footnotes, but this
+% setting makes multiple references rather more economical for page-count
+% limited papers.
+\setlength{\footnotesep}{15pt}
 
 \usepackage{scrextend}
 \deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark\hspace{1ex}}\leading{10pt}\setlength{\parskip}{10pt}}
