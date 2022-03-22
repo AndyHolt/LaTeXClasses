@@ -92,22 +92,6 @@
 
 \LoadClass[a4paper]{article}
 
-\ifxetex
-  \RequirePackage{fontspec}
-
-  \RequirePackage{polyglossia}
-  \setmainlanguage[variant=british]{english}
-  \defaultfontfeatures{Ligatures=TeX}
-  \setmainfont{Iowan Old Style}
-  \setsansfont{Avenir}
-\else
-  % allow unicode symbols to be used
-  \RequirePackage[utf8]{inputenc}
-
-  % Babel package provides correct hyphenation etc
-  \RequirePackage[greek,british]{babel}
-\fi
-
 % packages to include extra symbols
 \RequirePackage{amssymb,amsmath}
 \RequirePackage{adhsymbols}
@@ -132,7 +116,7 @@
 % font set up
 % All of this font configuration borrows very heavily from
 % Dr Drang (https://github.com/drdrang/drangreport)
-\newcommand{\titlefamily}{\sffamily}
+\newcommand{\titlefamily}{\rmfamily}
 
 % \iftoggle{cmfont}{
 %   \typeout{Computer Modern font used}
@@ -172,6 +156,25 @@
 %   \fi
 %   \renewcommand{\titlefamily}{\sffamily}
 % }{}
+
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE\bfseries\@title \par}%
+    \vskip 1.5em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+    {\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1.5em}
 
 % % change (sub)section and (sub)paragraph fonts to sans serif
 \RequirePackage{titlesec}
@@ -328,3 +331,34 @@
   }
   \RequirePackage{footnotebackref}
 }
+
+\ifxetex
+  \typeout{XeTeX used: load polyglossia and fontspec}
+  \RequirePackage{fontspec}
+
+  \RequirePackage{polyglossia}
+  \setmainlanguage[variant=british]{english}
+  \defaultfontfeatures{Ligatures=TeX}
+  \setmainfont{Iowan Old Style}
+  \setsansfont{Avenir}[Scale=MatchLowercase]
+  \setmonofont{Menlo}[Scale=MatchLowercase]
+
+  \setotherlanguage[variant=ancient]{greek}
+  \newfontfamily\greekfont[Script=Greek]{Gentium Plus}[Scale=MatchLowercase]
+
+  \setotherlanguage{hebrew}
+  \newfontfamily\hebrewfont[Script=Hebrew]{SBL BibLit}[Scale=1.3]
+\else
+  \typeout{XeTeX not used: load inputenc and babel}
+  % allow unicode symbols to be used
+  \RequirePackage[utf8]{inputenc}
+
+  % Babel package provides correct hyphenation etc
+  \RequirePackage[greek,british]{babel}
+\fi
+
+% bibliography set up
+\RequirePackage[backend=biber, style=verbose-ibid]{biblatex}
+% \RequirePackage[ibidtracker=false]{biblatex-chicago}
+
+\RequirePackage[]{bidi}
