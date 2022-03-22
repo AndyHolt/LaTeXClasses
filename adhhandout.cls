@@ -5,6 +5,7 @@
 
 \RequirePackage{etoolbox}
 \RequirePackage{xcolor}
+\RequirePackage{ifxetex}
 
 %% Options - handle options to adhhandout class
 
@@ -106,38 +107,57 @@
 % Dr Drang (https://github.com/drdrang/drangreport)
 \newcommand{\titlefamily}{}
 
-\iftoggle{cmfont}{
-  \typeout{Computer Modern font used}
-}{}
-\iftoggle{timesfont}{
-  \typeout{Times font used}
-  \savesymbol{iint}
-  \RequirePackage{txfonts}
-  \restoresymbol{TXF}{iint}
-  \renewcommand{\titlefamily}{\sffamily}
+\ifxetex
+  \RequirePackage{fontspec}
+
+  \RequirePackage{polyglossia}
+  \setmainlanguage[variant=british]{english}
+  \defaultfontfeatures{Ligatures=TeX}
+  \setmainfont{Iowan Old Style}
+  \setsansfont{Avenir}
+
+  \renewcommand{\titlefamily}{\rmfamily}
+\else
+  % allow unicode symbols to be used
+  \RequirePackage[utf8]{inputenc}
+
+  % Babel package provides correct hyphenation etc
+  \RequirePackage[greek,british]{babel}
+  \iftoggle{cmfont}{
+    \typeout{Computer Modern font used}
   }{}
-\iftoggle{palatinofont}{
-  \typeout{Palatino font used}
-  \RequirePackage[sc,osf]{mathpazo}
-  \RequirePackage{classico}
-  \renewcommand{\baselinestretch}{1.1}
-  \renewcommand{\titlefamily}{\sffamily}
-}{}
-\iftoggle{palahelvfont}{
-  \typeout{Palatino and Helvetica fonts used}
-  \RequirePackage[sc,osf]{mathpazo}
-  \RequirePackage{helvet}
-  \renewcommand{\baselinestretch}{1.1}
-  \renewcommand{\titlefamily}{\sffamily}
-}{}
-\iftoggle{timesoptfont}{
-  \typeout{Times and Optima fonts used}
-  \savesymbol{iint}
-  \RequirePackage{txfonts}
-  \restoresymbol{TXF}{iint}
-  \RequirePackage{classico}
-  \renewcommand{\titlefamily}{\sffamily}
-}{}
+  \iftoggle{timesfont}{
+    \typeout{Times font used}
+    \savesymbol{iint}
+    \RequirePackage{txfonts}
+    \restoresymbol{TXF}{iint}
+    \renewcommand{\titlefamily}{\sffamily}
+    }{}
+  \iftoggle{palatinofont}{
+    \typeout{Palatino font used}
+    \RequirePackage[sc,osf]{mathpazo}
+    \RequirePackage{classico}
+    \renewcommand{\baselinestretch}{1.1}
+    \renewcommand{\titlefamily}{\sffamily}
+  }{}
+  \iftoggle{palahelvfont}{
+    \typeout{Palatino and Helvetica fonts used}
+    \RequirePackage[sc,osf]{mathpazo}
+    \RequirePackage{helvet}
+    \renewcommand{\baselinestretch}{1.1}
+    \renewcommand{\titlefamily}{\sffamily}
+  }{}
+  \iftoggle{timesoptfont}{
+    \typeout{Times and Optima fonts used}
+    \savesymbol{iint}
+    \RequirePackage{txfonts}
+    \restoresymbol{TXF}{iint}
+    \RequirePackage{classico}
+    \renewcommand{\titlefamily}{\sffamily}
+  }{}
+\fi
+
+
 
 % % change (sub)section and (sub)paragraph fonts to sans serif
 \RequirePackage{titlesec}
@@ -204,12 +224,16 @@
 \RequirePackage{enumitem}
 \setlist[itemize]{topsep=0pt}
 
-\RequirePackage[
-  protrusion=true,
-  expansion=true,
-  spacing=true,
-  babel=true
-]{microtype}
+\ifxetex
+  \typeout{Can't use microtype fully with xetex, not using}
+\else
+  \RequirePackage[
+    protrusion=true,
+    expansion=true,
+    spacing=true,
+    babel=true
+  ]{microtype}
+\fi
 
 % bible referencing
 % [todo] - separate package for bible refs
@@ -217,6 +241,8 @@
 \RequirePackage{bibleref-parse}
 \newcommand{\bv}[1]{(pbibleverse{#1})}
 \newcommand{\bvnc}[1]{pbibleverse{#1}}
+
+\RequirePackage[vnsuper,cnplain]{paratext}
 
 % didakto package specifies handout gap/boxes etc
 % \RequirePackage{didasko}
