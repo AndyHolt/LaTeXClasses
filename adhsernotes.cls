@@ -52,7 +52,7 @@
 \pgfpagesuselayout{2 on 1}[a4paper, landscape]
 
 %% Use biblatex package
-\RequirePackage[style=authortitle, autocite=footnote]{biblatex}
+\RequirePackage[backend=biber, style=verbose]{biblatex}
 
 % reduce spacing around headings!
 \RequirePackage[sf,bf]{titlesec}
