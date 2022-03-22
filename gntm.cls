@@ -54,10 +54,10 @@
 
 \RequirePackage{fontspec}
 
-\setmainfont{Times New Roman}
-\setsansfont{Helvetica}
-\newfontfamily\greekfont{SBL BibLit}
-\newfontfamily\greekfontsf{SBL BibLit}
+\setmainfont{Iowan Old Style}
+\setsansfont{Avenir}
+\newfontfamily\greekfont{Gentium Plus}[Scale=MatchLowercase]
+\newfontfamily\greekfontsf{GFS Neohellenic}[Scale=MatchLowercase]
 
 \setlength{\parindent}{0pt}
 
