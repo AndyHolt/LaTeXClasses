@@ -33,6 +33,12 @@ if [[ ! -d $latexd/adhsernotes ]]; then
 fi
 cp $clsd/adhsernotes.cls $latexd/adhsernotes/adhsernotes.cls
 
+# install or update sertrans class for sermon transcripts
+if [[ ! -d $latexd/adhsertrans ]]; then
+    mkdir $latexd/adhsertrans
+fi
+cp $clsd/adhsertrans.cls $latexd/adhsertrans/adhsertrans.cls
+
 # install or update polyglot class
 if [[ ! -d $latexd/polyglot ]]; then
     mkdir $latexd/polyglot
