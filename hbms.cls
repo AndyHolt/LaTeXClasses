@@ -61,8 +61,8 @@
 
 \setmainfont{Iowan Old Style}
 \setsansfont{Avenir}
-\newfontfamily\hebrewfont[Script=Hebrew]{SBL BibLit}
-\newfontfamily\hebrewfontsf[Script=Hebrew]{SBL BibLit}
+\newfontfamily\hebrewfont[Script=Hebrew]{SBL BibLit}[Scale=1.3]
+\newfontfamily\hebrewfontsf[Script=Hebrew]{SBL BibLit}[Scale=1.3]
 \newfontfamily\englishfont{Iowan Old Style}
 \newfontfamily\englishfontsf{Avenir}
 
