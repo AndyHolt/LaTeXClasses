@@ -29,9 +29,9 @@
       {\@ensure@LTR{\firstxmark:\rightmark--\leftmark}}}           % if verse number changed
     {\@ensure@LTR{\firstxmark:\rightmark--\lastxmark:\leftmark}}  % chap number changed
 }
-\fancyhead[L]{\@ensure@LTR{\chverref}}
+\fancyhead[L]{\textenglish{\@ensure@LTR{\chverref}}}
 \fancyhead[C]{\LR{\@title}}
-\fancyhead[R]{\LR{{\thepage} of \pageref{LastPage}}}
+\fancyhead[R]{\textenglish{\LR{{\thepage} of \pageref{LastPage}}}}
 
 \newcommand{\chverreffirst}{
   \ifthenelse{\equal{\firstxmark}{\lastxmark}}    
@@ -42,9 +42,9 @@
 }
 \fancypagestyle{firstpagestyle}{
   \fancyfoot{}
-  \fancyhead[L]{\LR{\chverreffirst}}
+  \fancyhead[L]{\textenglish{\LR{\chverreffirst}}}
   \fancyhead[C]{}
-  \fancyhead[R]{\LR{{\thepage} of \pageref{LastPage}}}
+  \fancyhead[R]{\textenglish{\LR{{\thepage} of \pageref{LastPage}}}}
 }
 
 
