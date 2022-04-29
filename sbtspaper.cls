@@ -186,7 +186,7 @@ bottom=1.0in]{geometry}
       \vspace{0.3in}
       Word Count: \wordcount\\
       \vspace{0.2in}
-      I affirm the honour code.
+      I affirm the honor code.
     \end{textblock*}
   \end{titlepage}
 
