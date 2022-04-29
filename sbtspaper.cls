@@ -119,6 +119,11 @@ bottom=1.0in]{geometry}
 
 %% use bible reference formatting package
 \RequirePackage{adhbibleref}
+
+%% Set larger spaces between ellipses dots
+\RequirePackage{ellipsis}
+\renewcommand{\ellipsisgap}{\fontdimen2\font}
+
 % Set font
 \RequirePackage{fontspec}
 \RequirePackage{polyglossia}
