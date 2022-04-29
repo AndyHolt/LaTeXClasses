@@ -125,6 +125,9 @@ bottom=1.0in]{geometry}
 % use caption package to adjust table caption formatting
 \RequirePackage[labelsep=period,skip=12pt]{caption}
 
+% set thickness of lines in tables
+\setlength\arrayrulewidth{0.5pt}
+
 %% Set larger spaces between ellipses dots
 \RequirePackage{ellipsis}
 \renewcommand{\ellipsisgap}{\fontdimen2\font}
