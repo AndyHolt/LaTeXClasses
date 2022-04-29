@@ -122,6 +122,9 @@ bottom=1.0in]{geometry}
 
 \RequirePackage{pdfpages}
 
+% use caption package to adjust table caption formatting
+\RequirePackage[labelsep=period,skip=12pt]{caption}
+
 %% Set larger spaces between ellipses dots
 \RequirePackage{ellipsis}
 \renewcommand{\ellipsisgap}{\fontdimen2\font}
