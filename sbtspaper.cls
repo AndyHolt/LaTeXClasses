@@ -65,7 +65,8 @@ bottom=1.0in]{geometry}
 }
 
 \newcommand{\onpagemaintitle}{%
-  \onpagetitle{\@title}
+  \leading{12pt}\onpagetitle{\@title}
+  \leading{24pt}
 }
 
 %% Set up package to position text on title page
