@@ -27,10 +27,6 @@
 \RequirePackage[letterpaper, portrait, left=1.0in, right=1.0in, top=1.0in,
 bottom=1.0in]{geometry}
 
-% Set font
-\RequirePackage{fontspec}
-\setmainfont{Times New Roman}
-
 % setup for left justification, no justification at right margin
 % If NOHYPHEN option is used, then use \raggedright with no hyphenation of words
 % over linebreaks (more ragged right margin). If the NOHYPHEN option is NOT set,
@@ -47,17 +43,6 @@ bottom=1.0in]{geometry}
   \raggedright
   \setlength{\parindent}{0.7in}
 \fi
-
-% fonts for greek and hebrew
-\usepackage{polyglossia}
-
-%% Turn off Hebrew typesetting for now. Seems to cause some issues, can work
-%% them out when I need it!
-\setmainlanguage[variant=american]{english}
-% \setotherlanguage{hebrew}
-\setotherlanguage[variant=ancient]{greek}
-% \newfontfamily\hebrewfont{SBL BibLit}
-\newfontfamily\greekfont{SBL BibLit}
 
 % leading
 \RequirePackage{leading}
@@ -92,6 +77,75 @@ bottom=1.0in]{geometry}
 \newcommand{\fromleft}[1]{%
   \dimexpr-1in-\oddsidemargin+#1\relax
 }
+
+
+%% Set up section heading formats
+\RequirePackage{titlesec}
+
+\titleformat{\section}[block]
+            {\normalfont\bfseries\normalsize\filcenter}
+            {\thesection}
+            {1em}
+            {\leading{12pt}}
+            [\leading{24pt}]
+\titlespacing{\section}{1.25in}{24pt}{0pt}[1.25in]
+
+\titleformat{\subsection}[block]
+            {\normalfont\bfseries\normalsize\filright}
+            {\thesubsection}
+            {1ex}
+            {\leading{12pt}}
+            [\leading{24pt}]
+\titlespacing{\subsection}{0pt}{24pt plus 2pt minus 12pt}{0pt}[3.5in]
+
+\titleformat{\subsubsection}[runin]
+            {\normalfont\bfseries\normalsize\filright}
+            {\thesubsubsection}
+            {1ex}
+            {\hspace{0.7in}}
+            []
+\titlespacing{\subsubsection}{0in}{12pt}{\wordsep}[0in]
+
+%% set list formatting
+\RequirePackage{enumitem}
+\setlist[enumerate]{
+  before={\leading{12pt}},
+  topsep=12pt,
+  itemsep=12pt,
+  leftmargin=0.35in,
+  align=left,
+  after={\vspace{-12pt}}}
+
+%% use bible reference formatting package
+\RequirePackage{adhbibleref}
+% Set font
+\RequirePackage{fontspec}
+\RequirePackage{polyglossia}
+
+\setmainlanguage[variant=american]{english}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Times New Roman}
+
+\setotherlanguage[variant=ancient]{greek}
+\newfontfamily\greekfont[Script=Greek]{SBL BibLit}[Scale=MatchLowercase]
+
+% extra config of footnotes
+% previously was set to \baselineskip
+% probably *should* be 20pt, to give a full 10pt gap between footnotes, but this
+% setting makes multiple references rather more economical for page-count
+% limited papers.
+\setlength{\footnotesep}{15pt}
+
+\RequirePackage{scrextend}
+\deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark\hspace{1ex}}\leading{10pt}\setlength{\parskip}{10pt}}
+\setkomafont{footnote}{\leading{10pt}}
+
+% hyperref package. Defines meetadata, as well as hyperlinks for references.
+% Make sure this comes last in config!
+\RequirePackage[hidelinks]{hyperref}
+
+\setotherlanguage{hebrew}
+\newfontfamily\hebrewfont[Script=Hebrew]{SBL BibLit}
 
 %% setup title
 \renewcommand{\maketitle}{
@@ -140,33 +194,6 @@ bottom=1.0in]{geometry}
   \fi
 }
 
-%% Set up section heading formats
-\RequirePackage{titlesec}
-
-\titleformat{\section}[block]
-            {\normalfont\bfseries\normalsize\filcenter}
-            {\thesection}
-            {1em}
-            {\leading{12pt}}
-            [\leading{24pt}]
-\titlespacing{\section}{1.25in}{24pt}{0pt}[1.25in]
-
-\titleformat{\subsection}[block]
-            {\normalfont\bfseries\normalsize\filright}
-            {\thesubsection}
-            {1ex}
-            {\leading{12pt}}
-            [\leading{24pt}]
-\titlespacing{\subsection}{0pt}{24pt plus 2pt minus 12pt}{0pt}[3.5in]
-
-\titleformat{\subsubsection}[runin]
-            {\normalfont\bfseries\normalsize\filright}
-            {\thesubsubsection}
-            {1ex}
-            {\hspace{0.7in}}
-            []
-\titlespacing{\subsubsection}{0in}{12pt}{\wordsep}[0in]
-
 % bibliography setup
 %\RequirePackage[backend=biber, style=verbose]{biblatex}
 \RequirePackage[ibidtracker=false]{biblatex-chicago}
@@ -177,17 +204,6 @@ bottom=1.0in]{geometry}
 \defbibheading{bibliography}[BIBLIOGRAPHY]{\newpage\pagedrop\centering{#1}\vspace{12pt}}
 %\newcommand{\sbts-printbibliography}{\newpage\pagedrop\printbibliography}
 \renewcommand{\bibsetup}{\leading{12pt}}
-
-% extra config of footnotes
-% previously was set to \baselineskip
-% probably *should* be 20pt, to give a full 10pt gap between footnotes, but this
-% setting makes multiple references rather more economical for page-count
-% limited papers.
-\setlength{\footnotesep}{15pt}
-
-\usepackage{scrextend}
-\deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark\hspace{1ex}}\leading{10pt}\setlength{\parskip}{10pt}}
-\setkomafont{footnote}{\leading{10pt}}
 
 % use csquotes package for quotations, inline and block
 % use quoting package for block quotes, which allows formatting of the block
@@ -206,24 +222,5 @@ bottom=1.0in]{geometry}
 \renewcommand*{\quotingfont}{\leading{12pt}}
 \SetCiteCommand{\autocite}
 
-%% set list formatting
-\RequirePackage{enumitem}
-\setlist[enumerate]{
-  before={\leading{12pt}},
-  topsep=12pt,
-  itemsep=12pt,
-  leftmargin=0.35in,
-  align=left,
-  after={\vspace{-12pt}}}
 
-%% use bible reference formatting package
-\RequirePackage{adhbibleref}
-
-%% Set larger spaces between ellipses dots
-\RequirePackage{ellipsis}
-\renewcommand{\ellipsisgap}{\fontdimen2\font}
-
-
-% hyperref package. Defines meetadata, as well as hyperlinks for references.
-% Make sure this comes last in config!
-\RequirePackage[hidelinks]{hyperref}
+\RequirePackage{bidi}
