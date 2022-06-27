@@ -24,8 +24,8 @@
 \fancyfoot{}
 \newcommand{\chverref}{
   \IfMarksEqualTF{chap}{top}{last}
-    {\IfMarksEqualTF{verse}{top}{last}          % chap number unchanged
-      {\TopMark{chap}:\TopMark{verse}}          % chap & verse number unchanged
+    {\IfMarksEqualTF{verse}{top}{last}                    % chap number unchanged
+      {\TopMark{chap}:\TopMark{verse}}                    % chap & verse number unchanged
       {\TopMark{chap}:\TopMark{verse}--\LastMark{verse}}} % chap unchanged, verse changed
     {\TopMark{chap}:\TopMark{verse}--\LastMark{chap}:\LastMark{verse}} % chap changed
 }
@@ -35,8 +35,8 @@
 
 \newcommand{\chverreffirst}{
   \IfMarksEqualTF{chap}{first}{last}
-    {\IfMarksEqualTF{verse}{first}{last}          % chap number unchanged on page
-      {\FirstMark{chap}:\FirstMark{verse}}        % chap & verse numbers unchanged
+    {\IfMarksEqualTF{verse}{first}{last}                       % chap number unchanged on page
+      {\FirstMark{chap}:\FirstMark{verse}}                     % chap & verse numbers unchanged
       {\FirstMark{chap}:\FirstMark{verse}--\LastMark{verse}}}  % chap unchanged, verse changed
     {\FirstMark{chap}:\FirstMark{verse}--LastMark{chap}:\LastMark{verse}} % chap changed
 }
