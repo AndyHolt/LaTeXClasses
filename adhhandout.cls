@@ -116,7 +116,7 @@
   \setmainfont{Iowan Old Style}
   \setsansfont{Avenir}
 
-  \renewcommand{\titlefamily}{\rmfamily}
+  \renewcommand{\titlefamily}{\sffamily}
 \else
   % allow unicode symbols to be used
   \RequirePackage[utf8]{inputenc}
@@ -184,7 +184,7 @@
 \titleformat*{\subparagraph}{\normalfont\titlefamily\itshape\normalsize}
 
 \newcommand{\colorblacksection}[1]{%
-  \colorbox{black}{\color{white}\parbox{\textwidth}{#1}}}
+  \colorbox{black}{\color{white}\parbox{\textwidth}{\hspace{0.5ex}#1}}}
 
 \newcommand{\colorgreysection}[1]{%
   \colorbox{gray}{\color{white}\parbox{\textwidth}{#1}}}
@@ -198,17 +198,17 @@
     \colorbox{black}{
       \color{white}
       \begin{tabular}{lr}
-        \multicolumn{2}{l}{
+        \multicolumn{2}{c}{
           % [todo] - space this properly (this is a bodge!)
           % See changes made to adhdoc title setting, which I think will work
           % the same here!
           \begin{minipage}{0.95\textwidth}
-            {\normalfont\titlefamily\bfseries\huge\@title}
+            \vspace{-1.0ex}{\normalfont\titlefamily\bfseries\huge\@title}
           \end{minipage}
         }
         \vspace{0.1in}\\
-        {\normalfont\titlefamily\bfseries\Large\@author} &
-        {\normalfont\titlefamily\bfseries\Large\@date}\\
+        {\normalfont\titlefamily\bfseries\large\@author} &
+        {\normalfont\titlefamily\bfseries\large\@date}\\
       \end{tabular}
     }
   %}
