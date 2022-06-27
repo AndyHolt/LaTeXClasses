@@ -14,31 +14,31 @@
   bottom=1.0in
 ]{geometry}
 
+\RequirePackage[vnsuper,cnplain,usebidi]{paratext}
+
 \RequirePackage{fancyhdr}
-\RequirePackage{extramarks}
 \RequirePackage{lastpage}
-\RequirePackage{ifthen}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \fancyfoot{}
 \newcommand{\chverref}{
-  \ifthenelse{\equal{\firstxmark}{\lastxmark}}    
-    {\ifthenelse{\equal{\rightmark}{\leftmark}}     % if chap number unchanged
-      {\@ensure@LTR{\firstxmark:\rightmark}}                      % if verse number unchanged
-      {\@ensure@LTR{\firstxmark:\rightmark--\leftmark}}}           % if verse number changed
-    {\@ensure@LTR{\firstxmark:\rightmark--\lastxmark:\leftmark}}  % chap number changed
+  \IfMarksEqualTF{chap}{top}{last}
+    {\IfMarksEqualTF{verse}{top}{last}          % chap number unchanged
+      {\@ensure@LTR{\TopMark{chap}:\TopMark{verse}}}          % chap & verse number unchanged
+      {\@ensure@LTR{\TopMark{chap}:\TopMark{verse}--\LastMark{verse}}}} % chap unchanged, verse changed
+    {\@ensure@LTR{\TopMark{chap}:\TopMark{verse}--\LastMark{chap}:\LastMark{verse}}} % chap changed
 }
 \fancyhead[L]{\textenglish{\@ensure@LTR{\chverref}}}
 \fancyhead[C]{\LR{\@title}}
 \fancyhead[R]{\textenglish{\LR{{\thepage} of \pageref{LastPage}}}}
 
 \newcommand{\chverreffirst}{
-  \ifthenelse{\equal{\firstxmark}{\lastxmark}}    
-    {\ifthenelse{\equal{\rightmark}{\leftmark}}     % if chap number unchanged
-      {\firstxmark:\rightmark}                      % if verse number unchanged
-      {\firstxmark:\rightmark--\leftmark}}           % if verse number changed
-    {\firstxmark:\rightmark--\lastxmark:\leftmark}  % chap number changed
+  \IfMarksEqualTF{chap}{first}{last}
+    {\IfMarksEqualTF{verse}{first}{last}          % chap number unchanged on page
+      {\@ensure@LTR{\FirstMark{chap}:\FirstMark{verse}}}        % chap & verse numbers unchanged
+      {\@ensure@LTR{\FirstMark{chap}:\FirstMark{verse}--\LastMark{verse}}}}  % chap unchanged, verse changed
+    {\@ensure@LTR{\FirstMark{chap}:\FirstMark{verse}--LastMark{chap}:\LastMark{verse}}} % chap changed
 }
 \fancypagestyle{firstpagestyle}{
   \fancyfoot{}
@@ -49,8 +49,6 @@
 
 
 \RequirePackage{lettrine}
-
-\RequirePackage[vnsuper,cnplain,usebidi]{paratext}
 
 \RequirePackage{polyglossia}
 \setmainlanguage{hebrew}

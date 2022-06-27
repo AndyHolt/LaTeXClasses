@@ -9,8 +9,10 @@
 \RequirePackage{lettrine}
 % keyvalue options support
 \RequirePackage{etoolbox}
-% load an extra set of marks for chapter and verse references in page header/footers
-\RequirePackage{extramarks}
+
+% define mark classes for chapters and verses
+\NewMarkClass{chap}
+\NewMarkClass{verse}
 
 % \definecolor{lightgrey}{gray}{0.66}
 
@@ -87,38 +89,38 @@
 % Otherwise, just set marks normally, without calling commands dependant upon
 % the bidi package
 \iftoggle{bidiused}{
-  \newcommand{\versemarks}[1]{\markboth{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
-  \newcommand{\chapmarks}[1]{\extramarks{\@ensure@LTR{#1}}{\@ensure@LTR{#1}}}
+  \newcommand{\versemark}[1]{\InsertMark{verse}{\@ensure@LTR{#1}}}
+  \newcommand{\chapmark}[1]{\InsertMark{chap}{\@ensure@LTR{#1}}}
 }{
-  \newcommand{\versemarks}[1]{\markboth{#1}{#1}}
-  \newcommand{\chapmarks}[1]{\extramarks{#1}{#1}}
+  \newcommand{\versemark}[1]{\InsertMark{verse}{#1}}
+  \newcommand{\chapmark}[1]{\InsertMark{chap}{#1}}
 }
 
 % settings for typesetting of verse numbers
 \iftoggle{vernumnone}{
-  \providecommand{\vn}[1]{\versemarks{#1}}
+  \providecommand{\vn}[1]{\versemark{#1}}
 }{}
 \iftoggle{vernumplain}{
-  \providecommand{\vn}[1]{#1~\versemarks{#1}}
+  \providecommand{\vn}[1]{#1~\versemark{#1}}
 }{}
 \iftoggle{vernumsuper}{
-  \providecommand{\vn}[1]{\textsuperscript{\textsf{\textmd{#1}}}\versemarks{#1}~}
+  \providecommand{\vn}[1]{\textsuperscript{\textsf{\textmd{#1}}}\versemark{#1}~}
 }{}
 \iftoggle{vernummarg}{
-  \providecommand{\vn}[1]{\marginpar{\footnotesize{\textit{#1}}}\versemarks{#1}}
+  \providecommand{\vn}[1]{\marginpar{\footnotesize{\textit{#1}}}\versemark{#1}}
 }{}
 
 % command to typeset chapter numbers
 \iftoggle{chapnumnone}{
-  \providecommand{\cn}[1]{\chapmarks{#1}}
+  \providecommand{\cn}[1]{\chapmark{#1}}
 }{}
 \iftoggle{chapnumplain}{
-  \providecommand{\cn}[1]{#1~\chapmarks{#1}}
+  \providecommand{\cn}[1]{#1~\chapmark{#1}}
 }{}
 \iftoggle{chapnumdrop}{
   \providecommand{\cn}[1]{\lettrine[lines=2,nindent=0pt]{
-      \textsf{\textbf{#1}}}\chapmarks{#1}}
+      \textsf{\textbf{#1}}}\chapmark{#1}}
 }{}
 \iftoggle{chapnummarg}{
-   \providecommand{\cn}[1]{\marginpar[\Large{\textbf{#1}}]{\Large{\textbf{#1}}}\chapmarks{#1}}
+   \providecommand{\cn}[1]{\marginpar[\Large{\textbf{#1}}]{\Large{\textbf{#1}}}\chapmark{#1}}
 }{}

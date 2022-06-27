@@ -14,31 +14,31 @@
   bottom=1.0in
 ]{geometry}
 
+\RequirePackage[vnsuper,cnplain]{paratext}
+
 \RequirePackage{fancyhdr}
-\RequirePackage{extramarks}
 \RequirePackage{lastpage}
-\RequirePackage{ifthen}
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 \fancyfoot{}
 \newcommand{\chverref}{
-  \ifthenelse{\equal{\firstxmark}{\lastxmark}}    
-    {\ifthenelse{\equal{\rightmark}{\leftmark}}     % if chap number unchanged
-      {\firstxmark:\rightmark}                      % if verse number unchanged
-      {\firstxmark:\rightmark--\leftmark}}           % if verse number changed
-    {\firstxmark:\rightmark--\lastxmark:\leftmark}  % chap number changed
+  \IfMarksEqualTF{chap}{top}{last}
+    {\IfMarksEqualTF{verse}{top}{last}          % chap number unchanged
+      {\TopMark{chap}:\TopMark{verse}}          % chap & verse number unchanged
+      {\TopMark{chap}:\TopMark{verse}--\LastMark{verse}}} % chap unchanged, verse changed
+    {\TopMark{chap}:\TopMark{verse}--\LastMark{chap}:\LastMark{verse}} % chap changed
 }
 \fancyhead[L]{\chverref}
 \fancyhead[C]{\@title}
 \fancyhead[R]{{\thepage} of \pageref{LastPage}}
 
 \newcommand{\chverreffirst}{
-  \ifthenelse{\equal{\firstxmark}{\lastxmark}}    
-    {\ifthenelse{\equal{\rightmark}{\leftmark}}     % if chap number unchanged
-      {\firstxmark:\rightmark}                      % if verse number unchanged
-      {\firstxmark:\rightmark--\leftmark}}           % if verse number changed
-    {\firstxmark:\rightmark--\lastxmark:\leftmark}  % chap number changed
+  \IfMarksEqualTF{chap}{first}{last}
+    {\IfMarksEqualTF{verse}{first}{last}          % chap number unchanged on page
+      {\FirstMark{chap}:\FirstMark{verse}}        % chap & verse numbers unchanged
+      {\FirstMark{chap}:\FirstMark{verse}--\LastMark{verse}}}  % chap unchanged, verse changed
+    {\FirstMark{chap}:\FirstMark{verse}--LastMark{chap}:\LastMark{verse}} % chap changed
 }
 \fancypagestyle{firstpagestyle}{
   \fancyfoot{}
@@ -70,7 +70,5 @@
     \normalfont\bfseries\@title
   \end{center}
 }
-
-\RequirePackage[vnsuper,cnplain]{paratext}
 
 \raggedright
