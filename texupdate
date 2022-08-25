@@ -99,6 +99,13 @@ if [[ ! -d $latexd/sbtshistread ]]; then
 fi
 cp $clsd/sbtshistread.cls $latexd/sbtshistread/sbtshistread.cls
 
+# install or update sbts book review class
+if [[ ! -d $latexd/sbtsreview ]]; then
+    mkdir $latexd/sbtsreview
+fi
+cp $clsd/sbtsreview.cls $latexd/sbtsreview/sbtsreview.cls
+
+
 # install or update bible reference package
 if [[ ! -d $latexd/adhbibleref ]]; then
     mkdir $latexd/adhbibleref
