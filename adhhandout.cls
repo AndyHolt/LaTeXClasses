@@ -222,7 +222,9 @@
 
 % remove spacing around lists
 \RequirePackage{enumitem}
-\setlist[itemize]{topsep=0pt}
+% \setlist[itemize]{topsep=0pt}
+\setlist{nosep}
+\setlist{topsep=-\baselineskip, itemsep=0pt, parsep=0pt}
 
 \ifxetex
   \typeout{Can't use microtype fully with xetex, not using}
