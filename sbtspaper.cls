@@ -143,17 +143,6 @@ bottom=1.0in]{geometry}
 \setotherlanguage[variant=ancient]{greek}
 \newfontfamily\greekfont[Script=Greek]{SBL BibLit}[Scale=MatchLowercase]
 
-% extra config of footnotes
-% previously was set to \baselineskip
-% probably *should* be 20pt, to give a full 10pt gap between footnotes, but this
-% setting makes multiple references rather more economical for page-count
-% limited papers.
-\setlength{\footnotesep}{15pt}
-
-\RequirePackage{scrextend}
-\deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark\hspace{1ex}}\leading{10pt}\setlength{\parskip}{10pt}}
-\setkomafont{footnote}{\leading{10pt}}
-
 % hyperref package. Defines meetadata, as well as hyperlinks for references.
 % Make sure this comes last in config!
 \RequirePackage[hidelinks]{hyperref}
@@ -236,5 +225,20 @@ bottom=1.0in]{geometry}
 \renewcommand*{\quotingfont}{\leading{12pt}}
 \SetCiteCommand{\autocite}
 
+% extra config of footnotes
+% previously was set to \baselineskip
+% probably *should* be 20pt, to give a full 10pt gap between footnotes, but this
+% setting makes multiple references rather more economical for page-count
+% limited papers.
+% NOTE: This was previously early in class definition file and was being
+% overridden by some other configuration, not sure what!
+\setlength{\footnotesep}{15pt}
+\RequirePackage{scrextend}
+\deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark\hspace{1ex}}\leading{10pt}\setlength{\parskip}{10pt}}
+\setkomafont{footnote}{\leading{10pt}}
+\renewcommand\footnoterule{%
+  \kern-3\p@
+  \hrule\@width1.5in
+  \kern2.6\p@}
 
 \RequirePackage{bidi}
