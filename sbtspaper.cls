@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{sbtspaper}[2020/02/09 SBTS paper class v2.0]
+\ProvidesClass{sbtspaper}[2022/09/08 SBTS paper class v2.1]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %        OPTION HANDLING       %
@@ -237,6 +237,7 @@ bottom=1.0in]{geometry}
 \deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark\hspace{1ex}}\leading{10pt}\setlength{\parskip}{10pt}}
 \setkomafont{footnote}{\leading{10pt}}
 \renewcommand\footnoterule{%
+  \vfill %
   \kern-3\p@
   \hrule\@width1.5in
   \kern2.6\p@}
