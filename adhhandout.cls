@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{adhhandout}[2015/11/30 Class for producing handouts]
+\ProvidesClass{adhhandout}[2022/09/17 v1.1 LaTeX Class for handouts]
 
 %% Preliminary Declarations - load packages needed for class file
 
@@ -13,14 +13,51 @@
 \providetoggle{forpaperoption}
 \togglefalse{forpaperoption}
 
-\DeclareOption{paper}{
+\DeclareOption{printed}{
   \toggletrue{forpaperoption}
 }
 \DeclareOption{electronic}{
   \togglefalse{forpaperoption}
 }
 
-% Options for fonts
+% Option for paper size: A4 or A5 type of handout
+\newtoggle{afoursize}
+\togglefalse{afoursize}
+
+\DeclareOption{a5size}{
+  \togglefalse{afoursize}
+}
+\DeclareOption{a4size}{
+  \toggletrue{afoursize}
+}
+
+% Options for leaders notes inclusion/suppression
+\providetoggle{useleadersnotes}
+\togglefalse{useleadersnotes}
+
+\DeclareOption{leadersnotes}{
+  \toggletrue{useleadersnotes}
+}
+\DeclareOption{noleadersnotes}{
+  \togglefalse{useleadersnotes}
+}
+
+% Options for section styles
+\providetoggle{uselinestyle}
+\toggletrue{uselinestyle}
+\providetoggle{useblockstyle}
+\togglefalse{useblockstyle}
+
+\DeclareOption{blockstyle}{
+  \togglefalse{uselinestyle}
+  \toggletrue{useblockstyle}
+}
+\DeclareOption{linestyle}{
+  \togglefalse{useblockstyle}
+  \toggletrue{uselinestyle}
+}
+
+% Options for fonts, for non-XeTeX/fontspec use
 
 % toggles for different font sets
 \providetoggle{cmfont}
@@ -79,140 +116,193 @@
 
 %% Class definitions and set up
 
-% [todo] - add a4/a5 as option, not set default
-\LoadClass[a5paper]{article}
-\RequirePackage[pass]{geometry}
+\LoadClass{article}
+\fontsize{11pt}{14pt}\selectfont
 
-% allow unicode symbols
-\RequirePackage[utf8]{inputenc}
-
-% babel package for correct hyphenation etc
-\RequirePackage[greek,british]{babel}
-
-% packages to provide extra symbols
-\RequirePackage{adhsymbols}
-
-% use fullpage package to reduce margin sizes
-\RequirePackage[cm]{fullpage}
-
-% specific settings for paper or electronic documents
-\iftoggle{forpaperoption}{
-  \typeout{Paper option set}
+\iftoggle{afoursize}{
+  \typeout{A4 page size option selected}
+  \RequirePackage[paper=a4paper]{geometry}
 }{
-  \typeout{Electronic option set}
+  \typeout{A4 page size option not selected, use A5 size}
+  % NB if headers specified, may need to use `includeheadfoot=true' instead of
+  % `includefoot=true' to create space for header
+  \RequirePackage[a5paper, margin={1cm,1cm}, includefoot=true]{geometry}
 }
 
 % font set up
-% All of this font configuration borrows very heavily from
-% Dr Drang (https://github.com/drdrang/drangreport)
+% all of this font configuration borrows very heavily from
+% dr drang (https://github.com/drdrang/drangreport)
 \newcommand{\titlefamily}{}
 
 \ifxetex
+  \typeout{XeTeX engine used: set up external fonts for XeTeX}
   \RequirePackage{fontspec}
-
   \RequirePackage{polyglossia}
   \setmainlanguage[variant=british]{english}
   \defaultfontfeatures{Ligatures=TeX}
   \setmainfont{Iowan Old Style}
   \setsansfont{Avenir}
-
-  \renewcommand{\titlefamily}{\sffamily}
+  \setotherlanguage[variant=ancient]{greek}
+  \newfontfamily\greekfont{Gentium Plus}[Scale=MatchLowercase]
+  \newfontfamily\greekfontsf{GFS Neohellenic}[Scale=MatchLowercase]
+  \renewcommand{\titlefamily}{\rmfamily}
 \else
+  \typoeout{XeTeX engine not used, configure LaTeX fonts}
   % allow unicode symbols to be used
   \RequirePackage[utf8]{inputenc}
 
-  % Babel package provides correct hyphenation etc
+  % babel package provides correct hyphenation etc
   \RequirePackage[greek,british]{babel}
   \iftoggle{cmfont}{
-    \typeout{Computer Modern font used}
+    \typeout{computer modern font used}
   }{}
   \iftoggle{timesfont}{
-    \typeout{Times font used}
+    \typeout{times font used}
     \savesymbol{iint}
     \RequirePackage{txfonts}
-    \restoresymbol{TXF}{iint}
+    \restoresymbol{txf}{iint}
     \renewcommand{\titlefamily}{\sffamily}
     }{}
   \iftoggle{palatinofont}{
-    \typeout{Palatino font used}
+    \typeout{palatino font used}
     \RequirePackage[sc,osf]{mathpazo}
     \RequirePackage{classico}
     \renewcommand{\baselinestretch}{1.1}
     \renewcommand{\titlefamily}{\sffamily}
   }{}
   \iftoggle{palahelvfont}{
-    \typeout{Palatino and Helvetica fonts used}
+    \typeout{palatino and helvetica fonts used}
     \RequirePackage[sc,osf]{mathpazo}
     \RequirePackage{helvet}
     \renewcommand{\baselinestretch}{1.1}
     \renewcommand{\titlefamily}{\sffamily}
   }{}
   \iftoggle{timesoptfont}{
-    \typeout{Times and Optima fonts used}
+    \typeout{times and optima fonts used}
     \savesymbol{iint}
     \RequirePackage{txfonts}
-    \restoresymbol{TXF}{iint}
+    \restoresymbol{txf}{iint}
     \RequirePackage{classico}
     \renewcommand{\titlefamily}{\sffamily}
   }{}
 \fi
 
-
+% packages to provide extra symbols
+\RequirePackage{adhsymbols}
 
 % % change (sub)section and (sub)paragraph fonts to sans serif
 \RequirePackage{titlesec}
 
-% [todo] - clean up section formatting, make work for numebred sections
+\iftoggle{uselinestyle}{
+  % \titleformat*{\section}{\normalfont\titlefamily\bfseries\large}
+  \titleformat{\section}[hang]
+  {\normalfont\titlefamily\bfseries\large}{\thesection.}{0.5em}{}[\hrule]
+  \titlespacing*{\section}{1.5ex}{0.2ex plus 0.0ex minus .0ex}{0.0ex plus .1ex}
 
-% \titleformat*{\section}{\normalfont\titlefamily\bfseries\Large}
-\titleformat{\section}[hang]
-{\normalfont\titlefamily\bfseries\large}{\thesection}{\quad}{\colorblacksection}
-\titlespacing*{\section}{0pt}{0.2ex plus 0.0ex minus .0ex}{0.1ex plus .1ex}
+  % \titleformat*{\subsection}{\normalfont\titlefamily\bfseries\large}
+  \titleformat{\subsection}[hang]
+  {\normalfont\titlefamily\bfseries\normalsize}{\thesubsection}{0.5em}{}[\hrule]
+  \titlespacing*{\subsection}{1.5ex}{0.5ex plus 0.5ex minus .2ex}{0.2ex plus .2ex}
 
-% \titleformat*{\subsection}{\normalfont\titlefamily\bfseries\large}
-\titleformat{\subsection}[hang]
-{\normalfont\titlefamily\bfseries\normalsize}{\thesection}{\quad}{\colorgreysection}
-\titlespacing*{\subsection}{0pt}{0.5ex plus 0.5ex minus .2ex}{0.2ex plus .2ex}
+  % \titleformat*{\subsubsection}{\normalfont\titlefamily\bfseries\normalsize}
+  \titleformat{\subsubsection}[hang]
+  {\normalfont\titlefamily\normalsize}{\thesubsubsection}{0.5em}{}[\hrule]
+  \titlespacing*{\subsubsection}{1.5ex}{0.5ex plus 0.5ex minus .2ex}{0.2ex plus .2ex}
 
-% \titleformat*{\subsubsection}{\normalfont\titlefamily\bfseries\normalsize}
-\titleformat{\subsubsection}[hang]
-{\normalfont\titlefamily\normalsize}{\thesection}{\quad}{\boxsection}
-\titlespacing*{\subsubsection}{0pt}{0.5ex plus 0.5ex minus .2ex}{0.2ex plus .2ex}
+  \titleformat*{\paragraph}{\normalfont\titlefamily\bfseries\normalsize}
 
-\titleformat*{\paragraph}{\normalfont\titlefamily\bfseries\normalsize}
+  \titleformat*{\subparagraph}{\normalfont\titlefamily\itshape\normalsize}
 
-\titleformat*{\subparagraph}{\normalfont\titlefamily\itshape\normalsize}
+  \iftoggle{afoursize}{
+    \renewcommand{\maketitle}{
+      \begin{center}
+        {\normalfont\titlefamily\bfseries\huge\centering\@title}
+      
+        {\normalfont\titlefamily\bfseries\large\@author}
+      
+        {\normalfont\titlefamily\bfseries\large\@date}
+      \end{center}
+    }
+  }{
+    \renewcommand{\maketitle}{
+      \begin{center}
+        \begin{tabular}{lr}
+          \multicolumn{2}{l}{\normalfont\titlefamily\bfseries\huge\@title}
+          \vspace{1ex}\\
+          {\normalfont\titlefamily\bfseries\large\@author} &
+          {\normalfont\titlefamily\bfseries\large\@date}\\
+        \end{tabular}
+      \end{center}
+    }
+  }
+}{}
 
-\newcommand{\colorblacksection}[1]{%
-  \colorbox{black}{\color{white}\parbox{\textwidth}{\hspace{0.5ex}#1}}}
+\iftoggle{useblockstyle}{
+  \newcommand{\colorblacksection}[1]{%
+    \colorbox{black}{\color{white}\parbox{\textwidth}{\hspace{0.5ex}#1}}}
 
-\newcommand{\colorgreysection}[1]{%
-  \colorbox{gray}{\color{white}\parbox{\textwidth}{#1}}}
+  \newcommand{\colorgreysection}[1]{%
+    \colorbox{gray}{\color{white}\parbox{\textwidth}{#1}}}
 
-\newcommand{\boxsection}[1]{%
-  \framebox{\parbox{\textwidth}{#1}}}
+  \newcommand{\boxsection}[1]{%
+    \framebox{\parbox{\textwidth}{#1}}}
 
-% redefine title for handouts
-\renewcommand{\maketitle}{
-  %{\centering
-    \colorbox{black}{
-      \color{white}
-      \begin{tabular}{lr}
-        \multicolumn{2}{c}{
-          % [todo] - space this properly (this is a bodge!)
-          % See changes made to adhdoc title setting, which I think will work
-          % the same here!
+  % \titleformat*{\section}{\normalfont\titlefamily\bfseries\Large}
+  \titleformat{\section}[hang]
+  {\normalfont\titlefamily\bfseries\large}{\colorbox{black}{\color{white}\parbox{1.5em}{\thesection}}}{0em}{\colorblacksection}
+  \titlespacing*{\section}{0pt}{0.2ex plus 0.0ex minus .0ex}{0.1ex plus .1ex}
+
+  % \titleformat*{\subsection}{\normalfont\titlefamily\bfseries\large}
+  \titleformat{\subsection}[hang]
+  {\normalfont\titlefamily\bfseries\normalsize}{\thesection}{0.5em}{\colorgreysection}
+  \titlespacing*{\subsection}{0pt}{0.5ex plus 0.5ex minus .2ex}{0.2ex plus .2ex}
+
+  % \titleformat*{\subsubsection}{\normalfont\titlefamily\bfseries\normalsize}
+  \titleformat{\subsubsection}[hang]
+  {\normalfont\titlefamily\normalsize}{\thesection}{0.5em}{\boxsection}
+  \titlespacing*{\subsubsection}{0pt}{0.5ex plus 0.5ex minus .2ex}{0.2ex plus .2ex}
+
+  \titleformat*{\paragraph}{\normalfont\titlefamily\bfseries\normalsize}
+
+  \titleformat*{\subparagraph}{\normalfont\titlefamily\itshape\normalsize}
+
+  \iftoggle{afoursize}{
+    \renewcommand{\maketitle}{
+      \begin{center}
+        {\normalfont\titlefamily\bfseries\huge\centering\@title}
+      
+        {\normalfont\titlefamily\bfseries\large\@author}
+      
+        {\normalfont\titlefamily\bfseries\large\@date}
+      \end{center}
+    }
+  }{
+    \renewcommand{\maketitle}{
+      \colorbox{black}{
+        \color{white}
+        \begin{tabular}{lr}
+          \multicolumn{2}{c}{
+            % [todo] - space this properly (this is a bodge!)
+            % See changes made to adhdoc title setting, which I think will work
+            % the same here!
           \begin{minipage}{0.95\textwidth}
             \vspace{-1.0ex}{\normalfont\titlefamily\bfseries\huge\@title}
           \end{minipage}
-        }
-        \vspace{0.1in}\\
-        {\normalfont\titlefamily\bfseries\large\@author} &
-        {\normalfont\titlefamily\bfseries\large\@date}\\
-      \end{tabular}
+          }
+          \vspace{0.1in}\\
+          {\normalfont\titlefamily\bfseries\large\@author} &
+          {\normalfont\titlefamily\bfseries\large\@date}\\
+        \end{tabular}
+      }
     }
-  %}
-}
+  }
+}{}
+
+% settings for table of contents
+\RequirePackage{titletoc}
+\dottedcontents{section}[3.8em]{\vspace{-6pt}}{2.3em}{1pc}
+\dottedcontents{subsection}[6.1em]{\vspace{-6pt}\small}{2.3em}{1pc}
+\dottedcontents{subsubsection}[8.4em]{\vspace{-6pt}\small}{3.2em}{1pc}
 
 % paragraph spacing
 \setlength{\parskip}{\baselineskip}
@@ -239,15 +329,29 @@
 
 % bible referencing
 % [todo] - separate package for bible refs
-
 \RequirePackage{bibleref-parse}
 \newcommand{\bv}[1]{(pbibleverse{#1})}
 \newcommand{\bvnc}[1]{pbibleverse{#1}}
 
 \RequirePackage[vnsuper,cnplain]{paratext}
 
-% didakto package specifies handout gap/boxes etc
+% bibliography set up (occasionally used)
+\RequirePackage[style=verbose-ibid, natbib=true]{biblatex}
+
+% didasko package specifies handout gap/boxes etc
 % \RequirePackage{didasko}
+
+% Create environment for leaders notes
+\RequirePackage{environ}
+\iftoggle{useleadersnotes}{
+  \NewEnviron{leadersnote}
+  {\sffamily\color{gray}\BODY}
+  {}
+}{
+  \NewEnviron{leadersnote}
+  {\@gobble{\BODY}}
+  {}
+}
 
 % table packages
 \RequirePackage{longtable}
@@ -264,7 +368,7 @@
 \iftoggle{forpaperoption}{
   \typeout{Paper option set: no coloured links}
   \hypersetup{
-    colorlinks=false
+    hidelinks
   }
 }{
   \typeout{Electronic options set: colour links}
