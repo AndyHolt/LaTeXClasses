@@ -5,7 +5,7 @@
 
 \RequirePackage{etoolbox}
 \RequirePackage{xcolor}
-\RequirePackage{ifxetex}
+\RequirePackage{iftex}
 
 %% Options - handle options to adhhandout class
 
