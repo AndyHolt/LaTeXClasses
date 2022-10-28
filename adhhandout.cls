@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{adhhandout}[2022/09/17 v1.1 LaTeX Class for handouts]
+\ProvidesClass{adhhandout}[2022/10/28 v1.2 LaTeX Class for handouts]
 
 %% Preliminary Declarations - load packages needed for class file
 
@@ -190,9 +190,103 @@
 % packages to provide extra symbols
 \RequirePackage{adhsymbols}
 
-% % change (sub)section and (sub)paragraph fonts to sans serif
+% load titlesec here as needs to be loaded before Hebrew font and bidi setup
 \RequirePackage{titlesec}
+% settings for table of contents
+\RequirePackage{titletoc}
 
+% paragraph spacing
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+\newcommand{\@minipagerestore}{\setlength{\parskip}{\baselineskip}}
+
+% remove spacing around lists
+\RequirePackage{enumitem}
+% \setlist[itemize]{topsep=0pt}
+\setlist{nosep}
+\setlist{topsep=-\baselineskip, itemsep=0pt, parsep=0pt}
+
+\ifxetex
+  \typeout{Can't use microtype fully with xetex, not using}
+\else
+  \RequirePackage[
+    protrusion=true,
+    expansion=true,
+    spacing=true,
+    babel=true
+  ]{microtype}
+\fi
+
+% bible referencing
+% [todo] - separate package for bible refs
+\RequirePackage{bibleref-parse}
+\newcommand{\bv}[1]{(pbibleverse{#1})}
+\newcommand{\bvnc}[1]{pbibleverse{#1}}
+
+\RequirePackage[vnsuper,cnplain]{paratext}
+
+% bibliography set up (occasionally used)
+\RequirePackage[style=verbose-ibid, natbib=true]{biblatex}
+
+% didasko package specifies handout gap/boxes etc
+% \RequirePackage{didasko}
+
+% Create environment for leaders notes
+\RequirePackage{environ}
+\iftoggle{useleadersnotes}{
+  \NewEnviron{leadersnote}
+  {\sffamily\color{gray}\BODY}
+  {}
+}{
+  \NewEnviron{leadersnote}
+  {\@gobble{\BODY}}
+  {}
+}
+
+% table packages
+\RequirePackage{longtable}
+\RequirePackage{booktabs}
+
+% image packages
+\RequirePackage{graphicx}
+
+% Hyperref package
+% only use coloured links if electronic option, not if paper.
+% must come last in class file as it redefines commands which may be changed by
+% other packages.
+\RequirePackage{hyperref}
+\iftoggle{forpaperoption}{
+  \typeout{Paper option set: no coloured links}
+  \hypersetup{
+    hidelinks
+  }
+}{
+  \typeout{Electronic options set: colour links}
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    urlcolor=blue,
+    citecolor=blue
+  }
+  \RequirePackage{footnotebackref}
+}
+
+
+\ifxetex
+  \setotherlanguage{hebrew}
+  \newfontfamily\hebrewfont[Script=Hebrew]{SBL BibLit}
+\else
+  \typeout{XeTeX not used, not loading Hebrew fonts!}
+\fi
+
+\RequirePackage{bidi}
+
+% Set up main title and section headers according to selected style
+% For some reason, yet unknown to me, loading hebrew as a language overrides the
+% maketitle macro, so place this afterwards
+% N.B. FOR EDITING: PACKAGE LOADING MUST BE DONE *BEFORE* HEBREW AND BIDI SET
+% UP, THOUGH REDEFINING AND SETTING MACROS MAY BE DONE AFTERWARDS WITH CARE
 \iftoggle{uselinestyle}{
   % \titleformat*{\section}{\normalfont\titlefamily\bfseries\large}
   \titleformat{\section}[hang]
@@ -298,85 +392,6 @@
   }
 }{}
 
-% settings for table of contents
-\RequirePackage{titletoc}
 \dottedcontents{section}[3.8em]{\vspace{-6pt}}{2.3em}{1pc}
 \dottedcontents{subsection}[6.1em]{\vspace{-6pt}\small}{2.3em}{1pc}
 \dottedcontents{subsubsection}[8.4em]{\vspace{-6pt}\small}{3.2em}{1pc}
-
-% paragraph spacing
-\setlength{\parskip}{\baselineskip}
-\setlength{\parindent}{0pt}
-
-\newcommand{\@minipagerestore}{\setlength{\parskip}{\baselineskip}}
-
-% remove spacing around lists
-\RequirePackage{enumitem}
-% \setlist[itemize]{topsep=0pt}
-\setlist{nosep}
-\setlist{topsep=-\baselineskip, itemsep=0pt, parsep=0pt}
-
-\ifxetex
-  \typeout{Can't use microtype fully with xetex, not using}
-\else
-  \RequirePackage[
-    protrusion=true,
-    expansion=true,
-    spacing=true,
-    babel=true
-  ]{microtype}
-\fi
-
-% bible referencing
-% [todo] - separate package for bible refs
-\RequirePackage{bibleref-parse}
-\newcommand{\bv}[1]{(pbibleverse{#1})}
-\newcommand{\bvnc}[1]{pbibleverse{#1}}
-
-\RequirePackage[vnsuper,cnplain]{paratext}
-
-% bibliography set up (occasionally used)
-\RequirePackage[style=verbose-ibid, natbib=true]{biblatex}
-
-% didasko package specifies handout gap/boxes etc
-% \RequirePackage{didasko}
-
-% Create environment for leaders notes
-\RequirePackage{environ}
-\iftoggle{useleadersnotes}{
-  \NewEnviron{leadersnote}
-  {\sffamily\color{gray}\BODY}
-  {}
-}{
-  \NewEnviron{leadersnote}
-  {\@gobble{\BODY}}
-  {}
-}
-
-% table packages
-\RequirePackage{longtable}
-\RequirePackage{booktabs}
-
-% image pacakges
-\RequirePackage{graphicx}
-
-% Hyperref package
-% only use coloured links if electronic option, not if paper.
-% must come last in class file as it redefines commands which may be changed by
-% other packages.
-\RequirePackage{hyperref}
-\iftoggle{forpaperoption}{
-  \typeout{Paper option set: no coloured links}
-  \hypersetup{
-    hidelinks
-  }
-}{
-  \typeout{Electronic options set: colour links}
-  \hypersetup{
-    colorlinks=true,
-    linkcolor=red,
-    urlcolor=blue,
-    citecolor=blue
-  }
-  \RequirePackage{footnotebackref}
-}
