@@ -55,7 +55,7 @@
 \RequirePackage[backend=biber, style=verbose]{biblatex}
 
 % reduce spacing around headings!
-\RequirePackage[sf,bf]{titlesec}
+\RequirePackage[sf]{titlesec}
 %% \usepackage[small,sf,bf]{titlesec}
 \titlespacing*{\section}{0pt}{1ex plus 1ex}{0pt}
 \titlespacing*{\subsection}{0pt}{1ex plus 1ex}{0pt}
