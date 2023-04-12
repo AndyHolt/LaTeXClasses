@@ -141,7 +141,8 @@
   \setmainlanguage[variant=british]{english}
   \defaultfontfeatures{Ligatures=TeX}
   \setmainfont{Iowan Old Style}
-  \setsansfont{Avenir}
+  % Need to use Avenir Next and not Avenir for small caps
+  \setsansfont{Avenir Next}
   \setotherlanguage[variant=ancient]{greek}
   \newfontfamily\greekfont{Gentium Plus}[Scale=MatchLowercase]
   \newfontfamily\greekfontsf{GFS Neohellenic}[Scale=MatchLowercase]
@@ -206,6 +207,9 @@
 % \setlist[itemize]{topsep=0pt}
 \setlist{nosep}
 \setlist{topsep=-\baselineskip, itemsep=0pt, parsep=0pt}
+
+% multicol package for multiple-column layout
+\RequirePackage{multicol}
 
 \ifxetex
   \typeout{Can't use microtype fully with xetex, not using}
@@ -296,7 +300,7 @@
   % \titleformat*{\subsection}{\normalfont\titlefamily\bfseries\large}
   \titleformat{\subsection}[hang]
   {\normalfont\titlefamily\bfseries\normalsize}{\thesubsection}{0.5em}{}[\hrule]
-  \titlespacing*{\subsection}{1.5ex}{0.5ex plus 0.5ex minus .2ex}{0.2ex plus .2ex}
+  \titlespacing*{\subsection}{1.5ex}{0.5ex plus 0.5ex minus 0.5ex}{0.2ex plus .2ex minus 0.2ex}
 
   % \titleformat*{\subsubsection}{\normalfont\titlefamily\bfseries\normalsize}
   \titleformat{\subsubsection}[hang]
