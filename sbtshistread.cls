@@ -146,7 +146,7 @@
 \setlength{\footnotesep}{\baselineskip}
 
 \usepackage{scrextend}
-\deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark}\leading{10pt}\setlength{\parskip}{10pt}}
+\deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark\hspace{1ex}}\leading{10pt}\setlength{\parskip}{10pt}}
 \setkomafont{footnote}{\leading{10pt}}
 
 % use csquotes package for quotations, inline and block
@@ -166,7 +166,8 @@
 \pagestyle{fancy}
 %\fancyh{}
 \fancyhead[R]{\@author}
-\fancyhead[L]{\rightmark}
+% \fancyhead[L]{\rightmark}
+\fancyhead[L]{\shortpapertitle}
 \renewcommand{\headrulewidth}{0pt}
 
 % hyperref package. Defines meetadata, as well as hyperlinks for references.
