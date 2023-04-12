@@ -119,7 +119,7 @@ bottom=1.0in]{geometry}
       \leading{24pt}
       \rule{1.5in}{0.4pt}\\
       \vspace{0.3in}
-      A Book Review\\
+      A \papertype\\
       Presented to\\
       \prof\\
       The Southern Baptist Theological Seminary\\
@@ -149,7 +149,7 @@ bottom=1.0in]{geometry}
   \pagedrop
 
   % \nocite{\bookref}\printbibliography\\[\baselineskip]
-  \nocite{\bookref}\printbibliography
+  \nocite{\bookref}\printbibliography[type=book]
 }
 
 %% Set up section heading formats
@@ -180,7 +180,7 @@ bottom=1.0in]{geometry}
 \titlespacing{\subsubsection}{0in}{12pt}{\wordsep}[0in]
 
 % extra config of footnotes
-\setlength{\footnotesep}{\baselineskip}
+% \setlength{\footnotesep}{\baselineskip}
 
 \usepackage{scrextend}
 \deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark\hspace{1ex}}\leading{10pt}\setlength{\parskip}{10pt}}
@@ -220,6 +220,22 @@ bottom=1.0in]{geometry}
 \RequirePackage{ellipsis}
 \renewcommand{\ellipsisgap}{\fontdimen2\font}
 
+% extra config of footnotes
+% previously was set to \baselineskip
+% probably *should* be 20pt, to give a full 10pt gap between footnotes, but this
+% setting makes multiple references rather more economical for page-count
+% limited papers.
+% NOTE: This was previously early in class definition file and was being
+% overridden by some other configuration, not sure what!
+\setlength{\footnotesep}{\baselineskip}
+\RequirePackage{scrextend}
+\deffootnote[0.7in]{0em}{0.7in}{\textsuperscript{\thefootnotemark\hspace{1ex}}\leading{10pt}\setlength{\parskip}{10pt}}
+\setkomafont{footnote}{\leading{10pt}}
+\renewcommand\footnoterule{%
+  \vfill %
+  \kern-3\p@
+  \hrule\@width1.5in
+  \kern2.6\p@}
 
 % hyperref package. Defines meetadata, as well as hyperlinks for references.
 % Make sure this comes last in config!
