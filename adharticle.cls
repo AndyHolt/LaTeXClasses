@@ -179,11 +179,14 @@
 % % change (sub)section and (sub)paragraph fonts to sans serif
 \RequirePackage{titlesec}
 
-\titleformat*{\section}{\normalfont\titlefamily\bfseries\Large}
-\titleformat*{\subsection}{\normalfont\titlefamily\bfseries\large}
-\titleformat*{\subsubsection}{\normalfont\titlefamily\bfseries\normalsize}
-\titleformat*{\paragraph}{\normalfont\titlefamily\bfseries\normalsize}
-\titleformat*{\subparagraph}{\normalfont\titlefamily\itshape\normalsize}
+% \titleformat*{\section}{\normalfont\titlefamily\bfseries\Large}
+% \titleformat*{\subsection}{\normalfont\titlefamily\bfseries\large}
+% \titleformat*{\subsubsection}{\normalfont\titlefamily\bfseries\normalsize}
+% \titleformat*{\paragraph}{\normalfont\titlefamily\bfseries\normalsize}
+% \titleformat*{\subparagraph}{\normalfont\titlefamily\itshape\normalsize}
+\titleformat{\section}[hang]{\normalfont\titlefamily\bfseries\Large}{\thesection}{0.5em}{}
+\titleformat{\subsection}[hang]{\normalfont\titlefamily\bfseries\large}{\thesubsection}{0.5em}{}
+
 
 % redefine title to use \titlefamily font
 % [todo] - make robust to having a title page
