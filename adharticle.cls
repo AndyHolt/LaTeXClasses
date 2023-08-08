@@ -270,9 +270,8 @@
 % micro-typography
 % not compatible with xetex, so don't load if not xetex
 \ifxetex
-  \typeout{Can't use microtype with xetex}
+  \RequirePackage{microtype}
 \else
-  \typeout{Not using xetex, enable microtype}
   \RequirePackage[
     protrusion=true,
     expansion=true,
