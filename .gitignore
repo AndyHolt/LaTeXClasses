@@ -111,3 +111,7 @@ sympy-plots-for-*.tex/
 
 # xindy
 *.xdy
+
+
+# files with personal information to be excluded
+adhlettinfopersonal.sty
