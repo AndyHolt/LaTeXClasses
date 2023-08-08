@@ -32,14 +32,36 @@
 }
 
 % Options for leaders notes inclusion/suppression
+% no leaders notes means text does not appear in output
+% standard leaders notes are greyed out and in sans font
+% full leaders notes are not greyed out, but in sans font
+% merge leaders notes are included and not distinguished from main text
 \providetoggle{useleadersnotes}
 \togglefalse{useleadersnotes}
+\providetoggle{usefullleadersnotes}
+\togglefalse{usefullleadersnotes}
+\providetoggle{usemergeleadersnotes}
+\togglefalse{usemergeleadersnotes}
 
 \DeclareOption{leadersnotes}{
   \toggletrue{useleadersnotes}
+  \togglefalse{usefullleadersnotes}
+  \togglefalse{usemergeleadersnotes}
 }
 \DeclareOption{noleadersnotes}{
   \togglefalse{useleadersnotes}
+  \togglefalse{usefullleadersnotes}
+  \togglefalse{usemergeleadersnotes}
+}
+\DeclareOption{fullleadersnotes}{
+  \toggletrue{useleadersnotes}
+  \toggletrue{usefullleadersnotes}
+  \togglefalse{usemergeleadersnotes}
+}
+\DeclareOption{mergeleadersnotes}{
+  \toggletrue{useleadersnotes}
+  \toggletrue{usefullleadersnotes}
+  \toggletrue{usemergeleadersnotes}
 }
 
 % Options for section styles
@@ -134,8 +156,8 @@
 % dr drang (https://github.com/drdrang/drangreport)
 \newcommand{\titlefamily}{}
 
-\ifxetex
-  \typeout{XeTeX engine used: set up external fonts for XeTeX}
+% \ifxetex
+  % \typeout{XeTeX engine used: set up external fonts for XeTeX}
   \RequirePackage{fontspec}
   \RequirePackage{polyglossia}
   \setmainlanguage[variant=british]{english}
@@ -147,49 +169,54 @@
   \newfontfamily\greekfont{Gentium Plus}[Scale=MatchLowercase]
   \newfontfamily\greekfontsf{GFS Neohellenic}[Scale=MatchLowercase]
   \renewcommand{\titlefamily}{\rmfamily}
-\else
-  \typoeout{XeTeX engine not used, configure LaTeX fonts}
-  % allow unicode symbols to be used
-  \RequirePackage[utf8]{inputenc}
+  \newfontfamily\symbolfont{Symbola}[Scale=MatchLowercase]
+% \else
+%   \typoeout{XeTeX engine not used, configure LaTeX fonts}
+%   % allow unicode symbols to be used
+%   \RequirePackage[utf8]{inputenc}
 
-  % babel package provides correct hyphenation etc
-  \RequirePackage[greek,british]{babel}
-  \iftoggle{cmfont}{
-    \typeout{computer modern font used}
-  }{}
-  \iftoggle{timesfont}{
-    \typeout{times font used}
-    \savesymbol{iint}
-    \RequirePackage{txfonts}
-    \restoresymbol{txf}{iint}
-    \renewcommand{\titlefamily}{\sffamily}
-    }{}
-  \iftoggle{palatinofont}{
-    \typeout{palatino font used}
-    \RequirePackage[sc,osf]{mathpazo}
-    \RequirePackage{classico}
-    \renewcommand{\baselinestretch}{1.1}
-    \renewcommand{\titlefamily}{\sffamily}
-  }{}
-  \iftoggle{palahelvfont}{
-    \typeout{palatino and helvetica fonts used}
-    \RequirePackage[sc,osf]{mathpazo}
-    \RequirePackage{helvet}
-    \renewcommand{\baselinestretch}{1.1}
-    \renewcommand{\titlefamily}{\sffamily}
-  }{}
-  \iftoggle{timesoptfont}{
-    \typeout{times and optima fonts used}
-    \savesymbol{iint}
-    \RequirePackage{txfonts}
-    \restoresymbol{txf}{iint}
-    \RequirePackage{classico}
-    \renewcommand{\titlefamily}{\sffamily}
-  }{}
-\fi
+%   % babel package provides correct hyphenation etc
+%   \RequirePackage[greek,british]{babel}
+%   \iftoggle{cmfont}{
+%     \typeout{computer modern font used}
+%   }{}
+%   \iftoggle{timesfont}{
+%     \typeout{times font used}
+%     \savesymbol{iint}
+%     \RequirePackage{txfonts}
+%     \restoresymbol{txf}{iint}
+%     \renewcommand{\titlefamily}{\sffamily}
+%     }{}
+%   \iftoggle{palatinofont}{
+%     \typeout{palatino font used}
+%     \RequirePackage[sc,osf]{mathpazo}
+%     \RequirePackage{classico}
+%     \renewcommand{\baselinestretch}{1.1}
+%     \renewcommand{\titlefamily}{\sffamily}
+%   }{}
+%   \iftoggle{palahelvfont}{
+%     \typeout{palatino and helvetica fonts used}
+%     \RequirePackage[sc,osf]{mathpazo}
+%     \RequirePackage{helvet}
+%     \renewcommand{\baselinestretch}{1.1}
+%     \renewcommand{\titlefamily}{\sffamily}
+%   }{}
+%   \iftoggle{timesoptfont}{
+%     \typeout{times and optima fonts used}
+%     \savesymbol{iint}
+%     \RequirePackage{txfonts}
+%     \restoresymbol{txf}{iint}
+%     \RequirePackage{classico}
+%     \renewcommand{\titlefamily}{\sffamily}
+%   }{}
+% \fi
 
 % packages to provide extra symbols
 \RequirePackage{adhsymbols}
+
+% float package for [H] exact float placement
+\RequirePackage{float}
+\RequirePackage[margin=10pt, skip=-8pt, font=footnotesize]{caption}
 
 % load titlesec here as needs to be loaded before Hebrew font and bidi setup
 \RequirePackage{titlesec}
@@ -207,20 +234,56 @@
 % \setlist[itemize]{topsep=0pt}
 \setlist{nosep}
 \setlist{topsep=-\baselineskip, itemsep=0pt, parsep=0pt}
+\setlist[itemize,1]{label=\textbullet}
+\setlist[itemize,2]{label=--}
+\setlist[itemize,3]{label=$\circ$}
+\setlist[itemize,4]{label=$\triangleright$}
 
 % multicol package for multiple-column layout
 \RequirePackage{multicol}
 
-\ifxetex
-  \typeout{Can't use microtype fully with xetex, not using}
-\else
-  \RequirePackage[
-    protrusion=true,
-    expansion=true,
-    spacing=true,
-    babel=true
-  ]{microtype}
-\fi
+% define some boxed environments for exercises, examples, discussion prompts,
+% etc
+\RequirePackage[most]{tcolorbox}
+\newtcolorbox{adh-box}[2][]{enhanced,
+    fonttitle=\rmfamily\itshape\small,
+    boxrule=0.4pt,
+    colframe=black,
+    sharp corners,
+    no shadow,
+    colback=white,
+    colbacktitle=white,
+    coltitle=black,
+    boxed title style={colframe=white},
+    attach boxed title to top left={xshift=1em,yshift=-\tcboxedtitleheight/2}, 
+    title=#2,#1}
+
+\newenvironment{discussion}{%
+  \begin{adh-box}{Discuss}}{%
+  \end{adh-box}}
+
+\newenvironment{reflection}{%
+  \begin{adh-box}{Reflect}}{%
+  \end{adh-box}}
+
+\newenvironment{exercise}{%
+  \begin{adh-box}{Have a go!}}{%
+  \end{adh-box}}
+
+% Put footnotes at bottom of the page, not floating up to text
+\RequirePackage[bottom]{footmisc}
+
+% microtype set up  
+% \ifxetex
+\RequirePackage{microtype}
+% \else
+%   \RequirePackage[
+%     protrusion=true,
+%     expansion=true,
+%     spacing=true,
+%     babel=true
+%   ]{microtype}
+% \fi
 
 % bible referencing
 % [todo] - separate package for bible refs
@@ -239,10 +302,24 @@
 % Create environment for leaders notes
 \RequirePackage{environ}
 \iftoggle{useleadersnotes}{
+  \typeout{Leaders Notes included, in some form}
+  \iftoggle{usefullleadersnotes}{
+    \typeout{Leaders Notes included in full form}
+    \iftoggle{usemergeleadersnotes}{%
+      \typeout{Leaders Notes included in full, merged form}
+      \NewEnviron{leadersnote}
+      {\BODY}
+      {}}{%
+      \typeout{Leaders Notes included in full, unmerged form}
+      \NewEnviron{leadersnote}
+      {\sffamily\BODY}
+      {}}}{%
+    \typeout{Leaders Notes included in greyed, sans font}
   \NewEnviron{leadersnote}
   {\sffamily\color{gray}\BODY}
-  {}
+  {}}
 }{
+  \typeout{Leaders Notes not included}
   \NewEnviron{leadersnote}
   {\@gobble{\BODY}}
   {}
@@ -254,6 +331,19 @@
 
 % image packages
 \RequirePackage{graphicx}
+
+% Define headers and footers
+\RequirePackage{fancyhdr}
+\pagestyle{plain}
+\fancypagestyle{cr}{%
+  \fancyhf{}%
+  \fancyfoot[L]{\footnotesize \license}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+\RequirePackage{ccicons}
+
 
 % Hyperref package
 % only use coloured links if electronic option, not if paper.
