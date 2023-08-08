@@ -39,6 +39,12 @@ if [[ ! -d $latexd/adhsertrans ]]; then
 fi
 cp $clsd/adhsertrans.cls $latexd/adhsertrans/adhsertrans.cls
 
+# install or update compact notes class
+if [[ ! -d $latexd/adhcompnotes ]]; then
+    mkdir $latexd/adhcompnotes
+fi
+cp $clsd/adhcompnotes.cls $latexd/adhcompnotes/adhcompnotes.cls
+
 # install or update polyglot class
 if [[ ! -d $latexd/polyglot ]]; then
     mkdir $latexd/polyglot
@@ -123,6 +129,13 @@ if [[ ! -d $latexd/hbms ]]; then
     mkdir $latexd/hbms
 fi
 cp $clsd/hbms.cls $latexd/hbms/hbms.cls
+
+# install or update letter class
+if [[ ! -d $latexd/adhletter ]]; then
+    mkdir $latexd/adhletter
+fi
+cp $clsd/adhletter.cls $latexd/adhletter/adhletter.cls
+cp $clsd/adhlettinfopersonal.sty $latexd/adhletter/adhlettinfopersonal.sty
 
 mktexlsr $tree
 
