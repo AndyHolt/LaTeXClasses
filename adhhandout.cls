@@ -169,7 +169,7 @@
   \newfontfamily\greekfont{Gentium Plus}[Scale=MatchLowercase]
   \newfontfamily\greekfontsf{GFS Neohellenic}[Scale=MatchLowercase]
   \renewcommand{\titlefamily}{\rmfamily}
-  \newfontfamily\symbolfont{Symbola}[Scale=MatchLowercase]
+  \newfontfamily\symbolfont{Noto Emoji}[Scale=MatchLowercase]
 % \else
 %   \typoeout{XeTeX engine not used, configure LaTeX fonts}
 %   % allow unicode symbols to be used
@@ -343,6 +343,9 @@
   \renewcommand{\footrulewidth}{0pt}
 }
 \RequirePackage{ccicons}
+
+% url linebreaks, stopping urls from encroaching on margins
+\RequirePackage{xurl}
 
 
 % Hyperref package

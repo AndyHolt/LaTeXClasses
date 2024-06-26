@@ -84,4 +84,11 @@
   \end{center}
 }
 
+% Definitions of commands useful for layout and setting of Hebrew text in
+% particular (spin out into a standalone package if it is needed by other
+% classes)
+
+% hemistich space (dividing a colon, i.e. line, in two)
+\newcommand{\hem}{\hspace{2ex}}
+
 \RequirePackage[]{bidi}

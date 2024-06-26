@@ -6,7 +6,7 @@
 %% Options - handle options to adhhandout class
 
 % pass other options to scrlttr2 class
-\DeclareOption*{\PassOptionToClass{\CurrentOption}{article}}
+\DeclareOption*{\PassOptionToClass{\CurrentOption}{scrlttr2}}
 
 \ProcessOptions\relax
 
@@ -30,6 +30,10 @@
 % options
 \RequirePackage{adhlettinfopersonal}
 
+% Other letter formatting
+\setplength{sigindent}{0mm}
+\renewcommand*{\raggedsignature}{\raggedright}
+
 % font set up
 \RequirePackage{fontspec}
 \RequirePackage{polyglossia}
@@ -50,3 +54,5 @@
 
 
 \RequirePackage{microtype}
+
+\RequirePackage[hidelinks]{hyperref}

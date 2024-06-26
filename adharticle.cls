@@ -240,13 +240,14 @@
 
 % packages for source code formatting
 \RequirePackage{minted}
-\usemintedstyle{solarizedlight}
+\usemintedstyle{solarized-light}
 \definecolor{solarizedlightbg}{rgb}{0.933,0.910, 0.835}
 % [review] - use inconsolata/monaco font in minted? (can this be done?)
 % [todo] - format minted line numbers to match solarized theme
-\newminted{latex}{
+\setminted{
   bgcolor=solarizedlightbg,
-  gobble=2,
+  autogobble=true,
+  breaklines=true,
   linenos=true,
   numberblanklines=true,
   obeytabs=false,
@@ -360,7 +361,7 @@
 \fi
 
 % bibliography set up
-\RequirePackage[backend=biber, style=verbose-ibid]{biblatex}
+\RequirePackage[backend=biber, style=verbose]{biblatex}
 % \RequirePackage[ibidtracker=false]{biblatex-chicago}
 
 \RequirePackage[]{bidi}
