@@ -6,7 +6,7 @@
 # Date: Wed 12 Aug 2015 18:14
 
 # latex classes directory
-clsd=$HOME/Projects/LaTeXClasses
+clsd=$HOME/projects/LaTeXClasses
 
 # create TEXMFHOME tree
 tree=`kpsewhich -var-value TEXMFHOME`
@@ -135,7 +135,13 @@ if [[ ! -d $latexd/adhletter ]]; then
     mkdir $latexd/adhletter
 fi
 cp $clsd/adhletter.cls $latexd/adhletter/adhletter.cls
-cp $clsd/adhlettinfopersonal.sty $latexd/adhletter/adhlettinfopersonal.sty
+# cp $clsd/adhlettinfopersonal.sty $latexd/adhletter/adhlettinfopersonal.sty
+
+# install or update CV class
+if [[ ! -d $latexd/adhcv ]]; then
+    mkdir $latexd/adhcv
+fi
+cp $clsd/adhcv.cls $latexd/adhcv/adhcv.cls
 
 mktexlsr $tree
 
