@@ -22,6 +22,7 @@
            subject=left,%
            enlargefirstpage=true,%
            firstfoot=false,%
+           backaddress=off,%
            version=last%
            ]{scrlttr2}
 
@@ -44,7 +45,7 @@
 % \setotherlanguage[variant=ancient]{greek}
 % \newfontfamily\greekfont{Gentium Plus}[Scale=MatchLowercase]
 % \newfontfamily\greekfontsf{GFS Neohellenic}[Scale=MatchLowercase]
-\newfontfamily\symbolfont{Symbola}[Scale=MatchLowercase]
+\newfontfamily\symbolfont{Noto Sans Symbols 2}[Scale=MatchLowercase]
 
 % packages to provide extra symbols
 \RequirePackage{adhsymbols}
